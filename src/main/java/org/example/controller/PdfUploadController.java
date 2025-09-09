@@ -33,13 +33,14 @@ public class PdfUploadController {
                     .body(Map.of("error", "Only PDF files are allowed"));
             }
 
-            Map<String, Object> extractedData = pdfExtractionService.extractFormFields(file);
+            Map<String, String> extractedData = pdfExtractionService.extractFormFields(file);
             
             return ResponseEntity.ok(Map.of(
                 "message", "PDF processed successfully",
                 "filename", file.getOriginalFilename(),
+                "fieldsCount", extractedData.size(),
                 "patientId", extractedData.get("Patient ID") != null ? extractedData.get("Patient ID") : "",
-                "groupedData", extractedData
+                "extractedData", extractedData
             ));
 
         } catch (IllegalArgumentException e) {
