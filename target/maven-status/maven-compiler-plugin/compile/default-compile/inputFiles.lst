@@ -2,5 +2,7 @@
 /Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/PdfExtractionApplication.java
 /Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/PdfFormFiller.java
 /Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/controller/PdfUploadController.java
+/Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/mapper/NeurologicalMapper.java
+/Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/mapper/VitalsMapper.java
 /Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/service/PdfExtractionService.java
 /Users/gocool/Drive/Files/Curanties/pdf-logic/src/main/java/org/example/util/PdfUtils.java
