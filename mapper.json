@@ -1,0 +1,126 @@
+{
+     "Vitals": {
+          "Declines_Vitals": "declined", // there some feild called noChanges in the api and Decline_Reason in the pdf
+          "Blood_Pressure": {
+               "Vitals_Diastolic": "diastolic",
+               "Vitals_Side": "location", 
+               "Vitals_Position": "location",
+               "Vitals_Sysolic": "systolic"
+          },
+          "Temp" : {
+               "Temp_Route": "route",
+               "Temperature": "temperature"
+          },
+          
+          "Pulse": {
+               "Heart_Rate": "heartRate",
+               "Rhythm": "rhythm",
+               "Rhythm_Other": "rhythm",
+               "Strengh": "strength",
+               "Strength_Other": "strength",
+               "Pulse_Locantion": "location",
+               "Location_Other": "location"
+
+          },
+          "Respiratory_Rate" : {
+               "Respiration_Type": "respirationType",
+               "Respiratory_Rate": "respiratoryRate",
+               "02Saturation": "o2saturation",
+               "Respiration_Other": "respirationType"
+          },
+          "Height_ft":"inches",
+          "Hight_in": "inches",
+          "Weight": {
+               "Weight_lb": "lbs",
+               "Weight_kg": "kg"
+          },
+          "MUAC": {
+               "MUAC_right_unable": "rightArmOther",
+               "MUAC_right_In": "rightArm.inches",
+               "MUAC_right_cm":  "rightArm.cm",
+               "MUAC_left_unable": "leftArmOther",
+               "MUAC_left_In": "leftArm.inches",
+               "MUAC_left_cm":  "leftArm.cm"
+          },
+          "COVID_Inter_travel": "familyEngagedInInternationalTravel",
+          "COVID_Inter_travel_Comment": "familyEngagedInInternationalTravelText",
+          "COVID_res_ illness": "familyHaveRespiratoryIllness",
+          "COVID_res_illness_Comment": "familyHaveRespiratoryIllnessText",
+          "COVID_signs_symptoms": "familyWithSignsOfCovid",
+          "COVID_signs_symptoms _Comment": "familyWithSignsOfCovidText",
+          "COVID_contact": "familyHadContactWithSomeoneUnderCovidInvestigation",
+          "COVID_contact_Comment": "familyHadContactWithSomeoneUnderCovidInvestigationText",
+          "COVID_Com_transmission": "patientResidesInTransmissionArea",
+          "COVID_Com_transmission_Comments": "patientResidesInTransmissionAreaText",
+          "Notes":{
+               "Vitals_Summary": "description",
+               "Vitals_Notes": "category"
+          } // i have doubt about this notes
+     },
+     "Neurological": {
+          "Neurological_Decline_Reason": "", // didn't found any data in the api
+          "pt_declines_Asses": {
+               "CL010.227":{"declined":true,"noChanges":""}
+          },
+          "Oriented_Time": "oriented.time", // this feilds will be stored as disoriented : ["person", "place", "time", "situation"]
+          "Oriented_Place": "oriented.place",
+          "Oriented_Person": "oriented.person",
+          "Oriented_Situation": "oriented.situation",
+          "Oriented_Unable": "unableToAssessOriented.unableToAssess",
+          "Disoriented_Time": "disoriented.time",
+          "Disoriented_Place": "disoriented.place",
+          "Disoriented_Person": "disoriented.person",
+          "Disoriented_Situation": "disoriented.situation",
+          "Disoriented_Unable": "unableToAssessDisoriented.unableToAssess",
+          // anxiety CL010.20
+          "pt_Neurological": "patientExperiencesAnxiety", // yes/no but need true/false
+          "Anxiety_Score": "score",
+          "Anxiety_symptom_impact": "rankSymptomImpact", // need the values like moderateImpact
+          "Anxiety_impact_area": {"explainSymptomImpact": []}, // this will be like explainSymptomImpact: ["intakeOnly", "dailyActivities", "fatigueWeakness", "sleep", "concentration",
+          "Anxiety_impact_area_Other": "otherSymptomArea",
+          "Anxiety_impact_area_Explanation": "explanation",
+          // Agitation CL010.223
+          "Pt_Experiences_Agitation": "patientExperiencesAgitation",
+          "Agitation_Score": "score",
+          "Agitation_symptom_impact": "rankSymptomImpact",
+          "Agitation_Pt_impact_area": {"explainSymptomImpact": []},
+          "Agitation_Pt_impact_area_Other": "otherSymptomArea",
+          "Agitation_Pt_impact_area_Explanation": "explanation",
+          // confusion CL010.26
+          "Pt_confusion": "patientExperiencesConfusion",
+          // Depression CL010.27
+          "Pt_Depression": "patientExperiencesDepression",
+          // head ache CL010.28
+          "Nature": "nature",
+          "Pt_Headaches": "patientExperiencesHeadaches",
+          "Onset_Date_af_date": "onsetDate.date",
+          "Location_Unilateral": "location.unilateral",// location: ["unilateral", "bilateral", "frontoTemporal", "occipital"]
+          "Location_Bilateral": "location.bilateral",
+          "Location_Fronto_Temporal": "location.frontoTemporal",
+          "Location_Occipital": "location.occipital",
+          "Other_Location": "",
+          "Pain_Characteristics": "painCharacteristics",
+          "Severity": "severity",
+          "Most_Recent_af_date": "mostRecent.date",
+          "Associated_Nausea": "associatedNausea",
+          "Radiation": "radiation",
+          "Vomiting": "associatedVomiting",
+          "Vomiting_Onset_Date": "associatedVomitingDate.date",
+          "Duration_Number": "durationNumber",
+          "Time": "durationTime",
+          "Frequency_times": "frequency.numerator",
+          "Frequency": "frequency.denominator",
+          "Vomiting_Frequency": "frequency.timeUnit",
+          "Head_Inury": "recentHeadInjury",
+          "Head_Injury_Onset_Date": "recentHeadInjuryDate.date",
+          "Concussion": "recentConcussion",
+          "Head_injury_Date_af_date": "recentConcussionDate.date",
+          // Other issues CL010.32
+          "Recent_Concussion": "otherIssues[]"
+          // "notes"
+     }
+}
+
+
+
+
