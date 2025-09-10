@@ -1,5 +1,8 @@
 package main.java.org.example.mapper;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class NeurologicalMapper {
      private Map<String, Object> createNeurologicalMapping() {
           Map<String, Object> neurologicalMap = new HashMap<>();
