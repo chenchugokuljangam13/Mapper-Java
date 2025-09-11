@@ -21,7 +21,7 @@ public class DataMappingService {
     public Map<String, Object> transformPdfData(Map<String, String> pdfData) {
         Map<String, Object> transformedData = new HashMap<>();
 
-        Map<String, Object> vitalsMapping = vitalsMapper.getVitalsMapping();
+        Map<String, Object> vitalsMapping = vitalsMapper.getVitalsMapping(pdfData);
         Map<String, Object> neurologicalMapping = neurologicalMapper.getNeurologicalMapping();
 
         // Apply mappings

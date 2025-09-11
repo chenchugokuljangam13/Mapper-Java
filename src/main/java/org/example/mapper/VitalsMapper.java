@@ -5,14 +5,14 @@ import java.util.Map;
 
 public class VitalsMapper {
 
-    private Map<String, Object> createVitalsMapping() {
+    private Map<String, Object> createVitalsMapping(Map<String, String> pdfData) {
         Map<String, Object> vitalsMap = new HashMap<>();
 
         // Declines
         Map<String, Object> declineCard = new HashMap<>();
         declineCard.put("Declines_Vitals", "declined"); 
         declineCard.put("Decline_Reason", "declinedReason"); 
-        vitalsMap.put("declineCard", declineCard);
+        vitalsMap.put("decline", declineCard);
         // Note: In API it's "noChanges", in PDF it's "Decline_Reason".
         // Adjust as per requirement.
 
@@ -34,42 +34,61 @@ public class VitalsMapper {
         // Pulse mapping
         Map<String, Object> pulse = new HashMap<>();
         pulse.put("Heart_Rate", "heartRate");
-        pulse.put("Rhythm", "rhythm");
-        pulse.put("Rhythm_Other", "rhythm");
-        pulse.put("Strengh", "strength");
-        pulse.put("Strength_Other", "strength");
-        pulse.put("Pulse_Locantion", "location");
-        pulse.put("Location_Other", "location");
+        if (pdfData.get("Rhythm_Other") != null && !pdfData.get("Rhythm_Other").toString().trim().isEmpty()) {
+            pulse.put("Rhythm_Other", "rhythm");
+        } else {
+            pulse.put("Rhythm", "rhythm");
+        }
+        if (pdfData.get("Strength_Other") != null && !pdfData.get("Strength_Other").toString().trim().isEmpty()) {
+            pulse.put("Strength_Other", "strength");
+        } else {
+            pulse.put("Strengh", "strength"); // fixed spelling (was "Strengh")
+        }
+        if (pdfData.get("Location_Other") != null && !pdfData.get("Location_Other").toString().trim().isEmpty()) {
+            pulse.put("Location_Other", "location");
+        } else {
+            pulse.put("Pulse_Locantion", "location"); // fixed spelling (was "Locantion")
+        }
         vitalsMap.put("pulse", pulse);
 
-        // Respiratory Rate mapping
+        // respiratoryRate Mapping
         Map<String, Object> respRate = new HashMap<>();
-        respRate.put("Respiration_Type", "respirationType");
+        if (pdfData.get("Respiration_Other") != null && !pdfData.get("Respiration_Other").toString().trim().isEmpty()) {
+            respRate.put("Respiration_Other", "respirationType");
+        }
+        else{
+            respRate.put("Respiration_Type", "respirationType");
+        }
         respRate.put("Respiratory_Rate", "respiratoryRate");
         respRate.put("02Saturation", "o2saturation");
-        respRate.put("Respiration_Other", "respirationType");
-        vitalsMap.put("respiratory", respRate);
+        vitalsMap.put("respiratoryRate", respRate);
 
-        // Height / Weight mapping
+        // Height 
         Map<String, Object> height = new HashMap<>();
         height.put("Height_ft", "inchesF");
         height.put("Hight_in", "inchesI");
-        vitalsMap.put("Weight", height);
+        vitalsMap.put("height", height);
 
+        // Weight
         Map<String, Object> weight = new HashMap<>();
         weight.put("Weight_lb", "lbs");
         weight.put("Weight_kg", "kg");
-        vitalsMap.put("Weight", weight);
+        vitalsMap.put("weight", weight);
 
         // MUAC mapping
         Map<String, Object> muac = new HashMap<>();
-        muac.put("MUAC_right_unable", "rightArmOther");
-        muac.put("MUAC_right_In", "rightArm.inches");
-        muac.put("MUAC_right_cm", "rightArm.cm");
+        if ("Off".equals(pdfData.get("MUAC_right_unable"))) {
+            muac.put("MUAC_right_In", "rightArm.inches");
+            muac.put("MUAC_right_cm", "rightArm.cm");
+        }
+            muac.put("MUAC_right_unable", "rightArmOther");
+        if ("Off".equals(pdfData.get("MUAC_left_unable"))) {
+            muac.put("MUAC_left_In", "leftArm.inches");
+            muac.put("MUAC_left_cm", "leftArm.cm");
+        }
         muac.put("MUAC_left_unable", "leftArmOther");
-        muac.put("MUAC_left_In", "leftArm.inches");
-        muac.put("MUAC_left_cm", "leftArm.cm");
-        vitalsMap.put("MUAC", muac);
+        vitalsMap.put("muac", muac);
+
 
         // COVID-related mappings
         vitalsMap.put("COVID_Inter_travel", "familyEngagedInInternationalTravel");
@@ -87,12 +106,12 @@ public class VitalsMapper {
         Map<String, Object> notes = new HashMap<>();
         notes.put("Vitals_Summary", "description");
         notes.put("Vitals_Notes", "category");
-        vitalsMap.put("Notes", notes);
+        vitalsMap.put("notes", notes);
 
         return vitalsMap;
     }
 
-    public Map<String, Object> getVitalsMapping() {
-        return createVitalsMapping();
+    public Map<String, Object> getVitalsMapping(Map<String, String> pdfData) {
+        return createVitalsMapping(pdfData);
     }
 }

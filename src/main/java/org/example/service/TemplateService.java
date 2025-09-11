@@ -91,18 +91,19 @@ public class TemplateService {
                 }
             }
         }
-        System.err.println(templateCache);
     }
     
     private Map<String, Object> templateDataMapper(Map<String, Object> mappedData) {
         Map<String, Object> result = new HashMap<>();
-        
+        // for getting the sections like vitals etc
         for (Map.Entry<String, Object> entry : mappedData.entrySet()) {
             String sectionType = entry.getKey();
             Object sectionData = entry.getValue();
             
             if (templateCache.containsKey(sectionType) && sectionData instanceof Map) {
                 JsonNode template = templateCache.get(sectionType);
+                // System.out.printf("template %s: %s%n", sectionType, template);
+                // System.out.printf("template %s data: %s%n", sectionType, sectionData);
                 Map<String, Object> mappedSection = mapSectionToCards(
                     (Map<String, Object>) sectionData, 
                     template,
@@ -125,31 +126,43 @@ public class TemplateService {
 
         JsonNode cards = template.get("cards");
         Map<String, Object> cardsData = (Map<String, Object>) result.get("cards");
-
         if (cards != null && cards.isArray()) {
             for (JsonNode card : cards) {
                 String cardId = card.get("id").asText();
+                String cardName = card.get("cardName").asText();
                 Map<String, Object> cardKeyValues = new HashMap<>();
                 cardKeyValues.put("cardId", cardId);
-                cardKeyValues.put("keyValues", new HashMap<>());
+                cardKeyValues.put("cardName", cardName);
+                cardKeyValues.put("data", new HashMap<>());
 
                 if (card.has("inputs")) {
                     JsonNode inputs = card.get("inputs");
-                    Map<String, Object> keyValues = (Map<String, Object>) cardKeyValues.get("keyValues");
+                    Map<String, Object> keyValues = (Map<String, Object>) cardKeyValues.get("data");
                     
                     inputs.fieldNames().forEachRemaining(inputName -> {
-                        if (sectionData.containsKey(inputName)) {
+                        if ((sectionData.containsKey(inputName) && !(sectionData.get(inputName) instanceof Map)) || ("weight".equals(cardName))) {
                             keyValues.put(inputName, sectionData.get(inputName));
+                        } else if (sectionData.containsKey(cardName) && sectionData.get(cardName) instanceof Map) {
+                            // Look inside sectionData.cardId if it’s a map
+                            Map<String, Object> nestedMap = (Map<String, Object>) sectionData.get(cardName);
+                            if (nestedMap.containsKey(inputName)) {
+                                keyValues.put(inputName, nestedMap.get(inputName));
+                            }
+                            if ("bloodPressure".equals(cardName) && nestedMap.containsKey("location_side") && nestedMap.containsKey("location")) {
+                                String combinedLocation = nestedMap.get("location") + " " + nestedMap.get("location_side");
+                                keyValues.put("location", combinedLocation);
+                            }
+                        } else {
+                            // Case 3 (if cardId itself not in sectionData) → add anyway
+                            sectionData.put(inputName, null);
+                            keyValues.put(inputName, null);
                         }
+                        // if ("weight".equals(cardName)){
+                        //     keyValues.put("weight", sectionData.get(cardName));
+                        // }
                     });
                     
-                    // Special handling for blood pressure location
-                    if ("Blood_Pressure".equals(cardId) && 
-                        sectionData.containsKey("location_side") && 
-                        sectionData.containsKey("location")) {
-                        String combinedLocation = sectionData.get("location") + " " + sectionData.get("location_side");
-                        keyValues.put("location", combinedLocation);
-                    }
+                    
                 }
 
                 // Always add the card, even if keyValues is empty
