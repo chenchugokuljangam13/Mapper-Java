@@ -134,18 +134,23 @@ public class TemplateService {
                 for (JsonNode card : cards) {
                     String cardId = card.get("id").asText();
                     String cardName = card.get("cardName").asText();
+                    Map<String, Object> cardKeyValues = new HashMap<>();
+                    cardKeyValues.put("cardId", cardId);
+                    cardKeyValues.put("cardName", cardName);
                     if ("decline".equals(cardName)) {
-                        Map<String, Object> cardKeyValues = new HashMap<>();
-                        cardKeyValues.put("cardId", cardId);
-                        cardKeyValues.put("cardName", cardName);
                         Map<String, Object> dataMap = new HashMap<>();
                         dataMap.putAll(declineData);
                         cardKeyValues.put("data", dataMap);
                         cardsData.put(cardId, cardKeyValues);
                     }
                     if ("notes".equals(cardName)) {
-
+                        Map<String, String> dataMap = (Map<String, String>) sectionData.get("notes");
+                        cardKeyValues.put("data", dataMap);
+                        dataMap.put("category", "general");
+                        cardsData.put(cardId, cardKeyValues);
                     }
+                    
+                    
                 }
                 return result;
             }
