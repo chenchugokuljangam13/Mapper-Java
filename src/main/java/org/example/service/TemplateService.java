@@ -127,6 +127,28 @@ public class TemplateService {
         JsonNode cards = template.get("cards");
         Map<String, Object> cardsData = (Map<String, Object>) result.get("cards");
         if (cards != null && cards.isArray()) {
+            Map<String, String> declineObject = (Map<String, String>) sectionData.get("decline");
+            if ("Yes".equals(declineObject.get("declined"))){
+                Map<String, Object> declineData = new HashMap<>();
+                declineData.put("declined", true);
+                for (JsonNode card : cards) {
+                    String cardId = card.get("id").asText();
+                    String cardName = card.get("cardName").asText();
+                    if ("decline".equals(cardName)) {
+                        Map<String, Object> cardKeyValues = new HashMap<>();
+                        cardKeyValues.put("cardId", cardId);
+                        cardKeyValues.put("cardName", cardName);
+                        Map<String, Object> dataMap = new HashMap<>();
+                        dataMap.putAll(declineData);
+                        cardKeyValues.put("data", dataMap);
+                        cardsData.put(cardId, cardKeyValues);
+                    }
+                    if ("notes".equals(cardName)) {
+
+                    }
+                }
+                return result;
+            }
             for (JsonNode card : cards) {
                 String cardId = card.get("id").asText();
                 String cardName = card.get("cardName").asText();
