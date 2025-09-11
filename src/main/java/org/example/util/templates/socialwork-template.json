@@ -1,0 +1,699 @@
+{
+  "id": "socialWork",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "mmse",
+      "type": "mmseCard",
+      "declinable": true,
+      "componentId": "mmse",
+      "data": {
+        "listHeaders": ["orientationTotal", "registrationTotal", "attentionCalculationTotal", "recallTotal", "languageTotal"]
+      },
+      "inputs": {
+        "mmseCurrentDate": {
+          "type": "radio",
+          "componentId": "mmseCurrentDate",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        "mmseCurrentPlace": {
+          "type": "radio",
+          "componentId": "mmseCurrentPlace",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        "nameThreeObjects": {
+          "type": "radio",
+          "componentId": "nameThreeObjects",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "worldBackwards": {
+          "type": "radio",
+          "componentId": "worldBackwards",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        "threePreviousObjects": {
+          "type": "radio",
+          "componentId": "threePreviousObjects",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "namePencilWatch": {
+          "type": "radio",
+          "componentId": "namePencilWatch",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        "noIfsAndsOrButs": {
+          "type": "radio",
+          "componentId": "noIfsAndsOrButs",
+          "options": [
+            "0",
+            "1"
+          ]
+        },
+        "threeStageCommand": {
+          "type": "radio",
+          "componentId": "threeStageCommand",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "closeYourEyes": {
+          "type": "radio",
+          "componentId": "closeYourEyes",
+          "options": [
+            "0",
+            "1"
+          ]
+        },
+        "writeASentence": {
+          "type": "radio",
+          "componentId": "writeASentence",
+          "options": [
+            "0",
+            "1"
+          ]
+        },
+        "copyDesign": {
+          "type": "radio",
+          "componentId": "copyDesign",
+          "options": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "totalGroupings": {
+        "orientationTotal": [
+          "mmseCurrentDate",
+          "mmseCurrentPlace"
+        ],
+        "registrationTotal": [
+          "nameThreeObjects"
+        ],
+        "attentionCalculationTotal": [
+          "worldBackwards"
+        ],
+        "recallTotal": [
+          "threePreviousObjects"
+        ],
+        "languageTotal": [
+          "namePencilWatch",
+          "noIfsAndsOrButs",
+          "threeStageCommand",
+          "closeYourEyes",
+          "writeASentence",
+          "copyDesign"
+        ]
+      }
+    },
+    {
+      "id": "personalInformation",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "ethnicity": {
+          "type": "select",
+          "componentId": "ethnicity",
+          "supportOther": true,
+          "options": [
+            "asian",
+            "africanAmerican",
+            "white",
+            "hispanicLatino",
+            "amIndianAlNative",
+            "hiNativePacIslander",
+            "mixedEthnicity"
+          ]
+        },
+        "raceHope": {
+          "type": "select",
+          "componentId": "raceHope",
+          "supportOther": true,
+          "options": [
+            "white",
+            "africanAmerican",
+            "americanIndianAlaskan",
+            "asianIndian",
+            "chinese",
+            "filipino",
+            "japanese",
+            "korean",
+            "vietnamese",
+            "otherAsian",
+            "nativeHawaiian",
+            "guamanianChamorro",
+            "samoan",
+            "otherPacificIslander",
+            "noneOfTheAboveRace",
+            "patientUnableToRespond",
+            "patientDeclinesToRespond"
+          ]
+        },
+        "ethnicityHope": {
+          "type": "select",
+          "componentId": "ethnicityHope",
+          "supportOther": true,
+          "options": [
+            "noNotHispanicLatinoSpanishOrigin",
+            "mexicanMexicanAmericanChicano",
+            "puertoRican",
+            "cuban",
+            "anotherHispanicLatinoSpanishOrigin",
+            "patientUnableToRespond",
+            "patientDeclinesToRespond"
+          ]
+        },
+        "education": {
+          "type": "select",
+          "componentId": "education",
+          "options": [
+            "professional",
+            "doctoral",
+            "masters",
+            "bachelors",
+            "technicalVocational",
+            "associates",
+            "someCollege",
+            "highSchoolDiploma",
+            "ged",
+            "lessThanHighSchool",
+            "unknown"
+          ]
+        },
+        "spiritualReligiousAffiliation": {
+          "type": "select",
+          "componentId": "religion",
+          "options": [ "AoG", "baptist", "catholic", "christian", "CoC", "episcopalian", "jewish", "lutheran", "methodist", "noPref", "nonDenom", "presbyterian", "protestant", "nazarene", "mormon", "pentecostal", "comOC", "jehovahsWitness", "discOfChrist", "greekOrth", "notSpecified" ]
+        },
+        "occupation": {
+          "type": "text",
+          "componentId": "occupation",
+          "rules": {
+            "maxLength": 100
+          }
+        },
+        "hobbies": {
+          "type": "text",
+          "componentId": "hobbies",
+          "rules": {
+            "maxLength": 100
+          }
+        },
+        "birthplaceCity": {
+          "type": "text",
+          "componentId": "birthplaceCity",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "birthplaceState": {
+          "type": "select",
+          "componentId": "birthplaceState",
+          "options": [ "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY" ]
+        },
+        "birthplaceOtherCheck": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "other"
+          ]
+        },
+        "birthplaceOtherText": {
+          "type": "text",
+          "label": false
+        },
+        "upbringingCity": {
+          "type": "text",
+          "componentId": "upbringingCity",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "upbringingState": {
+          "type": "select",
+          "componentId": "upbringingState",
+          "options": [ "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY" ]
+        },
+        "upbringingOtherCheck": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "other"
+          ]
+        },
+        "upbringingOtherText": {
+          "type": "text",
+          "label": false
+        },
+        "marriages": {
+          "type": "text",
+          "componentId": "marriages",
+          "rules": {
+            "maxLength": 100
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "upbringingOtherCheck",
+        "values": ["other"],
+        "type": "enable",
+        "fields": [
+          "upbringingOtherText"
+        ]
+      },
+        {
+          "id": "upbringingOtherCheck",
+          "values": ["other"],
+          "type": "disable",
+          "fields": [
+            "upbringingCity",
+            "upbringingState"
+          ]
+        },
+        {
+          "id": "birthplaceOtherCheck",
+          "values": ["other"],
+          "type": "enable",
+          "fields": [
+            "birthplaceOtherText"
+          ]
+        },
+        {
+          "id": "birthplaceOtherCheck",
+          "values": ["other"],
+          "type": "disable",
+          "fields": [
+            "birthplaceCity",
+            "birthplaceState"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "ethnicity"
+            }]
+          },
+            {
+              "rows": [{
+                "id": "ethnicityHope"
+              }]
+            },
+            {
+              "rows": [{
+                "id": "raceHope"
+              }]
+            },
+            {
+              "rows": [{
+                "id": "education"
+              }]
+            },
+            {
+              "rows": [{
+                "id": "occupation"
+              }]
+            }
+          ]
+        },
+          {
+            "properties": {
+              "style": "display:flex;align-items:flex-end;"
+            },
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "spiritualReligiousAffiliation"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "hobbies"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "marriages"
+                }]
+              }
+            ]
+          },
+          {
+            "properties": {
+              "style": "display:flex;align-items:flex-end;"
+            },
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "birthplaceCity"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "birthplaceState"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "birthplaceOtherCheck"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "birthplaceOtherText"
+              }]
+            }]
+          },
+          {
+            "properties": {
+              "style": "display:flex;align-items:flex-end;"
+            },
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "upbringingCity"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "upbringingState"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "upbringingOtherCheck"
+                }]
+              }
+            ]
+          },
+          {
+            "properties": {
+              "style": "display:flex;align-items:flex-end;"
+            },
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "upbringingOtherText"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "needs",
+      "type": "historyListCard",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["category", "addedBy", "date", "description"]
+      },
+      "inputs": {
+        "category": {
+          "componentId": "category",
+          "type": "select",
+          "options": [
+            "anticipatoryGrief",
+            "communityResources",
+            "financial",
+            "funeral",
+            "interpersonalSupport",
+            "legal",
+            "placement",
+            "volunteer"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "componentId": "description",
+          "type": "textarea",
+          "rules": {
+            "rows": 3,
+            "maxLength": 150,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "risks",
+      "type": "historyListCard",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["category", "person", "score", "addedBy", "date", "description"]
+      },
+      "inputs": {
+        "category": {
+          "componentId": "category",
+          "type": "select",
+          "options": [
+            "safety",
+            "suicide"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "person": {
+          "componentId": "person",
+          "type": "select",
+          "supportOther": true,
+          "options": [
+            "patient",
+            "pcg",
+            "family"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "score": {
+          "componentId": "score",
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        },
+        "description": {
+          "componentId": "description",
+          "type": "textarea",
+          "rules": {
+            "rows": 3,
+            "maxLength": 150,
+            "required": true
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "category",
+        "values": ["suicide"],
+        "type": "enable",
+        "fields": ["person", "score"]
+      }]
+    },
+    {
+      "id": "patientFamilyResources",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "livingWill": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "conservatorship": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "medicaid": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "codeStatus": {
+          "type": "select",
+          "options": [
+            "n/a",
+            "dnr",
+            "dnrcc",
+            "dnrcca",
+            "fullCode"
+          ]
+        },
+        "mealsOnWheels": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "guardianship": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "medicare": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "advancedDirective": {
+          "type": "select",
+          "options": [
+            "n/a",
+            "polst",
+            "molst",
+            "tropp"
+          ]
+        },
+        "orders": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "statePublicAssistancePrograms": {
+          "type": "checkbox",
+          "options": [
+            "ssdi",
+            "foodStamps",
+            "hud"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "livingWill"
+        },
+          {
+            "id": "conservatorship"
+          },
+          {
+            "id": "medicaid"
+          },
+          {
+            "id": "codeStatus"
+          },
+          {
+            "id": "mealsOnWheels"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "guardianship"
+          },
+            {
+              "id": "medicare"
+            },
+            {
+              "id": "orders"
+            },
+            {
+              "id": "advancedDirective"
+            },
+            {
+              "id": "statePublicAssistancePrograms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "mmse",
+            "personalInformation",
+            "needs",
+            "risks",
+            "patientFamilyResources"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

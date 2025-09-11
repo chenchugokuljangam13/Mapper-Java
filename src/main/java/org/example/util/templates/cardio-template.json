@@ -1,0 +1,877 @@
+{
+  "id": "cardiovascular",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "pulse",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "rhythm", "strength", "location", "heartRate"]
+      },
+      "inputs": {
+        "rhythm": {
+          "type": "selectOther",
+          "options": ["regular", "irregularWithPattern", "irregularWithoutPattern", "murmur", "gallop",
+            "unableToAssess", "asystole", "bradycardia", "tachycardia"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "strength": {
+          "type": "selectOther",
+          "options": ["bounding", "regular", "thready", "weak"],
+          "rules": {
+            "required": true
+          }
+        },
+        "location": {
+          "type": "selectOther",
+          "options": ["apical", "brachial", "carotid", "femoral", "pedal", "popliteal", "posteriorTibial",
+            "radial"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "heartRate": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bloodPressure",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "location", "position", "systolic", "diastolic"]
+      },
+      "inputs": {
+        "location": {
+          "type": "select",
+          "options": [
+            "leftAnkle",
+            "leftArm",
+            "leftWrist",
+            "rightAnkle",
+            "rightArm",
+            "rightWrist"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "position": {
+          "type": "select",
+          "options": [
+            "lying",
+            "sitting",
+            "standing"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "systolic": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        },
+        "diastolic": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "capillaryRefill",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "capillaryRefill": {
+          "type": "number"
+        }
+      }
+    },
+    {
+      "id": "edema",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "location", "position", "systolic", "diastolic"]
+      },
+      "inputs": {
+        "site": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "pitting": {
+          "type": "radio",
+          "options": [
+            "nonPitting",
+            "pitting"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "pittingScale": {
+          "type": "select",
+          "options": [
+            "1+",
+            "2+",
+            "3+",
+            "4+"
+          ],
+          "rules": {
+            "required": true
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "pitting",
+        "values": ["pitting"],
+        "type": "enable",
+        "fields": [
+          "pittingScale"
+        ]
+      },
+        {
+          "id": "pitting",
+          "values": ["nonPitting"],
+          "type": "clear",
+          "fields": [
+            "pittingScale"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ejectionFraction",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "ejectionFraction": {
+          "type": "range",
+          "rules": {
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "snaps": true
+          }
+        },
+        "unknown": {
+          "label": false,
+          "type": "checkbox",
+          "options": [
+            "unknown"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "unknown",
+        "values": ["unknown"],
+        "type": "disable",
+        "fields": [
+          "ejectionFraction"
+        ]
+      },
+        {
+          "id": "unknown",
+          "values": ["unknown", null],
+          "type": "clear",
+          "fields": [
+            "ejectionFraction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "historyOfMI",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasHistoryOfMI": {
+          "type": "toggle"
+        },
+        "mostRecent": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasHistoryOfMI"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "mostRecent"
+          }]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasHistoryOfMI",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "mostRecent"
+        ]
+      },
+        {
+          "id": "patientHasHistoryOfMI",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "mostRecent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heartFailureHistory",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasHistoryOfHeartFailure": {
+          "type": "toggle"
+        },
+        "currentAndHistory": {
+          "type": "radio",
+          "options": [
+            "current",
+            "history"
+          ]
+        },
+        "dateOfDiagnosis": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "type": {
+          "type": "checkbox",
+          "options": [
+            "systolic",
+            "diastolic",
+            "leftSided",
+            "rightSided",
+            "unknown"
+          ]
+        },
+        "stage": {
+          "type": "radio",
+          "options": [
+            "stageAHeartFailure",
+            "stageBHeartFailure",
+            "stageCHeartFailure",
+            "stageDHeartFailure",
+            "unknown"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientHasHistoryOfHeartFailure"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "currentAndHistory"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "dateOfDiagnosis"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "type"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "stage"
+                }]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "patientHasHistoryOfHeartFailure",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "currentAndHistory",
+          "dateOfDiagnosis",
+          "type",
+          "stage"
+        ]
+      },
+        {
+          "id": "patientHasHistoryOfHeartFailure",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "currentAndHistory",
+            "dateOfDiagnosis",
+            "type",
+            "stage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pacemaker",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasPacemaker": {
+          "type": "toggle"
+        },
+        "dateOfInsertion": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "type": {
+          "type": "radio",
+          "options": [
+            "temporary",
+            "permanent"
+          ]
+        },
+        "pacing": {
+          "type": "radio",
+          "options": [
+            "transcutaneousPacing",
+            "transvenousPacing"
+          ]
+        },
+        "chamberType": {
+          "type": "select",
+          "options": [
+            "singleChamberAtrial",
+            "singleChamberVentricular",
+            "dualChamberAtrial",
+            "dualChamberVentricular",
+            "biventricular"
+          ]
+        },
+        "lowerRate": {
+          "type": "number"
+        },
+        "upperRate": {
+          "type": "number"
+        },
+        "avInterval": {
+          "type": "number"
+        },
+        "atrialOutput": {
+          "type": "number"
+        },
+        "atrialSensitivity": {
+          "type": "number"
+        },
+        "ventricularOutput": {
+          "type": "number"
+        },
+        "ventricularSensitivity": {
+          "type": "number"
+        },
+        "pacingMode": {
+          "type": "number"
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasPacemaker"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "dateOfInsertion"
+              },
+                {
+                  "id": "pacing"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "type"
+                },
+                  {
+                    "id": "chamberType"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "lowerRate"
+              },
+                {
+                  "id": "upperRate"
+                },
+                {
+                  "id": "avInterval"
+                },
+                {
+                  "id": "atrialOutput"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "atrialSensitivity"
+                },
+                  {
+                    "id": "ventricularOutput"
+                  },
+                  {
+                    "id": "ventricularSensitivity"
+                  },
+                  {
+                    "id": "pacingMode"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasPacemaker",
+        "values": [false, null],
+        "type": "disable",
+        "fields": [
+          "dateOfInsertion",
+          "type",
+          "pacing",
+          "chamberType",
+          "lowerRate",
+          "upperRate",
+          "avInterval",
+          "atrialOutput",
+          "atrialSensitivity",
+          "ventricularOutput",
+          "ventricularSensitivity",
+          "pacingMode"
+        ]
+      },
+        {
+          "id": "hasPacemaker",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "dateOfInsertion",
+            "type",
+            "pacing",
+            "chamberType",
+            "lowerRate",
+            "upperRate",
+            "avInterval",
+            "atrialOutput",
+            "atrialSensitivity",
+            "ventricularOutput",
+            "ventricularSensitivity",
+            "pacingMode"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defibrillator",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasDefibrillator": {
+          "type": "toggle"
+        },
+        "dateOfInsertion": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "manufacturer": {
+          "type": "text",
+          "options": [
+            "unknown"
+          ]
+        },
+        "unknown": {
+          "label": false,
+          "type": "checkbox",
+          "options": [
+            "unknown"
+          ]
+        },
+        "type": {
+          "type": "radio",
+          "options": [
+            "singleChamber",
+            "dualChamber"
+          ]
+        },
+        "slowestDetection": {
+          "type": "number"
+        },
+        "vtDetection": {
+          "type": "number"
+        },
+        "fastVTDetection": {
+          "type": "number"
+        },
+        "vfDetection": {
+          "type": "number"
+        },
+        "svtUpperLimit": {
+          "type": "number"
+        },
+        "atpLimit": {
+          "type": "number"
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasDefibrillator"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "dateOfInsertion"
+              },
+                {
+                  "id": "type"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "manufacturer"
+                },
+                  {
+                    "id": "unknown"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "slowestDetection"
+              },
+                {
+                  "id": "fastVTDetection"
+                },
+                {
+                  "id": "svtUpperLimit"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "vtDetection"
+                },
+                  {
+                    "id": "vfDetection"
+                  },
+                  {
+                    "id": "atpLimit"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasDefibrillator",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "dateOfInsertion",
+          "manufacturer",
+          "unknown",
+          "type",
+          "slowestDetection",
+          "vtDetection",
+          "fastVTDetection",
+          "vfDetection",
+          "svtUpperLimit",
+          "atpLimit"
+        ]
+      },
+        {
+          "id": "hasDefibrillator",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "dateOfInsertion",
+            "manufacturer",
+            "unknown",
+            "type",
+            "slowestDetection",
+            "vtDetection",
+            "fastVTDetection",
+            "vfDetection",
+            "svtUpperLimit",
+            "atpLimit"
+          ]
+        },
+        {
+          "id": "unknown",
+          "values": ["unknown", null],
+          "type": "clear",
+          "fields": [
+            "manufacturer"
+          ]
+        },
+        {
+          "id": "unknown",
+          "values": ["unknown", null],
+          "type": "disable",
+          "fields": [
+            "manufacturer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riskForCardiopulmonaryArrest",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "atRiskForCardiopulmonaryArrest": {
+          "type": "toggle"
+        },
+        "explain": {
+          "type": "text",
+          "rules": {
+            "maxLength": 250
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "atRiskForCardiopulmonaryArrest"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "explain"
+          }]
+        }
+      ],
+      "dependencies": [{
+        "id": "atRiskForCardiopulmonaryArrest",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "explain"
+        ]
+      },
+        {
+          "id": "atRiskForCardiopulmonaryArrest",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "explain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrhythmias",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasArrhythmias": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasArrhythmias"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "type"
+          }]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasArrhythmias",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type"
+        ]
+      },
+        {
+          "id": "patientHasArrhythmias",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "type"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "angina",
+            "bruit",
+            "cardiomegaly",
+            "cardiomyopathy",
+            "cardiacDysfunction",
+            "clubbing",
+            "coronaryArteryDisease",
+            "hypertension",
+            "hypotension",
+            "orthostaticHypotension",
+            "peripheralArteryDisease",
+            "peripheralVascularDisease"
+          ],
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "heartRate",
+            "bloodPressure",
+            "capillaryRefill",
+            "edema",
+            "ejectionFraction",
+            "historyOfMI",
+            "heartFailureHistory",
+            "pacemaker",
+            "nausea",
+            "defibrillator",
+            "riskForCardiopulmonaryArrest",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

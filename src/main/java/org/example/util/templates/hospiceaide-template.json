@@ -1,0 +1,2482 @@
+{
+  "id": "hospiceAide",
+  "cards": [{
+    "id": "decline",
+    "componentId": "declineCard",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "bathing",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "tubAssistance": {
+          "type": "select",
+          "componentId": "tubAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "tubFrequency": {
+          "type": "frequency",
+          "componentId": "tubFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "tubComments": {
+          "type": "text",
+          "componentId": "tubComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "showerAssistance": {
+          "type": "select",
+          "componentId": "showerAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "showerFrequency": {
+          "type": "frequency",
+          "componentId": "showerFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "showerComments": {
+          "type": "text",
+          "componentId": "showerComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "bedPartialAssistance": {
+          "type": "select",
+          "componentId": "bedPartialAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "bedPartialFrequency": {
+          "type": "frequency",
+          "componentId": "bedPartialFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "bedPartialComments": {
+          "type": "text",
+          "componentId": "bedPartialComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "bedCompleteAssistance": {
+          "type": "select",
+          "componentId": "bedCompleteAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "bedCompleteFrequency": {
+          "type": "frequency",
+          "componentId": "bedCompleteFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "bedCompleteComments": {
+          "type": "text",
+          "componentId": "bedCompleteComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "whirlpoolAssistance": {
+          "type": "select",
+          "componentId": "whirlpoolAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "whirlpoolFrequency": {
+          "type": "frequency",
+          "componentId": "whirlpoolFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "whirlpoolComments": {
+          "type": "text",
+          "componentId": "whirlpoolComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "tubAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "tubFrequency"
+        ]
+      },
+        {
+          "id": "showerAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "showerFrequency"
+          ]
+        },
+        {
+          "id": "bedPartialAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "bedPartialFrequency"
+          ]
+        },
+        {
+          "id": "bedCompleteAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "bedCompleteFrequency"
+          ]
+        },
+        {
+          "id": "whirlpoolAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "whirlpoolFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "tubAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "tubFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "tubComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "showerAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "showerFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "showerComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "bedPartialAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "bedPartialFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "bedPartialComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "bedCompleteAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "bedCompleteFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "bedCompleteComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "whirlpoolAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "whirlpoolFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "whirlpoolComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "hygiene",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "shampooAssistance": {
+          "type": "select",
+          "componentId": "shampooAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "shampooFrequency": {
+          "type": "frequency",
+          "componentId": "shampooFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "shampooComments": {
+          "type": "text",
+          "componentId": "shampooComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "combBrushHairAssistance": {
+          "type": "select",
+          "componentId": "combBrushHairAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "combBrushHairFrequency": {
+          "type": "frequency",
+          "componentId": "combBrushHairFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "combBrushHairComments": {
+          "type": "text",
+          "componentId": "combBrushHairComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "oralCareAssistance": {
+          "type": "select",
+          "componentId": "oralCareAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "oralCareFrequency": {
+          "type": "frequency",
+          "componentId": "oralCareFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "oralCareComments": {
+          "type": "text",
+          "componentId": "oralCareComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "shaveAssistance": {
+          "type": "select",
+          "componentId": "shaveAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "shaveFrequency": {
+          "type": "frequency",
+          "componentId": "shaveFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "shaveComments": {
+          "type": "text",
+          "componentId": "shaveComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "nailCareAssistance": {
+          "type": "select",
+          "componentId": "nailCareAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "nailCareFrequency": {
+          "type": "frequency",
+          "componentId": "nailCareFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "nailCareComments": {
+          "type": "text",
+          "componentId": "nailCareComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "footCareAssistance": {
+          "type": "select",
+          "componentId": "footCareAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "footCareFrequency": {
+          "type": "frequency",
+          "componentId": "footCareFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "footCareComments": {
+          "type": "text",
+          "componentId": "footCareComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "applyLotionAssistance": {
+          "type": "select",
+          "componentId": "applyLotionAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "applyLotionFrequency": {
+          "type": "frequency",
+          "componentId": "applyLotionFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "applyLotionComments": {
+          "type": "text",
+          "componentId": "applyLotionComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "dressAssistance": {
+          "type": "select",
+          "componentId": "dressAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "dressFrequency": {
+          "type": "frequency",
+          "componentId": "dressFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "dressComments": {
+          "type": "text",
+          "componentId": "dressComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "shampooAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "shampooFrequency"
+        ]
+      },
+        {
+          "id": "combBrushHairAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "combBrushHairFrequency"
+          ]
+        },
+        {
+          "id": "oralCareAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "oralCareFrequency"
+          ]
+        },
+        {
+          "id": "shaveAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "shaveFrequency"
+          ]
+        },
+        {
+          "id": "nailCareAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "nailCareFrequency"
+          ]
+        },
+        {
+          "id": "footCareAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "footCareFrequency"
+          ]
+        },
+        {
+          "id": "applyLotionAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "applyLotionFrequency"
+          ]
+        },
+        {
+          "id": "dressAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "dressFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "shampooAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "shampooFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "shampooComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "combBrushHairAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "combBrushHairFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "combBrushHairComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "oralCareAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "oralCareFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "oralCareComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "shaveAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "shaveFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "shaveComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "nailCareAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "nailCareFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "nailCareComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "footCareAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "footCareFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "footCareComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "applyLotionAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "applyLotionFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "applyLotionComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "dressAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "dressFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "dressComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "toiletingElimination",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "perinealCareAssistance": {
+          "type": "select",
+          "componentId": "perinealCareAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "perinealCareFrequency": {
+          "type": "frequency",
+          "componentId": "perinealCareFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "perinealCareComments": {
+          "type": "text",
+          "componentId": "perinealCareComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "catheterCareAssistance": {
+          "type": "select",
+          "componentId": "catheterCareAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "catheterCareFrequency": {
+          "type": "frequency",
+          "componentId": "catheterCareFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "catheterCareComments": {
+          "type": "text",
+          "componentId": "catheterCareComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "emptyDrainageBagAssistance": {
+          "type": "select",
+          "componentId": "emptyDrainageBagAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "emptyDrainageBagFrequency": {
+          "type": "frequency",
+          "componentId": "emptyDrainageBagFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "emptyDrainageBagComments": {
+          "type": "text",
+          "componentId": "emptyDrainageBagComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "bedPanBscBrAssistance": {
+          "type": "select",
+          "componentId": "bedPanBscBrAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "bedPanBscBrFrequency": {
+          "type": "frequency",
+          "componentId": "bedPanBscBrFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "bedPanBscBrComments": {
+          "type": "text",
+          "componentId": "bedPanBscBrComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "changeAdultBriefAssistance": {
+          "type": "select",
+          "componentId": "changeAdultBriefAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "changeAdultBriefFrequency": {
+          "type": "frequency",
+          "componentId": "changeAdultBriefFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "changeAdultBriefComments": {
+          "type": "text",
+          "componentId": "changeAdultBriefComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "perinealCareAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "perinealCareFrequency"
+        ]
+      },
+        {
+          "id": "catheterCareAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "catheterCareFrequency"
+          ]
+        },
+        {
+          "id": "emptyDrainageBagAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "emptyDrainageBagFrequency"
+          ]
+        },
+        {
+          "id": "bedPanBscBrAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "bedPanBscBrFrequency"
+          ]
+        },
+        {
+          "id": "changeAdultBriefAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "changeAdultBriefFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "perinealCareAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "perinealCareFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "perinealCareComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "catheterCareAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "catheterCareFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "catheterCareComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "emptyDrainageBagAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "emptyDrainageBagFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "emptyDrainageBagComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "bedPanBscBrAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "bedPanBscBrFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "bedPanBscBrComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "changeAdultBriefAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "changeAdultBriefFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "changeAdultBriefComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "activityFunctional",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "ambulationAssistance": {
+          "type": "select",
+          "componentId": "ambulationAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "ambulationFrequency": {
+          "type": "frequency",
+          "componentId": "ambulationFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "ambulationComments": {
+          "type": "text",
+          "componentId": "ambulationComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "walkerCaneAssistance": {
+          "type": "select",
+          "componentId": "walkerCaneAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "walkerCaneFrequency": {
+          "type": "frequency",
+          "componentId": "walkerCaneFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "walkerCaneComments": {
+          "type": "text",
+          "componentId": "walkerCaneComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "wheelchairGerichairAssistance": {
+          "type": "select",
+          "componentId": "wheelchairGerichairAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "wheelchairGerichairFrequency": {
+          "type": "frequency",
+          "componentId": "wheelchairGerichairFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "wheelchairGerichairComments": {
+          "type": "text",
+          "componentId": "wheelchairGerichairComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "upInChairAssistance": {
+          "type": "select",
+          "componentId": "upInChairAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "upInChairFrequency": {
+          "type": "frequency",
+          "componentId": "upInChairFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "upInChairComments": {
+          "type": "text",
+          "componentId": "upInChairComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "bedRestAssistance": {
+          "type": "select",
+          "componentId": "bedRestAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "bedRestFrequency": {
+          "type": "frequency",
+          "componentId": "bedRestFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "bedRestComments": {
+          "type": "text",
+          "componentId": "bedRestComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "repositionAssistance": {
+          "type": "select",
+          "componentId": "repositionAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "repositionFrequency": {
+          "type": "frequency",
+          "componentId": "repositionFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "repositionComments": {
+          "type": "text",
+          "componentId": "repositionComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+
+      },
+      "dependencies": [{
+        "id": "ambulationAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "ambulationFrequency"
+        ]
+      },
+        {
+          "id": "walkerCaneAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "walkerCaneFrequency"
+          ]
+        },
+        {
+          "id": "wheelchairGerichairAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "wheelchairGerichairFrequency"
+          ]
+        },
+        {
+          "id": "upInChairAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "upInChairFrequency"
+          ]
+        },
+        {
+          "id": "bedRestAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "bedRestFrequency"
+          ]
+        },
+        {
+          "id": "repositionAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "repositionFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "ambulationAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "ambulationFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "ambulationComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "walkerCaneAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "walkerCaneFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "walkerCaneComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "wheelchairGerichairAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "wheelchairGerichairFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "wheelchairGerichairComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "upInChairAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "upInChairFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "upInChairComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "bedRestAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "bedRestFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "bedRestComments"
+              }]
+            }]
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "repositionAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "repositionFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "repositionComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "housekeeping",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "makeBedAssistance": {
+          "type": "select",
+          "componentId": "makeBedAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "makeBedFrequency": {
+          "type": "frequency",
+          "componentId": "makeBedFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "makeBedComments": {
+          "type": "text",
+          "componentId": "makeBedComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "changeLinensAssistance": {
+          "type": "select",
+          "componentId": "changeLinensAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "changeLinensFrequency": {
+          "type": "frequency",
+          "componentId": "changeLinensFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "changeLinensComments": {
+          "type": "text",
+          "componentId": "changeLinensComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "straightenRoomAssistance": {
+          "type": "select",
+          "componentId": "straightenRoomAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "straightenRoomFrequency": {
+          "type": "frequency",
+          "componentId": "straightenRoomFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "straightenRoomComments": {
+          "type": "text",
+          "componentId": "straightenRoomComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "patientLaundryAssistance": {
+          "type": "select",
+          "componentId": "patientLaundryAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "patientLaundryFrequency": {
+          "type": "frequency",
+          "componentId": "patientLaundryFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "patientLaundryComments": {
+          "type": "text",
+          "componentId": "patientLaundryComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+
+      },
+      "dependencies": [{
+        "id": "makeBedAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "makeBedFrequency"
+        ]
+      },
+        {
+          "id": "changeLinensAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "changeLinensFrequency"
+          ]
+        },
+        {
+          "id": "straightenRoomAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "straightenRoomFrequency"
+          ]
+        },
+        {
+          "id": "patientLaundryAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "patientLaundryFrequency"
+          ]
+        }
+
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "makeBedAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "makeBedFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "makeBedComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "changeLinensAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "changeLinensFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "changeLinensComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "straightenRoomAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "straightenRoomFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "straightenRoomComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "patientLaundryAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "patientLaundryFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "patientLaundryComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "feedingMeals",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "feedPatientAssistance": {
+          "type": "select",
+          "componentId": "feedPatientAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "feedPatientFrequency": {
+          "type": "frequency",
+          "componentId": "feedPatientFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "feedPatientComments": {
+          "type": "text",
+          "componentId": "feedPatientComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+
+        "prepareMealAssistance": {
+          "type": "select",
+          "componentId": "prepareMealAssistance",
+          "options": [
+            "self",
+            "assist",
+            "total"
+          ]
+        },
+        "prepareMealFrequency": {
+          "type": "frequency",
+          "componentId": "prepareMealFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "prepareMealComments": {
+          "type": "text",
+          "componentId": "prepareMealComments",
+          "label": false,
+          "placeholder": "comments",
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "feedPatientAssistance",
+        "values": ["assist", "total"],
+        "type": "enable",
+        "fields": [
+          "feedPatientFrequency"
+        ]
+      },
+        {
+          "id": "prepareMealAssistance",
+          "values": ["assist", "total"],
+          "type": "enable",
+          "fields": [
+            "prepareMealFrequency"
+          ]
+        }
+
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "feedPatientAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "feedPatientFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "feedPatientComments"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "prepareMealAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "prepareMealFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "prepareMealComments"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "orientationAndNeeds",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "orientationAndNeeds": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "otherIssues",
+          "columns": 1,
+          "options": [
+            "amputee",
+            "bedAlarm",
+            "blind",
+            "dnr",
+            "fullCode",
+            "callLightWithinReach",
+            "chairAlarm",
+            "confused",
+            "deaf",
+            "denturesFull",
+            "denturesPartial",
+            "fallPrecaution",
+            "glasses",
+            "hearingAideInPlace",
+            "lapBuddy",
+            "language",
+            "mechanicalStairsLift",
+            "prosthesis",
+            "seatBelt",
+            "seizurePrecaution",
+            "speechDeficit",
+            "swallowingPrecaution"
+          ],
+          "supportOther": true,
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "orientationAndNeeds"
+        }]
+      }]
+    },
+    {
+      "id": "specialInstructions",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "bloodPressure": {
+          "type": "select",
+          "componentId": "bloodPressure",
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "pulse": {
+          "type": "select",
+          "componentId": "pulse",
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "weight": {
+          "type": "select",
+          "componentId": "weight",
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "temperature": {
+          "type": "select",
+          "componentId": "temperature",
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "respiratory": {
+          "type": "select",
+          "componentId": "respiratory",
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "bloodPressure"
+        },
+          {
+            "id": "pulse"
+          },
+          {
+            "id": "weight"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "temperature"
+          },
+            {
+              "id": "respiratory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parametersToReport",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "impendingDeath": {
+          "type": "select",
+          "componentId": "impendingDeath",
+          "supportOther": true,
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "changeInLOC": {
+          "type": "select",
+          "componentId": "changeInLOC",
+          "supportOther": true,
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "skinBreakdown": {
+          "type": "select",
+          "componentId": "skinBreakdown",
+          "supportOther": true,
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        },
+        "respiratoryDistress": {
+          "type": "select",
+          "componentId": "respiratoryDistress",
+          "supportOther": true,
+          "options": [
+            "yes",
+            "no",
+            "n/a"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "impendingDeath"
+        },
+          {
+            "id": "changeInLOC"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "skinBreakdown"
+          },
+            {
+              "id": "respiratoryDistress"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "specialInstructionsRequests",
+      "type": "formCard",
+      "declinable": true,
+      "inputs": {
+        "romQVisit": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "romQVisit"
+          ]
+        },
+        "romQVisitComment": {
+          "type": "text",
+          "label": false,
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+        "woundCarePerInstructions": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "woundCarePerInstructions"
+          ]
+        },
+        "woundCarePerInstructionsComment": {
+          "type": "text",
+          "label": false,
+          "rules": {
+            "maxLength": 1000
+          }
+        },
+        "postMortemCare": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "postMortemCare"
+          ]
+        },
+        "postMortemCareComment": {
+          "type": "text",
+          "label": false,
+          "rules": {
+            "maxLength": 1000
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "romQVisit",
+        "values": ["romQVisit"],
+        "type": "enable",
+        "fields": [
+          "romQVisitComment"
+        ]
+      },
+        {
+          "id": "woundCarePerInstructions",
+          "values": ["woundCarePerInstructions"],
+          "type": "enable",
+          "fields": [
+            "woundCarePerInstructionsComment"
+          ]
+        },
+        {
+          "id": "postMortemCare",
+          "values": ["postMortemCare"],
+          "type": "enable",
+          "fields": [
+            "postMortemCareComment"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "type": "input",
+              "id": "romQVisit"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "romQVisitComment"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "woundCarePerInstructions"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "woundCarePerInstructionsComment"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "postMortemCare"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "postMortemCareComment"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "notes",
+      "componentId": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "componentId": "notesCategories",
+          "options": [
+            "general",
+            "bathing",
+            "hygiene",
+            "toiletingElimination",
+            "activityFunctional",
+            "housekeeping",
+            "feedingMeals",
+            "orientationAndNeeds",
+            "specialInstructions",
+            "parametersToReport",
+            "specialInstructionsRequests"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "notesDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

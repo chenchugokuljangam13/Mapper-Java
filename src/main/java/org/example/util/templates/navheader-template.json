@@ -1,0 +1,17 @@
+{
+  "assessmentType": "patientAssessment",
+  "applications": [
+    {"id": "company", "icon": "md-briefcase", "url": "https://app.curantissolutions.com"},
+    {"id": "patients", "icon": "md-contacts", "url": "https://app.curantissolutions.com"},
+    {"id": "billing", "icon": "md-paper", "url": "https://app.curantissolutions.com"},
+    {"id": "compliance", "icon": "md-checkmark-circle-outline", "url": "https://app.curantissolutions.com"},
+    {"id": "providers", "icon": "md-medkit", "url": "https://app.curantissolutions.com"},
+    {"id": "reports", "icon": "md-clipboard", "url": "https://app.curantissolutions.com"}
+  ],
+  "notifications": [],
+  "profileInfo": {
+    "name": "Mary Carson-Johnson, MD",
+    "portrait": "../../../assets/mantis/mary.jpg"
+  },
+  "reminders": []
+}

@@ -1,0 +1,138 @@
+{
+  "id": "levelOfCare",
+  "cards": [{
+    "id": "reasonsForGip",
+    "type": "formCard",
+    "access": "write",
+    "inputs": {
+      "reasonsForGip": {
+        "label": false,
+        "type": "checkbox",
+        "componentId": "reasonsForGip",
+        "supportOther": true,
+        "options": [
+          "pain",
+          "medication",
+          "deathIsImminent",
+          "familyTeaching",
+          "dischargePlanning",
+          "respiratoryDistress",
+          "gastrointestinalSymptoms",
+          "mentalStatusChanges",
+          "suddenSignificantGeneralDeterioration"
+        ],
+        "details": {
+          "pain": "painDescription",
+          "medication": "medicationDescription",
+          "deathIsImminent": "deathIsImminentDescription",
+          "familyTeaching": "familyTeachingDescription",
+          "dischargePlanning": "dischargePlanningDescription",
+          "respiratoryDistress": "respiratoryDistressDescription",
+          "gastrointestinalSymptoms": "gastrointestinalSymptomsDescription",
+          "mentalStatusChanges": "mentalStatusChangesDescription",
+          "suddenSignificantGeneralDeterioration": "suddenSignificantGeneralDeteriorationDescription"
+        },
+        "otherPlaceholder": "symptomsCcPlaceholder"
+      }
+    }
+  },
+    {
+      "id": "symptomsContinuousCare",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "symptoms": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "symptomsContinuousCare",
+          "columns": 1,
+          "options": [
+            "agitation",
+            "anxiety",
+            "airHunger",
+            "bleeding",
+            "dehydration",
+            "diarrhea",
+            "dyspnea",
+            "emotionalSupport",
+            "fever",
+            "incontinentCare",
+            "medicationAdministration",
+            "nausea",
+            "pain",
+            "respiratoryCompromise",
+            "restlessness",
+            "seizures",
+            "teaching",
+            "vitalSignChanges",
+            "vomiting",
+            "woundCare"
+          ],
+          "supportOther": true,
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      }
+    },
+    {
+      "id": "reasonsForRespiteCare",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "reasonsForRespiteCare": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "reasonsForRespiteCare",
+          "supportOther": true,
+          "options": [
+            "deathIsImminent",
+            "familyTeaching",
+            "dischargePlanning",
+            "mentalStatusChanges",
+            "familyReprieve"
+          ],
+          "details": {
+            "deathIsImminent": "deathIsImminentRespiteDescription",
+            "familyTeaching": "familyTeachingDescription",
+            "dischargePlanning": "dischargePlanningDescription",
+            "respiratoryDistress": "respiratoryDistressDescription",
+            "mentalStatusChanges": "mentalStatusChangesRespiteDescription",
+            "familyReprieve": "familyReprieveDescription"
+          }
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "componentId": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "reasonsForGip",
+            "symptomsContinuousCare",
+            "reasonsForRespiteCare"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

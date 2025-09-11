@@ -1,0 +1,272 @@
+{
+    "_tenant_id": [
+      "t1",
+      "t2"
+    ],
+    "_start_date": "",
+    "_end_date": "",
+    "_version": 1,
+    "assessment_types": [
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "SW",
+          "SA",
+          "BR",
+          "MD"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "ICA",
+            "title": "Initial/Comprehensive Assessment"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "SW",
+          "SA",
+          "BR",
+          "MD"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "CA",
+            "title": "Comprehensive Assessment"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "HA",
+          "HM",
+          "SW",
+          "SA",
+          "BR",
+          "MD",
+          "VL"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "RT",
+            "title": "Routine"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "NP",
+          "MD"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "F2F",
+            "title": "Face to Face Visit"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "HA",
+          "MD"
+        ],
+        "level_of_cares": [
+          "Continuous Care"
+        ],
+        "assesment_types": [
+          {
+            "_id": "CCV",
+            "title": "Continous Care Visit"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "SW",
+          "SA",
+          "BR",
+          "MD"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "EMG",
+            "title": "Emergent"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "SW",
+          "SA",
+          "BR",
+          "MD"
+        ],
+        "level_of_cares": [
+          "GIP"
+        ],
+        "assesment_types": [
+          {
+            "_id": "INP",
+            "title": "In-Patient"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "HA",
+          "SW",
+          "SA",
+          "BR",
+          "MD",
+          "LP"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare"
+        ],
+        "assesment_types": [
+          {
+            "_id": "WCV",
+            "title": "Watch Care Visit"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "HA",
+          "SW",
+          "SA",
+          "BR",
+          "MD",
+          "LP"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "EMC",
+            "title": "EMC"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "LP"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "RLP",
+            "title": "Routine (LPN)"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "LP"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "ELP",
+            "title": "Emergent (LPN)"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN",
+          "NP",
+          "SW",
+          "SA",
+          "BR",
+          "MD",
+          "LP"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "PHO",
+            "title": "Phone Call"
+          }
+        ]
+      },
+      {
+        "disciplines": [
+          "RN"
+        ],
+        "level_of_cares": [
+          "RoutineHomeCare",
+          "GIP",
+          "Continuous Care",
+          "Respite"
+        ],
+        "assesment_types": [
+          {
+            "_id": "SUV",
+            "title": "Supervisory Visit"
+          }
+        ]
+      }
+    ]
+}

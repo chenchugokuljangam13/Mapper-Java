@@ -1,0 +1,495 @@
+{
+  "id": "bereavement",
+  "cards": [{
+    "id": "decline",
+    "componentId": "declineCard",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "availableSupport",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "availableSupport": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "availableSupport",
+          "columns": 1,
+          "options": [
+            "family",
+            "friends",
+            "churchFaith",
+            "facilityStaff",
+            "hiredPersonnel"
+          ],
+          "supportOther": true,
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "availableSupport"
+        }]
+      }]
+    },
+    {
+      "id": "financialSecurity",
+      "componentId": "financialSecurity",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["date", "name", "relation", "description"]
+      },
+      "inputs": {
+        "name": {
+          "type": "text",
+          "componentId": "name"
+        },
+        "relation": {
+          "type": "text",
+          "componentId": "relation"
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "notesDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "homeLifeProfile",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "familyCommunicationStyle": {
+          "type": "select",
+          "componentId": "familyCommunicationStyle",
+          "options": [
+            "aggressive",
+            "chaotic",
+            "close",
+            "nurturing",
+            "passive",
+            "secretive",
+            "supportive",
+            "unknown"
+          ],
+          "supportOther": true
+        },
+        "familyCommunicationDescription": {
+          "type": "textarea",
+          "componentId": "familyCommunicationDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000
+          }
+        },
+        "historyOfAlcoholAbuse": {
+          "type": "radio",
+          "componentId": "historyOfAlcoholAbuse",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "currentOrHistorical": {
+          "type": "radio",
+          "componentId": "currentOrHistoricalAlcoholAbuse",
+          "options": [
+            "current",
+            "historical"
+          ]
+        },
+        "dateOfAlcoholAbuse": {
+          "type": "date",
+          "componentId": "dateOfAlcoholAbuse",
+          "rules": {
+            "required": true
+          }
+        },
+        "alcoholAbuseDescription": {
+          "label": "description",
+          "type": "textarea",
+          "componentId": "alcoholAbuseDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000
+          }
+        },
+        "historyOfMentalIllness": {
+          "type": "radio",
+          "componentId": "historyOfMentalIllness",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "currentOrHistoricalMentalIllness": {
+          "label": "currentOrHistorical",
+          "type": "radio",
+          "componentId": "currentOrHistoricalMentalIllness",
+          "options": [
+            "current",
+            "historical"
+          ]
+        },
+        "dateOfMentalIllness": {
+          "type": "date",
+          "componentId": "dateOfAlcoholAbuse",
+          "rules": {
+            "required": true
+          }
+        },
+        "mentalIllnessDescription": {
+          "label": "description",
+          "type": "textarea",
+          "componentId": "mentalIllnessDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000
+          }
+        },
+        "childrenLivingInPatientsHome": {
+          "type": "radio",
+          "componentId": "childrenLivingInPatientsHome",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "numberOfChildren": {
+          "type": "number",
+          "componentId": "numberOfChildren",
+          "rules": {
+            "min": 1
+          }
+        },
+        "isAnyChildResponsibleForPatientCare": {
+          "type": "radio",
+          "componentId": "isAnyChildResponsibleForPatientCare",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "childrenDescription": {
+          "label": "description",
+          "type": "textarea",
+          "componentId": "childrenDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "familyCommunicationStyle"
+        },
+          {
+            "id": "familyCommunicationDescription"
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "historyOfAlcoholAbuse"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "currentOrHistorical"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "dateOfAlcoholAbuse"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "alcoholAbuseDescription"
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "historyOfMentalIllness"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "currentOrHistoricalMentalIllness"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "dateOfMentalIllness"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "mentalIllnessDescription"
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "childrenLivingInPatientsHome"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "numberOfChildren"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "isAnyChildResponsibleForPatientCare"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "childrenDescription"
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "historyOfAlcoholAbuse",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": ["currentOrHistorical", "alcoholAbuseDescription"]
+      },
+        {
+          "id": "currentOrHistorical",
+          "values": ["historical"],
+          "type": "enable",
+          "fields": ["dateOfAlcoholAbuse"]
+        },
+        {
+          "id": "historyOfAlcoholAbuse",
+          "values": ["no"],
+          "type": "clear",
+          "fields": ["currentOrHistorical", "alcoholAbuseDescription"]
+        },
+        {
+          "id": "currentOrHistorical",
+          "values": ["current", null],
+          "type": "clear",
+          "fields": ["dateOfAlcoholAbuse"]
+        },
+        {
+          "id": "historyOfMentalIllness",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": ["currentOrHistoricalMentalIllness", "mentalIllnessDescription"]
+        },
+        {
+          "id": "currentOrHistoricalMentalIllness",
+          "values": ["historical"],
+          "type": "enable",
+          "fields": ["dateOfMentalIllness"]
+        },
+        {
+          "id": "historyOfMentalIllness",
+          "values": ["no"],
+          "type": "clear",
+          "fields": ["currentOrHistoricalMentalIllness", "mentalIllnessDescription"]
+        },
+        {
+          "id": "currentOrHistoricalMentalIllness",
+          "values": ["current", null],
+          "type": "clear",
+          "fields": ["dateOfMentalIllness"]
+        },
+        {
+          "id": "childrenLivingInPatientsHome",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": ["numberOfChildren", "isAnyChildResponsibleForPatientCare", "childrenDescription"]
+        },
+        {
+          "id": "childrenLivingInPatientsHome",
+          "values": ["no"],
+          "type": "clear",
+          "fields": ["numberOfChildren", "isAnyChildResponsibleForPatientCare", "childrenDescription"]
+        }
+      ]
+    },
+    {
+      "id": "bereavementRisk",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "relation", "contact", "bereavementCharacteristics", "riskScore"]
+      },
+      "declinable": true,
+      "inputs": {
+        "relation": {
+          "type": "select",
+          "componentId": "coordinationRelation",
+          "options": [
+            "familyPcg"
+          ],
+          "rules": {
+            "required": true
+          },
+          "supportOther": true
+        },
+        "contact": {
+          "type": "select",
+          "componentId": "coordinationPerson",
+          "options": [],
+          "optionGroups": {
+            "familyPcg": [
+              "Isaac Calhoun",
+              "Jessica Windham"
+            ]
+          },
+          "rules": {
+            "required": true
+          },
+          "supportOther": true
+        },
+        "bereavementCharacteristics": {
+          "type": "checkbox",
+          "options": [
+            "anger",
+            "denial",
+            "fear",
+            "guilt",
+            "regret",
+            "relief",
+            "sadness"
+          ],
+          "supportOther": true,
+          "rules": {
+            "required": true
+          }
+        },
+        "expressedAcceptance": {
+          "type": "range",
+          "componentId": "expressedAcceptance",
+          "rules": {
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        },
+        "openToSupport": {
+          "type": "range",
+          "componentId": "openToSupport",
+          "rules": {
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        },
+        "useOfCopingTools": {
+          "type": "range",
+          "componentId": "useOfCopingTools",
+          "rules": {
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        },
+        "appropriateBoundaries": {
+          "type": "range",
+          "componentId": "appropriateBoundaries",
+          "rules": {
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        },
+        "riskScore": {
+          "type": "range",
+          "componentId": "riskScore",
+          "rules": {
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "snaps": true,
+            "required": true
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "relation",
+        "values": [
+          "familyPcg"
+        ],
+        "type": "setOptions",
+        "fields": [
+          "contact"
+        ]
+      },
+        {
+          "id": "riskScore",
+          "type": "sum",
+          "fields": [
+            "expressedAcceptance",
+            "openToSupport",
+            "useOfCopingTools",
+            "appropriateBoundaries"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "componentId": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "componentId": "notesCategory",
+          "options": [
+            "availableSupport",
+            "financialSecurity",
+            "homeLifeProfile",
+            "bereavementRisk"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "notesDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

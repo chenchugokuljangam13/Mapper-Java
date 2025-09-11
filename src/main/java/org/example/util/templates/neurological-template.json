@@ -1,0 +1,928 @@
+{
+  "id": "neurological",
+  "cards": [{
+    "id": "decline",
+    "componentId": "declineCard",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "orientation",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "oriented": {
+          "type": "checkbox",
+          "options": [
+            "person",
+            "place",
+            "time",
+            "situation"
+          ]
+        },
+        "unableToAssessOriented": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "unableToAssess"
+          ]
+        },
+        "disoriented": {
+          "type": "checkbox",
+          "options": [
+            "person",
+            "place",
+            "time",
+            "situation"
+          ]
+        },
+        "unableToAssessDisoriented": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "unableToAssess"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "unableToAssessOriented",
+        "values": ["unableToAssess"],
+        "type": "disable",
+        "fields": [
+          "oriented"
+        ]
+      },
+        {
+          "id": "unableToAssessDisoriented",
+          "values": ["unableToAssess"],
+          "type": "disable",
+          "fields": [
+            "disoriented"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "input",
+          "id": "oriented"
+        },
+          {
+            "type": "input",
+            "id": "unableToAssessOriented"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "type": "input",
+            "id": "disoriented"
+          },
+            {
+              "type": "input",
+              "id": "unableToAssessDisoriented"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anxiety",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesAnxiety": {
+          "type": "toggle"
+        },
+        "score": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "patientExperiencesAnxiety",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "score"
+        ]
+      }]
+    },
+    {
+      "id": "agitation",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesAgitation": {
+          "type": "toggle"
+        },
+        "score": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "patientExperiencesAgitation",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "score"
+        ]
+      }]
+    },
+    {
+      "id": "seizures",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesSeizures": {
+          "type": "toggle"
+        },
+        "mostRecent": {
+          "type": "datetime",
+          "rules": {
+            "startDate": "today"
+          }
+        },
+        "durationMin": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 60
+          }
+        },
+        "durationSec": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 60
+          }
+        },
+        "frequency": {
+          "type": "frequency",
+          "componentId": "bmFrequency",
+          "rules": {
+            "min": 1,
+            "max": 99
+          },
+          "options": [
+            "hour(s)",
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientExperiencesSeizures",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "mostRecent",
+          "durationMin",
+          "durationSec",
+          "frequency"
+        ]
+      }],
+      "layout": [
+
+        {
+          "rows": [{
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "patientExperiencesSeizures"
+              }]
+            }]
+          },
+            {
+              "type": "row",
+              "cols": [{
+                "rows": [{
+                  "type": "input",
+                  "id": "mostRecent"
+                }]
+              },
+                {
+                  "rows": [{
+                    "type": "input",
+                    "id": "frequency"
+                  }]
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "cols": [{
+                "rows": [{
+                  "type": "input",
+                  "id": "durationMin"
+                }]
+              },
+                {
+                  "rows": [{
+                    "type": "input",
+                    "id": "durationSec"
+                  }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aphasia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesAphasia": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "aphasiaQuotient": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 100
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "patientExperiencesAphasia",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type",
+          "aphasiaQuotient"
+        ]
+      }],
+      "layout": [
+
+        {
+          "rows": [{
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "patientExperiencesAphasia"
+              }]
+            }]
+          },
+            {
+              "type": "row",
+              "cols": [{
+                "rows": [{
+                  "type": "input",
+                  "id": "type"
+                }]
+              },
+                {
+                  "rows": [{
+                    "type": "input",
+                    "id": "aphasiaQuotient"
+                  }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ataxia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesAtaxia": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "patientExperiencesAtaxia",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type"
+        ]
+      }]
+    },
+    {
+      "id": "apraxia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesApraxia": {
+          "type": "toggle"
+        }
+      }
+    },
+    {
+      "id": "comatose",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientComatose": {
+          "type": "toggle"
+        },
+        "comaScaleTotal": {
+          "type": "number",
+          "readonly": true
+        },
+        "comaScaleEyeResponse": {
+          "type": "radio",
+          "options": [
+            "spontaneous",
+            "toVerbalCommand",
+            "toPain",
+            "none"
+          ]
+        },
+        "comaScaleVerbalResponse": {
+          "type": "radio",
+          "options": [
+            "oriented",
+            "confused",
+            "inappropriateWords",
+            "incomprehensibleWords",
+            "incomprehensibleSounds",
+            "none"
+          ]
+        },
+        "comaScaleMotorResponse": {
+          "type": "radio",
+          "options": [
+            "obeysCommands",
+            "localizesPain",
+            "normalFlexion",
+            "abnormalFlexion",
+            "extensionToPain",
+            "none"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientComatose",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "comaScaleTotal",
+          "comaScaleEyeResponse",
+          "comaScaleVerbalResponse",
+          "comaScaleMotorResponse"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "type": "input",
+              "id": "patientComatose"
+            },
+              {
+                "type": "input",
+                "id": "comaScaleTotal"
+              }
+            ]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "comaScaleEyeResponse"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "comaScaleVerbalResponse"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "comaScaleMotorResponse"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "confusion",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesConfusion": {
+          "type": "toggle"
+        }
+      }
+    },
+    {
+      "id": "depression",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesDepression": {
+          "type": "toggle"
+        }
+      }
+    },
+    {
+      "id": "headaches",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesHeadaches": {
+          "type": "toggle"
+        },
+        "recentHeadInjury": {
+          "type": "toggle"
+        },
+        "recentHeadInjuryDate": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "recentConcussion": {
+          "type": "toggle"
+        },
+        "recentConcussionDate": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "nature": {
+          "type": "radio",
+          "options": [
+            "episodic",
+            "continuous"
+          ]
+        },
+        "onsetDate": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "mostRecent": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "frequency": {
+          "type": "frequency",
+          "componentId": "headacheFrequency",
+          "rules": {
+            "min": 1,
+            "max": 99
+          },
+          "options": [
+            "hour(s)",
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "location": {
+          "type": "checkbox",
+          "supportOther": true,
+          "options": [
+            "unilateral",
+            "bilateral",
+            "frontoTemporal",
+            "occipital"
+          ]
+        },
+        "painCharacteristics": {
+          "type": "select",
+          "options": [
+            "stabbing",
+            "squeezing",
+            "pulsatile"
+          ]
+        },
+        "durationNumber": {
+          "type": "number",
+          "rules": {
+            "min": 1,
+            "max": 99
+          }
+        },
+        "durationTime": {
+          "type": "radio",
+          "options": [
+            "hour(s)",
+            "day(s)"
+          ]
+        },
+        "severity": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10
+          }
+        },
+        "radiation": {
+          "type": "toggle"
+        },
+        "associatedNausea": {
+          "type": "toggle"
+        },
+        "associatedVomiting": {
+          "type": "toggle"
+        },
+        "associatedVomitingDate": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "associatedVomitingFrequency": {
+          "type": "frequency",
+          "componentId": "associatedVomitingFrequency",
+          "rules": {
+            "min": 1,
+            "max": 99
+          },
+          "options": [
+            "hour(s)",
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+
+      },
+      "dependencies": [{
+        "id": "patientExperiencesHeadaches",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "recentHeadInjury",
+          "recentConcussion",
+          "nature",
+          "onsetDate",
+          "mostRecent",
+          "frequency",
+          "location",
+          "painCharacteristics",
+          "durationNumber",
+          "durationTime",
+          "severity",
+          "radiation",
+          "associatedNausea",
+          "associatedVomiting"
+        ]
+      },
+        {
+          "id": "recentHeadInjury",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "recentHeadInjuryDate"
+          ]
+        },
+        {
+          "id": "recentConcussion",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "recentConcussionDate"
+          ]
+        },
+        {
+          "id": "associatedVomiting",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "associatedVomitingDate",
+            "associatedVomitingFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "type": "input",
+              "id": "patientExperiencesHeadaches"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "nature"
+              },
+                {
+                  "type": "input",
+                  "id": "location"
+                },
+                {
+                  "type": "input",
+                  "id": "painCharacteristics"
+                },
+                {
+                  "type": "input",
+                  "id": "severity"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "onsetDate"
+                },
+                  {
+                    "type": "input",
+                    "id": "mostRecent"
+                  },
+                  {
+                    "type": "input",
+                    "id": "frequency"
+                  },
+                  {
+                    "type": "input",
+                    "id": "durationNumber"
+                  },
+                  {
+                    "type": "input",
+                    "id": "durationTime"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "associatedNausea"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "radiation"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "recentHeadInjury"
+              },
+                {
+                  "type": "input",
+                  "id": "recentHeadInjuryDate"
+                },
+                {
+                  "type": "input",
+                  "id": "recentConcussion"
+                },
+                {
+                  "type": "input",
+                  "id": "recentConcussionDate"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "associatedVomiting"
+                },
+                  {
+                    "type": "input",
+                    "id": "associatedVomitingDate"
+                  },
+                  {
+                    "type": "input",
+                    "id": "associatedVomitingFrequency"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "hemiplegia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHemiplegic": {
+          "type": "toggle"
+        },
+        "affectedSide": {
+          "type": "radio",
+          "options": [
+            "left",
+            "right"
+          ]
+        },
+        "onsetDate": {
+          "type": "date"
+        }
+      },
+      "dependencies": [{
+        "id": "patientHemiplegic",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "affectedSide",
+          "onsetDate"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "patientHemiplegic"
+        },
+          {
+            "id": "onsetDate"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "affectedSide"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "paraplegia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientParaplegic": {
+          "type": "toggle"
+        },
+        "onsetDate": {
+          "type": "date"
+        }
+      },
+      "dependencies": [{
+        "id": "patientParaplegic",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "onsetDate"
+        ]
+      }]
+    },
+    {
+      "id": "quadraplegia",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientQuadraplegic": {
+          "type": "toggle"
+        },
+        "onsetDate": {
+          "type": "date"
+        }
+      },
+      "dependencies": [{
+        "id": "patientQuadraplegic",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "onsetDate"
+        ]
+      }]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkbox",
+          "columns": 1,
+          "options": [
+            "akinesthesia",
+            "blindness",
+            "decreasedVision",
+            "dysphasia",
+            "dysarthia",
+            "dysinesia",
+            "gagReflexAbsent",
+            "gagReflexImpaired",
+            "impairedSpeechPattern",
+            "obtunded",
+            "pillRolling",
+            "shufflingGait",
+            "stupor",
+            "syncope",
+            "terminalRestlessness",
+            "tremors",
+            "tia",
+            "vertigo",
+            "insomnia"
+          ],
+          "supportOther": true,
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "patientDeclinesNeuro",
+            "orientation",
+            "anxiety",
+            "seizures",
+            "aphasia",
+            "ataxia",
+            "apraxia",
+            "comatose",
+            "confusion",
+            "depression",
+            "headaches",
+            "hemiplegia",
+            "paraplegia",
+            "quadraplegia",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

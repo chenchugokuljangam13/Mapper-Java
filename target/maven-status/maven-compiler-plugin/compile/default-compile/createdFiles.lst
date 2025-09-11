@@ -1,8 +1,10 @@
 org/example/Main.class
 org/example/util/PdfUtils.class
+org/example/mapper/VitalsMapper.class
+org/example/mapper/NeurologicalMapper.class
 org/example/controller/PdfUploadController.class
 org/example/PdfFormFiller.class
-VitalsMapper.class
+org/example/service/DataMappingService.class
 org/example/PdfExtractionApplication.class
 org/example/service/PdfExtractionService.class
-main/java/org/example/mapper/NeurologicalMapper.class
+org/example/mapper/DetailMapper.class

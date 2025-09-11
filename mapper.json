@@ -1,13 +1,15 @@
 {
      "Vitals": {
           "Declines_Vitals": "declined", // there some feild called noChanges in the api and Decline_Reason in the pdf
+          "Decline_Reason": "declinedReason",
           "Blood_Pressure": {
                "Vitals_Diastolic": "diastolic",
                "Vitals_Side": "location", 
-               "Vitals_Position": "location",
-               "Vitals_Sysolic": "systolic"
+               "Vitals_Position": "position",
+               "Vitals_Sysolic": "systolic",
+               "Vitals_Location_side": "location"
           },
-          "Temp" : {
+          "Temperature" : {
                "Temp_Route": "route",
                "Temperature": "temperature"
           },
@@ -116,8 +118,12 @@
           "Concussion": "recentConcussion",
           "Head_injury_Date_af_date": "recentConcussionDate.date",
           // Other issues CL010.32
-          "Recent_Concussion": "otherIssues[]"
+          "Recent_Concussion": "otherIssues[]",
           // "notes"
+          "Notes":{
+               "Neurological_Notes": "category",
+               "Summary": "description"
+          }
      }
 }
 

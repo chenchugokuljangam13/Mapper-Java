@@ -1,0 +1,1289 @@
+{
+  "id": "homemaker",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "servicePreferences",
+      "type": "formCard",
+      "inputs": {
+        "serviceStartDate": {
+          "componentId": "serviceStartDate",
+          "type": "date"
+        },
+        "preferredDaysService": {
+          "type": "checkbox",
+          "componentId": "preferredDaysService",
+          "options": [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+          ]
+        },
+        "preferredTime": {
+          "type": "checkbox",
+          "componentId": "preferredTime",
+          "options": [
+            "morning",
+            "lateMorning",
+            "earlyAfternoon",
+            "midAfternoon"
+          ]
+        },
+        "visitFrequency": {
+          "type": "frequency",
+          "componentId": "visitFrequency",
+          "rules": {
+            "min": 1,
+            "max": 5
+          },
+          "options": [
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "layout": [{
+        "properties": {
+          "col-5": true
+        },
+        "rows": [{
+          "id": "serviceStartDate"
+        },
+          {
+            "id": "preferredDaysService"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "visitFrequency"
+          },
+            {
+              "id": "preferredTime"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kitchen",
+      "type": "formCard",
+      "inputs": {
+        "washDishesAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "washDishes"
+          ]
+        },
+        "washDishesFrequency": {
+          "type": "frequency",
+          "componentId": "washDishesFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "dampMopKitchenAreaAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "dampMopKitchenArea"
+          ]
+        },
+        "dampMopKitchenAreaFrequency": {
+          "type": "frequency",
+          "componentId": "dampMopKitchenAreaFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "emptyTrashContainersAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "emptyTrashContainers"
+          ]
+        },
+        "emptyTrashContainersFrequency": {
+          "type": "frequency",
+          "componentId": "emptyTrashContainersFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "sweepKitchenAreaAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "sweepKitchenArea"
+          ]
+        },
+        "sweepKitchenAreaFrequency": {
+          "type": "frequency",
+          "componentId": "sweepKitchenAreaFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "cleanWipeKitchenSurfacesAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "cleanWipeKitchenSurfaces"
+          ]
+        },
+        "cleanWipeKitchenSurfacesFrequency": {
+          "type": "frequency",
+          "componentId": "cleanWipeKitchenSurfacesFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "dietaryRestrictions": {
+          "type": "textarea",
+          "componentId": "dietaryRestrictions"
+        }
+      },
+      "dependencies": [{
+        "id": "washDishesAssistance",
+        "values": ["washDishes"],
+        "type": "enable",
+        "fields": [
+          "washDishesFrequency"
+        ]
+      },
+        {
+          "id": "dampMopKitchenAreaAssistance",
+          "values": ["dampMopKitchenArea"],
+          "type": "enable",
+          "fields": [
+            "dampMopKitchenAreaFrequency"
+          ]
+        },
+        {
+          "id": "emptyTrashContainersAssistance",
+          "values": ["emptyTrashContainers"],
+          "type": "enable",
+          "fields": [
+            "emptyTrashContainersFrequency"
+          ]
+        },
+        {
+          "id": "sweepKitchenAreaAssistance",
+          "values": ["sweepKitchenArea"],
+          "type": "enable",
+          "fields": [
+            "sweepKitchenAreaFrequency"
+          ]
+        },
+        {
+          "id": "cleanWipeKitchenSurfacesAssistance",
+          "values": ["cleanWipeKitchenSurfaces"],
+          "type": "enable",
+          "fields": [
+            "cleanWipeKitchenSurfacesFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "properties": {
+            "style": "display:flex;align-items:center;"
+          },
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "washDishesAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "washDishesFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "dampMopKitchenAreaAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "dampMopKitchenAreaFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "emptyTrashContainersAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "emptyTrashContainersFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "sweepKitchenAreaAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "sweepKitchenAreaFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "cleanWipeKitchenSurfacesAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "cleanWipeKitchenSurfacesFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "input",
+                "id": "dietaryRestrictions"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "mealPreparationGroceries",
+      "type": "formCard",
+      "inputs": {
+        "prepareLightBreakfastAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "prepareLightBreakfast"
+          ]
+        },
+        "prepareLightBreakfastFrequency": {
+          "type": "frequency",
+          "componentId": "prepareLightBreakfastFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "prepareLightLunchAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "prepareLightLunch"
+          ]
+        },
+        "prepareLightLunchFrequency": {
+          "type": "frequency",
+          "componentId": "prepareLightLunchFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "prepareLightDinnerAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "prepareLightDinner"
+          ]
+        },
+        "prepareLightDinnerFrequency": {
+          "type": "frequency",
+          "componentId": "prepareLightDinnerFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "prepareLightSnackAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "prepareLightSnack"
+          ]
+        },
+        "prepareLightSnackFrequency": {
+          "type": "frequency",
+          "componentId": "prepareLightSnackFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "performLimitedGroceryShoppingAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "performLimitedGroceryShopping"
+          ]
+        },
+        "performLimitedGroceryShoppingFrequency": {
+          "type": "frequency",
+          "componentId": "performLimitedGroceryShoppingFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "prepareLightBreakfastAssistance",
+        "values": ["prepareLightBreakfast"],
+        "type": "enable",
+        "fields": [
+          "prepareLightBreakfastFrequency"
+        ]
+      },
+        {
+          "id": "prepareLightLunchAssistance",
+          "values": ["prepareLightLunch"],
+          "type": "enable",
+          "fields": [
+            "prepareLightLunchFrequency"
+          ]
+        },
+        {
+          "id": "prepareLightDinnerAssistance",
+          "values": ["prepareLightDinner"],
+          "type": "enable",
+          "fields": [
+            "prepareLightDinnerFrequency"
+          ]
+        },
+        {
+          "id": "prepareLightSnackAssistance",
+          "values": ["prepareLightSnack"],
+          "type": "enable",
+          "fields": [
+            "prepareLightSnackFrequency"
+          ]
+        },
+        {
+          "id": "performLimitedGroceryShoppingAssistance",
+          "values": ["performLimitedGroceryShopping"],
+          "type": "enable",
+          "fields": [
+            "performLimitedGroceryShoppingFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "properties": {
+            "style": "display:flex;align-items:center;"
+          },
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "prepareLightBreakfastAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "prepareLightBreakfastFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "prepareLightLunchAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "prepareLightLunchFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "prepareLightDinnerAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "prepareLightDinnerFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "prepareLightSnackAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "prepareLightSnackFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "performLimitedGroceryShoppingAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "performLimitedGroceryShoppingFrequency"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "livingBedroomArea",
+      "type": "formCard",
+      "inputs": {
+        "dustLivingAreaAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "dustLivingArea"
+          ]
+        },
+        "dustLivingAreaFrequency": {
+          "type": "frequency",
+          "componentId": "dustLivingAreaFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "vacuumLivingAreaAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "vacuumLivingArea"
+          ]
+        },
+        "vacuumLivingAreaFrequency": {
+          "type": "frequency",
+          "componentId": "vacuumLivingAreaFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "dustBedroomAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "dustBedroom"
+          ]
+        },
+        "dustBedroomFrequency": {
+          "type": "frequency",
+          "componentId": "dustBedroomFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "vacuumBedroomAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "vacuumBedroom"
+          ]
+        },
+        "vacuumBedroomFrequency": {
+          "type": "frequency",
+          "componentId": "vacuumBedroomFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "dustLivingAreaAssistance",
+        "values": ["dustLivingArea"],
+        "type": "enable",
+        "fields": [
+          "dustLivingAreaFrequency"
+        ]
+      },
+        {
+          "id": "vacuumLivingAreaAssistance",
+          "values": ["vacuumLivingArea"],
+          "type": "enable",
+          "fields": [
+            "vacuumLivingAreaFrequency"
+          ]
+        },
+        {
+          "id": "dustBedroomAssistance",
+          "values": ["dustBedroom"],
+          "type": "enable",
+          "fields": [
+            "dustBedroomFrequency"
+          ]
+        },
+        {
+          "id": "vacuumBedroomAssistance",
+          "values": ["vacuumBedroom"],
+          "type": "enable",
+          "fields": [
+            "vacuumBedroomFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "properties": {
+            "style": "display:flex;align-items:center;"
+          },
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "dustLivingAreaAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "dustLivingAreaFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "vacuumLivingAreaAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "vacuumLivingAreaFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "dustBedroomAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "dustBedroomFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "vacuumBedroomAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "vacuumBedroomFrequency"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "bathroom",
+      "type": "formCard",
+      "inputs": {
+        "cleanPatientToiletAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "cleanPatientToilet"
+          ]
+        },
+        "cleanPatientToiletFrequency": {
+          "type": "frequency",
+          "componentId": "cleanPatientToiletFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "cleanPatientTubShowerAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "cleanPatientTubShower"
+          ]
+        },
+        "cleanPatientTubShowerFrequency": {
+          "type": "frequency",
+          "componentId": "cleanPatientTubShowerFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "cleanPatientBathroomSinkAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "cleanPatientBathroomSink"
+          ]
+        },
+        "cleanPatientBathroomSinkFrequency": {
+          "type": "frequency",
+          "componentId": "cleanPatientBathroomSinkFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "sweepPatientBathroomAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "sweepPatientBathroom"
+          ]
+        },
+        "sweepPatientBathroomFrequency": {
+          "type": "frequency",
+          "componentId": "sweepPatientBathroomFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "dampMopPatientBathroomAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "dampMopPatientBathroom"
+          ]
+        },
+        "dampMopPatientBathroomFrequency": {
+          "type": "frequency",
+          "componentId": "dampMopPatientBathroomFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "cleanPatientToiletAssistance",
+        "values": ["cleanPatientToilet"],
+        "type": "enable",
+        "fields": [
+          "cleanPatientToiletFrequency"
+        ]
+      },
+        {
+          "id": "cleanPatientTubShowerAssistance",
+          "values": ["cleanPatientTubShower"],
+          "type": "enable",
+          "fields": [
+            "cleanPatientTubShowerFrequency"
+          ]
+        },
+        {
+          "id": "cleanPatientBathroomSinkAssistance",
+          "values": ["cleanPatientBathroomSink"],
+          "type": "enable",
+          "fields": [
+            "cleanPatientBathroomSinkFrequency"
+          ]
+        },
+        {
+          "id": "sweepPatientBathroomAssistance",
+          "values": ["sweepPatientBathroom"],
+          "type": "enable",
+          "fields": [
+            "sweepPatientBathroomFrequency"
+          ]
+        },
+        {
+          "id": "dampMopPatientBathroomAssistance",
+          "values": ["dampMopPatientBathroom"],
+          "type": "enable",
+          "fields": [
+            "dampMopPatientBathroomFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "properties": {
+            "style": "display:flex;align-items:center;"
+          },
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "cleanPatientToiletAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "cleanPatientToiletFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "cleanPatientTubShowerAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "cleanPatientTubShowerFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "cleanPatientBathroomSinkAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "cleanPatientBathroomSinkFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "sweepPatientBathroomAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "sweepPatientBathroomFrequency"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "dampMopPatientBathroomAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "dampMopPatientBathroomFrequency"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "laundry",
+      "type": "formCard",
+      "inputs": {
+        "washDryFoldPatientClothingAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "washDryFoldPatientClothing"
+          ]
+        },
+        "washDryFoldPatientClothingFrequency": {
+          "type": "frequency",
+          "componentId": "washDryFoldPatientClothingFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+
+        "washDryFoldPatientLinensTowelsClothsAssistance": {
+          "type": "checkbox",
+          "label": false,
+          "options": [
+            "washDryFoldPatientLinensTowelsCloths"
+          ]
+        },
+        "washDryFoldPatientLinensTowelsClothsFrequency": {
+          "type": "frequency",
+          "componentId": "washDryFoldPatientLinensTowelsClothsFrequency",
+          "label": false,
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "washDryFoldPatientClothingAssistance",
+        "values": ["washDryFoldPatientClothing"],
+        "type": "enable",
+        "fields": [
+          "washDryFoldPatientClothingFrequency"
+        ]
+      },
+        {
+          "id": "washDryFoldPatientLinensTowelsClothsAssistance",
+          "values": ["washDryFoldPatientLinensTowelsCloths"],
+          "type": "enable",
+          "fields": [
+            "washDryFoldPatientLinensTowelsClothsFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "properties": {
+            "style": "display:flex;align-items:center;"
+          },
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "type": "input",
+              "id": "washDryFoldPatientClothingAssistance"
+            }]
+          },
+            {
+              "rows": [{
+                "type": "input",
+                "id": "washDryFoldPatientClothingFrequency"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "properties": {
+              "style": "display:flex;align-items:center;"
+            },
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "type": "input",
+                "id": "washDryFoldPatientLinensTowelsClothsAssistance"
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "input",
+                  "id": "washDryFoldPatientLinensTowelsClothsFrequency"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "other",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["task", "frequency"]
+      },
+      "inputs": {
+        "task": {
+          "type": "text",
+          "componentId": "otherText",
+          "rules": {
+            "maxLength": 250
+          }
+        },
+        "frequency": {
+          "type": "frequency",
+          "componentId": "otherFrequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "visit",
+            "week(s)",
+            "month(s)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "servicePreferences",
+            "kitchen",
+            "mealPreparationGroceries",
+            "livingBedroomArea",
+            "bathroom",
+            "laundry",
+            "other"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1230 @@
+{
+  "id": "respiratory",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "respiratory",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "respirationType", "respiratoryRate", "o2saturation"]
+      },
+      "inputs": {
+        "respirationType": {
+          "type": "selectOther",
+          "attributes": {
+            "multiple": true
+          },
+          "options": ["normal", "stridor", "pursed", "labored", "shallow", "cheyneStokes", "orthopnea", "apnea",
+            "barrelChest", "hypoxia", "increasedExpiratoryPhase", "ineffectiveLungExpansion",
+            "usesAccessoryMuscles"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "respiratoryRate": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        },
+        "o2saturation": {
+          "type": "number",
+          "rules": {
+            "max": 100,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "breathSounds",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "leftUpperLobe": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "crackles",
+            "diminished",
+            "rales",
+            "rhonchi",
+            "stridor",
+            "wheezes"
+          ]
+        },
+        "leftLowerLobe": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "crackles",
+            "diminished",
+            "rales",
+            "rhonchi",
+            "stridor",
+            "wheezes"
+          ]
+        },
+        "rightUpperLobe": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "crackles",
+            "diminished",
+            "rales",
+            "rhonchi",
+            "stridor",
+            "wheezes"
+          ]
+        },
+        "rightMiddleLobe": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "crackles",
+            "diminished",
+            "rales",
+            "rhonchi",
+            "stridor",
+            "wheezes"
+          ]
+        },
+        "rightLowerLobe": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "crackles",
+            "diminished",
+            "rales",
+            "rhonchi",
+            "stridor",
+            "wheezes"
+          ]
+        },
+        "breathSoundsSame": {
+          "type": "toggle"
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "leftUpperLobe"
+        },
+          {
+            "id": "leftLowerLobe"
+          },
+          {
+            "id": "breathSoundsSame"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "rightUpperLobe"
+          },
+            {
+              "id": "rightMiddleLobe"
+            },
+            {
+              "id": "rightLowerLobe"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "breathSoundsSame",
+        "values": [true],
+        "type": "copy",
+        "fields": [
+          "leftLowerLobe",
+          "rightUpperLobe",
+          "rightMiddleLobe",
+          "rightLowerLobe"
+        ],
+        "sourceField": "leftUpperLobe"
+      }]
+    },
+    {
+      "id": "shortnessOfBreath",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "shortnessOfBreathNow": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "sometimes",
+            "no"
+          ]
+        },
+        "shortnessNowScore": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "snaps": true
+          }
+        },
+        "treatmentInitiated": {
+          "type": "radio",
+          "options": [
+            "initiated",
+            "continued",
+            "none"
+          ]
+        },
+        "treatmentType": {
+          "type": "text"
+        },
+        "date": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "shortnessOfBreathEver": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "sometimes",
+            "no"
+          ]
+        },
+        "shortnessEverScore": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "snaps": true
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "shortnessOfBreathNow"
+        },
+          {
+            "id": "shortnessNowScore"
+          },
+          {
+            "id": "shortnessOfBreathEver"
+          },
+          {
+            "id": "shortnessEverScore"
+          }
+        ]
+      },
+        {
+          "properties": {
+            "class": "contextWrapper"
+          },
+          "rows": [{
+            "id": "treatmentInitiated"
+          },
+            {
+              "id": "treatmentType"
+            },
+            {
+              "id": "date"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "shortnessOfBreathNow",
+        "values": ["no", null],
+        "type": "disable",
+        "fields": [
+          "shortnessNowScore",
+          "treatmentInitiated",
+          "treatmentType"
+        ]
+      },
+        {
+          "id": "shortnessOfBreathNow",
+          "values": ["no", null],
+          "type": "clear",
+          "fields": [
+            "shortnessNowScore",
+            "treatmentInitiated",
+            "treatmentType"
+          ]
+        },
+        {
+          "id": "treatmentInitiated",
+          "values": ["initiated", "continued"],
+          "type": "enable",
+          "fields": [
+            "date"
+          ]
+        },
+        {
+          "id": "shortnessOfBreathNow",
+          "values": ["yes", "sometimes"],
+          "type": "disable",
+          "fields": [
+            "shortnessOfBreathEver"
+          ]
+        },
+        {
+          "id": "shortnessOfBreathEver",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "shortnessEverScore"
+          ]
+        },
+        {
+          "id": "shortnessOfBreathEver",
+          "values": [false],
+          "type": "clear",
+          "fields": [
+            "shortnessEverScore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cough",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientExperiencesCoughing": {
+          "type": "toggle"
+        },
+        "frequency": {
+          "type": "select",
+          "options": [
+            "infrequent",
+            "intermittent",
+            "constant"
+          ]
+        },
+        "type": {
+          "type": "select",
+          "options": [
+            "dry",
+            "coup",
+            "productive",
+            "whooping"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientExperiencesCoughing"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "frequency"
+          },
+            {
+              "id": "type"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientExperiencesCoughing",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "frequency",
+          "type"
+        ]
+      },
+        {
+          "id": "patientExperiencesCoughing",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "frequency",
+            "type"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "respiratoryInfection",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "upperRespiratoryInfection": {
+          "type": "toggle"
+        },
+        "currentUpperDiagnosed": {
+          "type": "date",
+          "rules": {
+            "startDate": "today"
+          }
+        },
+        "mostRecentUpperDiagnosis": {
+          "type": "date",
+          "readonly": true,
+          "rules": {
+            "startDate": "today"
+          }
+        },
+        "pneumonia": {
+          "type": "toggle"
+        },
+        "pneumoniaVaccine": {
+          "type": "toggle"
+        },
+        "pneumoniaVaccineDate": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "currentPneumoniaDiagnosed": {
+          "type": "date",
+          "rules": {
+            "startDate": "today"
+          }
+        },
+        "mostRecentPneumoniaDiagnosis": {
+          "type": "date",
+          "readonly": true,
+          "rules": {
+            "startDate": "today"
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "upperRespiratoryInfection"
+        },
+          {
+            "id": "currentUpperDiagnosed"
+          },
+          {
+            "id": "mostRecentUpperDiagnosis"
+          }
+        ]
+      },
+        {
+          "properties": {
+            "class": "contextWrapper"
+          },
+          "rows": [{
+            "id": "pneumonia"
+          },
+            {
+              "id": "currentPneumoniaDiagnosed"
+            },
+            {
+              "id": "mostRecentPneumoniaDiagnosis"
+            },
+            {
+              "id": "pneumoniaVaccine"
+            },
+            {
+              "id": "pneumoniaVaccineDate"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "upperRespiratoryInfection",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "currentUpperDiagnosed"
+        ]
+      },
+        {
+          "id": "upperRespiratoryInfection",
+          "values": [false],
+          "type": "clear",
+          "fields": [
+            "currentUpperDiagnosed"
+          ]
+        },
+        {
+          "id": "pneumonia",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "currentPneumoniaDiagnosed"
+          ]
+        },
+        {
+          "id": "pneumonia",
+          "values": [false],
+          "type": "clear",
+          "fields": [
+            "currentPneumoniaDiagnosed"
+          ]
+        },
+        {
+          "id": "pneumoniaVaccine",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "pneumoniaVaccineDate"
+          ]
+        },
+        {
+          "id": "pneumoniaVaccine",
+          "values": [false],
+          "type": "clear",
+          "fields": [
+            "pneumoniaVaccineDate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "o2saturation",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "o2saturation": {
+          "type": "text",
+          "readonly": true
+        },
+        "patientOnOxygen": {
+          "type": "radio",
+          "options": [
+            "yesInitiated",
+            "yesContinued",
+            "noRoomAir"
+          ]
+        },
+        "deliverySource": {
+          "type": "select",
+          "options": [
+            "nasalCannula",
+            "faceMask",
+            "nonRebreather",
+            "venturiMask",
+            "faceTent",
+            "tracheostomyMask",
+            "oxygenHood"
+          ]
+        },
+        "deliveryDate": {
+          "type": "date",
+          "rules": {
+            "startDate": "today"
+          }
+        },
+        "deliveryFrequency": {
+          "type": "select",
+          "default": "continuous",
+          "options": [
+            "continuous",
+            "prn"
+          ]
+        },
+        "o2concentration": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 100
+          }
+        },
+        "flowRate": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 100
+          }
+        },
+        "equipmentInUse": {
+          "type": "checkbox",
+          "options": [
+            "humidifier",
+            "o2Concentrator"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "o2saturation"
+        },
+          {
+            "id": "o2concentration"
+          },
+          {
+            "id": "flowRate"
+          },
+          {
+            "id": "equipmentInUse"
+          }
+        ]
+      },
+        {
+          "properties": {
+            "class": "contextWrapper"
+          },
+          "rows": [{
+            "id": "patientOnOxygen"
+          },
+            {
+              "id": "deliverySource"
+            },
+            {
+              "id": "deliveryDate"
+            },
+            {
+              "id": "deliveryFrequency"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientOnOxygen",
+        "values": ["yesInitiated", "yesContinued"],
+        "type": "enable",
+        "fields": [
+          "deliverySource",
+          "deliveryDate",
+          "deliveryFrequency"
+        ]
+      },
+        {
+          "id": "patientOnOxygen",
+          "values": ["noRoomAir"],
+          "type": "clear",
+          "fields": [
+            "deliverySource",
+            "deliveryDate",
+            "deliveryFrequency"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apap",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasApap": {
+          "type": "toggle"
+        },
+        "inhalationMin": {
+          "type": "number"
+        },
+        "inhalationMax": {
+          "type": "number"
+        },
+        "exhalationMin": {
+          "type": "number"
+        },
+        "exhalationMax": {
+          "type": "number"
+        },
+        "breathsPerMinute": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        },
+        "backUpRate": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasApap"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "inhalationMin"
+              },
+                {
+                  "id": "exhalationMin"
+                },
+                {
+                  "id": "breathsPerMinute"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "inhalationMax"
+                },
+                  {
+                    "id": "exhalationMax"
+                  },
+                  {
+                    "id": "backUpRate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasApap",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "inhalationMin",
+          "exhalationMin",
+          "breathsPerMinute",
+          "inhalationMax",
+          "exhalationMax",
+          "backUpRate"
+        ]
+      },
+        {
+          "id": "hasApap",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "inhalationMin",
+            "exhalationMin",
+            "breathsPerMinute",
+            "inhalationMax",
+            "exhalationMax",
+            "backUpRate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cpap",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasCpap": {
+          "type": "toggle"
+        },
+        "inhalationMin": {
+          "type": "number"
+        },
+        "inhalationMax": {
+          "type": "number"
+        },
+        "exhalationMin": {
+          "type": "number"
+        },
+        "exhalationMax": {
+          "type": "number"
+        },
+        "breathsPerMinute": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        },
+        "backUpRate": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasCpap"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "inhalationMin"
+              },
+                {
+                  "id": "exhalationMin"
+                },
+                {
+                  "id": "breathsPerMinute"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "inhalationMax"
+                },
+                  {
+                    "id": "exhalationMax"
+                  },
+                  {
+                    "id": "backUpRate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasCpap",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "inhalationMin",
+          "exhalationMin",
+          "breathsPerMinute",
+          "inhalationMax",
+          "exhalationMax",
+          "backUpRate"
+        ]
+      },
+        {
+          "id": "hasCpap",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "inhalationMin",
+            "exhalationMin",
+            "breathsPerMinute",
+            "inhalationMax",
+            "exhalationMax",
+            "backUpRate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "biLevelBiPapVpap",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasBiLevelBiPapVpap": {
+          "type": "toggle"
+        },
+        "inhalationMin": {
+          "type": "number"
+        },
+        "inhalationMax": {
+          "type": "number"
+        },
+        "exhalationMin": {
+          "type": "number"
+        },
+        "exhalationMax": {
+          "type": "number"
+        },
+        "breathsPerMinute": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        },
+        "backUpRate": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 999
+          }
+        }
+
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasBiLevelBiPapVpap"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "inhalationMin"
+              },
+                {
+                  "id": "exhalationMin"
+                },
+                {
+                  "id": "breathsPerMinute"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "inhalationMax"
+                },
+                  {
+                    "id": "exhalationMax"
+                  },
+                  {
+                    "id": "backUpRate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasBiLevelBiPapVpap",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "inhalationMin",
+          "exhalationMin",
+          "breathsPerMinute",
+          "inhalationMax",
+          "exhalationMax",
+          "backUpRate"
+        ]
+      },
+        {
+          "id": "hasBiLevelBiPapVpap",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "inhalationMin",
+            "exhalationMin",
+            "breathsPerMinute",
+            "inhalationMax",
+            "exhalationMax",
+            "backUpRate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ventilatorySupport",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasVentilatorySupport": {
+          "type": "toggle"
+        },
+        "ventilatoryType": {
+          "type": "text"
+        },
+        "tidalVolume": {
+          "type": "number"
+        },
+        "respiratoryRate": {
+          "type": "number"
+        },
+        "peep": {
+          "type": "number"
+        },
+        "plateauPressure": {
+          "type": "number"
+        },
+        "spo2": {
+          "type": "number"
+        },
+        "peakPressure": {
+          "type": "number"
+        },
+        "o2": {
+          "type": "number"
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hasVentilatorySupport"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "tidalVolume"
+              },
+                {
+                  "id": "peep"
+                },
+                {
+                  "id": "peakPressure"
+                },
+                {
+                  "id": "o2"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "ventilatoryType"
+                },
+                  {
+                    "id": "respiratoryRate"
+                  },
+                  {
+                    "id": "plateauPressure"
+                  },
+                  {
+                    "id": "spo2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "hasVentilatorySupport",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "tidalVolume",
+          "peep",
+          "peakPressure",
+          "o2",
+          "ventilatoryType",
+          "respiratoryRate",
+          "plateauPressure",
+          "spo2"
+        ]
+      },
+        {
+          "id": "hasVentilatorySupport",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "tidalVolume",
+            "peep",
+            "peakPressure",
+            "o2",
+            "ventilatoryType",
+            "respiratoryRate",
+            "plateauPressure",
+            "spo2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breathingTreatmentNebularizer",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasBreathingTreatmentNebularizer": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "medication": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        },
+        "frequency": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "hasBreathingTreatmentNebularizer"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "type"
+          },
+            {
+              "id": "medication"
+            },
+            {
+              "id": "frequency"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "hasBreathingTreatmentNebularizer",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type",
+          "medication",
+          "frequency"
+        ]
+      },
+        {
+          "id": "hasBreathingTreatmentNebularizer",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "type",
+            "medication",
+            "frequency"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apnea",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasApnea": {
+          "type": "toggle"
+        },
+        "durationSeconds": {
+          "type": "number"
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "hasApnea"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "durationSeconds"
+          }]
+        }
+      ],
+      "dependencies": [{
+        "id": "hasApnea",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "durationSeconds"
+        ]
+      },
+        {
+          "id": "hasApnea",
+          "values": [false],
+          "type": "clear",
+          "prompt": "Clear form values?",
+          "fields": [
+            "durationSeconds"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "barrelChest",
+            "cheyneStokes",
+            "circumOralCyanosis",
+            "cyanosis",
+            "hypoxia",
+            "increasedExpiratoryPhase",
+            "ineffectiveLungExpansion",
+            "labored",
+            "orthopnea",
+            "pursedLipBreathing",
+            "shallow",
+            "stridor",
+            "usesAccessoryMuscles"
+          ],
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "respiratory",
+            "breathSounds",
+            "shortnessOfBreath",
+            "cough",
+            "o2saturation",
+            "mechanicalSupport",
+            "apap",
+            "cpap",
+            "biLevelBiPapVpap",
+            "ventilatorySupport",
+            "breathingTreatmentNebularizer",
+            "apnea",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

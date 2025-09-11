@@ -1,0 +1,364 @@
+{
+  "id": "precautionsSafetyTeachings",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "precautions",
+      "type": "questionsCard",
+      "required": true,
+      "declinable": true,
+      "supportOther": true,
+      "displayHeaderCount": false,
+      "subheaderDescription": "*item must be reported to Hospice Clinical Director/ACD/Team Leader.",
+      "rows": [
+        "aspiration",
+        "bleeding",
+        "cardiopulmonaryArrest",
+        "constipation",
+        "escape",
+        "fall",
+        "fractures",
+        "dehydration",
+        "impairedSkinIntegrity",
+        "infection",
+        "nonCompliance",
+        "painCrisis",
+        "seizure",
+        "swallowing",
+        "wandering",
+        "weightLoss"
+      ],
+      "questions": [{
+        "id": "yes",
+        "inputs": {
+          "stepsTakenToEnsureSafety": {
+            "type": "textarea",
+            "otherRules": {
+              "maxLength": 1500,
+              "required": true
+            }
+          }
+        }
+      },
+        {
+          "id": "no"
+        },
+        {
+          "id": "n/a"
+        }
+      ]
+    },
+    {
+      "id": "neighborhood",
+      "type": "questionsCard",
+      "required": true,
+      "declinable": true,
+      "supportOther": true,
+      "displayHeaderCount": true,
+      "subheaderDescription": "*item must be reported to Hospice Clinical Director/ACD/Team Leader.",
+      "rows": [
+        "highDrugTrafficKingArea",
+        "highCrimeRateArea",
+        "knownGangArea",
+        "unControlledPetsAnimals",
+        "highTrafficArea",
+        "highPollutionLevelNoiseAir"
+      ],
+      "reportableRows": [
+        "highDrugTrafficKingArea",
+        "highCrimeRateArea",
+        "knownGangArea",
+        "unControlledPetsAnimals"
+      ],
+      "reportableAnswers": [
+        "yes"
+      ],
+      "questions": [{
+        "id": "yes",
+        "inputs": {
+          "explainTeachingProvided": {
+            "type": "textarea",
+            "otherRules": {
+              "maxLength": 1500,
+              "required": true
+            }
+          }
+        }
+      },
+        {
+          "id": "no",
+          "inputs": {
+            "explainTeachingNotProvided": {
+              "type": "textarea",
+              "otherRules": {
+                "maxLength": 1500,
+                "required": true
+              }
+            }
+          }
+        },
+        {
+          "id": "n/a"
+        }
+      ]
+    },
+    {
+      "id": "sanitation",
+      "type": "questionsCard",
+      "required": true,
+      "declinable": true,
+      "supportOther": true,
+      "displayHeaderCount": true,
+      "subheaderDescription": "*item must be reported to Hospice Clinical Director/ACD/Team Leader.",
+      "rows": [
+        "foulOffensiveOdors",
+        "soiledLivingArea",
+        "inadequateSewerDisposal",
+        "inadequateWaterSupply",
+        "inadequateFoodStorage"
+      ],
+      "reportableRows": [
+        "inadequateSewerDisposal",
+        "inadequateWaterSupply",
+        "inadequateFoodStorage"
+      ],
+      "reportableAnswers": [
+        "yes"
+      ],
+      "questions": [{
+        "id": "yes",
+        "inputs": {
+          "explainTeachingProvided": {
+            "type": "textarea",
+            "otherRules": {
+              "maxLength": 1500,
+              "required": true
+            }
+          }
+        }
+      },
+        {
+          "id": "no",
+          "inputs": {
+            "explainTeachingNotProvided": {
+              "type": "textarea",
+              "otherRules": {
+                "maxLength": 1500,
+                "required": true
+              }
+            }
+          }
+        },
+        {
+          "id": "n/a"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "type": "questionsCard",
+      "required": true,
+      "declinable": true,
+      "supportOther": true,
+      "displayHeaderCount": true,
+      "subheaderDescription": "*item must be reported to Hospice Clinical Director/ACD/Team Leader.",
+      "rows": [
+        "rodentInsectInfestation",
+        "gunInHome",
+        "signOfAbuseNeglect",
+        "fireExitPlans",
+        "smokeAlarm",
+        "carbonMonoOxideAlarm",
+        "obstructedEntranceExits",
+        "unSafeMatsObstacles",
+        "petsInHome",
+        "oxygenIsPresent"
+      ],
+      "reportableRows": [
+        "rodentInsectInfestation",
+        "gunInHome",
+        "signOfAbuseNeglect"
+      ],
+      "reportableAnswers": [
+        "yes"
+      ],
+      "questions": [{
+        "id": "yes",
+        "inputs": {
+          "explainTeachingProvided": {
+            "type": "textarea",
+            "otherRules": {
+              "maxLength": 1500,
+              "required": true
+            }
+          }
+        }
+      },
+        {
+          "id": "no",
+          "inputs": {
+            "explainTeachingNotProvided": {
+              "type": "textarea",
+              "otherRules": {
+                "maxLength": 1500,
+                "required": true
+              }
+            }
+          }
+        },
+        {
+          "id": "n/a"
+        }
+      ]
+    },
+    {
+      "id": "reportableIssues",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "editable": true,
+      "manualAdd": false,
+      "allowExternalData": true,
+      "data": {
+        "listHeaders": ["issueType", "reportedOn", "reportedBy", "reportedTo"]
+      },
+      "inputs": {
+        "issueType": {
+          "type": "text",
+          "readonly": true
+        },
+        "reportedBy": {
+          "type": "text"
+        },
+        "reportedOn": {
+          "type": "datetime"
+        },
+        "reportedTo": {
+          "type": "text",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "safeMedicationAdministration",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "wasTeachingPerformed": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "teachingPerformedBy": {
+          "type": "checkbox",
+          "options": [
+            "patient",
+            "pcg",
+            "family",
+            "familyStaff"
+          ]
+        },
+        "name": {
+          "type": "text",
+          "maxLength": 75
+        },
+        "relationship": {
+          "type": "select",
+          "options": [
+            "spouse",
+            "partner",
+            "son",
+            "daughter",
+            "parent",
+            "guardian",
+            "brother",
+            "sister",
+            "aunt",
+            "neighbor",
+            "other"
+          ]
+        },
+        "teachingPerformedReason": {
+          "type": "text",
+          "rules": {
+            "maxLength": 3000
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "wasTeachingPerformed"
+        },
+          {
+            "id": "teachingPerformedBy"
+          },
+
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "name"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "relationship"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "teachingPerformedReason"
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "wasTeachingPerformed",
+        "values": ["no", null],
+        "type": "disable",
+        "fields": [
+          "teachingPerformedBy"
+        ]
+      },
+        {
+          "id": "teachingPerformedBy",
+          "values": ["pcg", "family"],
+          "type": "enable",
+          "fields": [
+            "teachingPerformedReason",
+            "name",
+            "relationship"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "description"]
+      },
+      "inputs": {
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

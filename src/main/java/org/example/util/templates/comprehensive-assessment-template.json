@@ -1,0 +1,144 @@
+{
+    "_id": "CA",
+    "_tenant_id": [],
+    "title": "Comprehensive Assessment",
+    "_start_date": "",
+    "_end_date": "",
+    "_version": 1,
+    "assessment_sections": [
+      {
+        "_id": "levelOfCare",
+        "_version": 1,
+        "title": "Level of Care",
+        "icon": "levelOfCare",
+        "$ref": "#/levelOfCare"
+      },
+      {
+        "_id": "vitals",
+        "_version": 1,
+        "title": "Vitals",
+        "icon": "vitals",
+        "$ref": "#/vitals"
+      },
+      {
+        "_id": "neurological",
+        "_version": 1,
+        "title": "Neurological",
+        "icon": "neurological",
+        "$ref": "#/neurological"
+      },
+      {
+        "_id": "pain",
+        "_version": 1,
+        "title": "Pain",
+        "icon": "pain",
+        "$ref": "#/pain"
+      },
+      {
+        "_id": "respiratory",
+        "_version": 1,
+        "title": "Respiratory",
+        "icon": "respiratory",
+        "$ref": "#/respiratory"
+      },
+      {
+        "_id": "cardio",
+        "_version": 1,
+        "title": "Cardiovascular",
+        "icon": "cardio",
+        "$ref": "#/cardio"
+      },
+      {
+        "_id": "gastro",
+        "_version": 1,
+        "title": "Gastrointestinal",
+        "icon": "gastro",
+        "$ref": "#/gastro"
+      },
+      {
+        "_id": "genito",
+        "_version": 1,
+        "title": "Genitourinary",
+        "icon": "genito",
+        "$ref": "#/genito"
+      },
+      {
+        "_id": "nutrition",
+        "_version": 1,
+        "title": "Nutrition",
+        "icon": "nutrition",
+        "$ref": "#/nutrition"
+      },
+      {
+        "_id": "skin",
+        "_version": 1,
+        "title": "Skin",
+        "icon": "skin",
+        "$ref": "#/skin"
+      },
+      {
+        "_id": "musculoskeletal",
+        "_version": 1,
+        "title": "Musculoskeletal",
+        "icon": "musculoskeletal",
+        "$ref": "#/musculoskeletal"
+      },
+      {
+        "_id": "safety",
+        "_version": 1,
+        "title": "Safety and Teachings",
+        "icon": "safety",
+        "$ref": "#/safety"
+      },
+      {
+        "_id": "supervisory",
+        "_version": 1,
+        "title": "Supervisory Visit",
+        "icon": "supervisory",
+        "$ref": "#/supervisory"
+      },
+      {
+        "_id": "socialwork",
+        "_version": 1,
+        "title": "Social Work",
+        "icon": "socialwork",
+        "$ref": "#/socialwork"
+      },
+      {
+        "_id": "spirtual",
+        "_version": 1,
+        "title": "Spirtual Care",
+        "icon": "spirtual",
+        "$ref": "#/spirtual"
+      },
+      {
+        "_id": "bereavement",
+        "_version": 1,
+        "title": "Bereavement",
+        "icon": "bereavement",
+        "$ref": "#/bereavement"
+      },
+      {
+        "_id": "hospiceaide",
+        "_version": 1,
+        "title": "Hospice Aide",
+        "icon": "hospiceaide",
+        "$ref": "#/hospiceaide"
+      },
+      {
+        "_id": "homemaker",
+        "_version": 1,
+        "title": "Homemaker",
+        "icon": "homemaker",
+        "$ref": "#/homemaker"
+      },
+      {
+        "_id": "summarycoc",
+        "_version": 1,
+        "title": "Summary Coordination of Care",
+        "icon": "summarycoc",
+        "$ref": "#/summarycoc"
+      }
+    ]
+}
+

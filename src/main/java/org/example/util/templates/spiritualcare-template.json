@@ -1,0 +1,997 @@
+{
+  "id": "spiritualCare",
+  "cards": [{
+    "id": "decline",
+    "componentId": "declineCard",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "spiritualConcerns",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "hasSpiritualConcerns": {
+          "type": "radio",
+          "componentId": "hasSpiritualConcerns",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "spiritualConcerns": {
+          "label": "explain",
+          "type": "text",
+          "componentId": "spiritualConcerns"
+        }
+      },
+      "dependencies": [{
+        "id": "hasSpiritualConcerns",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "spiritualConcerns"
+        ]
+      },
+        {
+          "id": "hasSpiritualConcerns",
+          "values": ["no", "refusedToDiscuss"],
+          "type": "clear",
+          "fields": [
+            "spiritualConcerns"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "id": "hasSpiritualConcerns"
+        },
+          {
+            "id": "spiritualConcerns"
+          }
+        ]
+      }]
+    },
+    {
+      "id": "spiritualReligiousAffiliation",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "spiritualReligiousAffiliation": {
+          "type": "select",
+          "componentId": "religion",
+          "options": ["AoG", "baptist", "catholic", "christian", "CoC", "episcopalian", "jewish", "lutheran", "methodist", "noPref", "nonDenom", "presbyterian", "protestant", "nazarene", "mormon", "pentecostal", "comOC", "jehovahsWitness", "discOfChrist", "greekOrth", "notSpecified"]
+
+        },
+        "hasPlaceOfWorship": {
+          "type": "radio",
+          "componentId": "placeOfWorship",
+          "options": [
+            "yes",
+            "no",
+            "na"
+          ]
+        },
+        "worshipName": {
+          "type": "text",
+          "componentId": "worshipName",
+          "rules": {
+            "maxLength": 150
+          }
+        },
+        "worshipAddress": {
+          "label": "address",
+          "type": "text",
+          "componentId": "worshipAddress",
+          "rules": {
+            "maxLength": 75
+          }
+        },
+        "worshipCity": {
+          "label": "city",
+          "type": "text",
+          "componentId": "worshipCity",
+          "rules": {
+            "maxLength": 75
+          }
+        },
+        "worshipState": {
+          "label": "state",
+          "type": "select",
+          "componentId": "worshipState",
+          "options": ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
+        },
+        "worshipZipCode": {
+          "label": "zipCode",
+          "type": "number",
+          "componentId": "worshipZipCode",
+          "rules": {
+            "maxLength": 10
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "hasPlaceOfWorship",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "worshipName",
+          "worshipAddress",
+          "worshipCity",
+          "worshipState",
+          "worshipZipCode"
+        ]
+      },
+        {
+          "id": "hasPlaceOfWorship",
+          "values": ["no", "na"],
+          "type": "clear",
+          "fields": [
+            "worshipName",
+            "worshipAddress",
+            "worshipCity",
+            "worshipState",
+            "worshipZipCode"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "id": "spiritualReligiousAffiliation"
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "type": "row",
+                "cols": [{
+                  "rows": [{
+                    "id": "hasPlaceOfWorship"
+                  }]
+                }]
+              }]
+            },
+              {
+                "rows": [{
+                  "type": "row",
+                  "cols": [{
+                    "rows": [{
+                      "id": "worshipName"
+                    }]
+                  }]
+                },
+                  {
+                    "type": "row",
+                    "cols": [{
+                      "rows": [{
+                        "id": "worshipAddress"
+                      }]
+                    }]
+                  },
+                  {
+                    "type": "row",
+                    "cols": [{
+                      "rows": [{
+                        "id": "worshipCity"
+                      }]
+                    },
+                      {
+                        "rows": [{
+                          "id": "worshipState"
+                        }]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "row",
+                    "cols": [{
+                      "rows": [{
+                        "id": "worshipZipCode"
+                      }]
+                    }]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "spiritualAdvisor",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasSpiritualAdvisor": {
+          "type": "radio",
+          "componentId": "patientHasSpiritualAdvisor",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "spiritualAdvisorName": {
+          "type": "text",
+          "componentId": "spiritualAdvisorName"
+        },
+        "spiritualAdvisorContactType": {
+          "label": "via",
+          "type": "select",
+          "componentId": "spiritualAdvisorContactType",
+          "supportOther": true,
+          "options": [
+            "home",
+            "work",
+            "mobile",
+            "pager"
+          ]
+        },
+        "spiritualAdvisorContactInfo": {
+          "label": "contactNumber",
+          "type": "text",
+          "componentId": "spiritualAdvisorContactInfo"
+        },
+        "requestToContactSpiritualAdvisor": {
+          "type": "radio",
+          "componentId": "requestToContactSpiritualAdvisor",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "spiritualCareSupportRequested": {
+          "type": "radio",
+          "componentId": "spiritualCareSupportRequested",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "spiritualCareSupport": {
+          "type": "checkbox",
+          "componentId": "spiritualCareSupport",
+          "supportOther": true,
+          "columns": 1,
+          "options": [
+            "music",
+            "prayer",
+            "sacraments",
+            "scripture",
+            "visitation"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasSpiritualAdvisor",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "requestToContactSpiritualAdvisor",
+          "spiritualAdvisorName",
+          "spiritualAdvisorContactType",
+          "spiritualAdvisorContactInfo"
+        ]
+      },
+        {
+          "id": "patientHasSpiritualAdvisor",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "requestToContactSpiritualAdvisor",
+            "spiritualAdvisorName",
+            "spiritualAdvisorContactType",
+            "spiritualAdvisorContactInfo"
+          ]
+        },
+        {
+          "id": "spiritualCareSupportRequested",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "spiritualCareSupport"
+          ]
+        },
+        {
+          "id": "spiritualCareSupportRequested",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "spiritualCareSupport"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientHasSpiritualAdvisor"
+            }]
+          },
+            {
+              "rows": [{
+                "id": "requestToContactSpiritualAdvisor"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "spiritualAdvisorName"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "spiritualAdvisorContactType"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "spiritualAdvisorContactInfo"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "spiritualCareSupportRequested"
+          },
+          {
+            "id": "spiritualCareSupport"
+          }
+        ]
+      }]
+    },
+    {
+      "id": "requestedNeeds",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasFuneralServiceNeeds": {
+          "type": "radio",
+          "componentId": "patientHasFuneralServiceNeeds",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "funeralServiceNeeds": {
+          "type": "textarea",
+          "componentId": "funeralServiceNeeds"
+        },
+        "patientHasCommunityServiceNeeds": {
+          "type": "radio",
+          "componentId": "patientHasCommunityServiceNeeds",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "communityServiceNeeds": {
+          "type": "textarea",
+          "componentId": "communityServiceNeeds"
+        },
+        "patientHasAnticipatoryGriefNeeds": {
+          "type": "radio",
+          "componentId": "patientHasAnticipatoryGriefNeeds",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "anticipatoryGriefNeeds": {
+          "type": "textarea",
+          "componentId": "anticipatoryGriefNeeds"
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasFuneralServiceNeeds",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "funeralServiceNeeds"
+        ]
+      },
+        {
+          "id": "patientHasCommunityServiceNeeds",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "communityServiceNeeds"
+          ]
+        },
+        {
+          "id": "patientHasAnticipatoryGriefNeeds",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "anticipatoryGriefNeeds"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "properties": {
+              "col-4": true
+            },
+            "rows": [{
+              "id": "patientHasFuneralServiceNeeds"
+            }]
+          },
+            {
+              "rows": [{
+                "id": "funeralServiceNeeds"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "id": "patientHasCommunityServiceNeeds"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "communityServiceNeeds"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "id": "patientHasAnticipatoryGriefNeeds"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "anticipatoryGriefNeeds"
+                }]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "requestedNeeds",
+      "componentId": "requestedNeeds",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "componentId": "requestedNeedsCategory",
+          "options": [
+            "funeralServiceNeeds",
+            "communityServiceNeeds",
+            "anticipatoryGriefNeeds"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "requestedNeedsDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "militaryHistory",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasServed": {
+          "type": "radio",
+          "componentId": "patientHasServed",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "patientMilitary": {
+          "label": "whichBranch",
+          "type": "checkbox",
+          "componentId": "patientMilitary",
+          "options": ["army", "armyReserve", "armyNationalGuard", "marineCorps", "marineCorpsReserve", "navy", "navyReserve", "airForce", "airForceReserve", "airNationalGuard", "coastGuard"],
+          "columns": 1,
+          "supportOther": true
+        },
+        "spouseHasServed": {
+          "type": "radio",
+          "componentId": "spouseHasServed",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "spouseMilitary": {
+          "label": "whichBranch",
+          "type": "checkbox",
+          "componentId": "spouseMilitary",
+          "options": ["army", "armyReserve", "armyNationalGuard", "marineCorps", "marineCorpsReserve", "navy", "navyReserve", "airForce", "airForceReserve", "airNationalGuard", "coastGuard"],
+          "columns": 1,
+          "supportOther": true
+        },
+        "familyHasServed": {
+          "type": "radio",
+          "componentId": "familyHasServed",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "familyMilitary": {
+          "label": "whichBranch",
+          "type": "checkbox",
+          "componentId": "spouseMilitary",
+          "options": ["army", "armyReserve", "armyNationalGuard", "marineCorps", "marineCorpsReserve", "navy", "navyReserve", "airForce", "airForceReserve", "airNationalGuard", "coastGuard"],
+          "columns": 1,
+          "supportOther": true
+        },
+        "familyRelationship": {
+          "type": "checkbox",
+          "componentId": "familyRelationship",
+          "options": ["granddaughter", "grandson", "daughter", "son", "niece", "nephew", "sister", "brother", "cousin", "mother", "father", "aunt", "uncle", "grandmother", "grandfather"],
+          "columns": 1,
+          "supportOther": true
+        },
+        "patientHadTraumaticAssignment": {
+          "type": "radio",
+          "componentId": "patientHadTraumaticAssignment",
+          "options": [
+            "yes",
+            "no",
+            "na"
+          ]
+        },
+        "patientHadTraumaticAssignmentExplanation": {
+          "label": "explain",
+          "type": "textarea",
+          "componentId": "patientHadTraumaticAssignmentExplanation"
+        },
+        "patientHasDischargePapers": {
+          "type": "radio",
+          "componentId": "patientHasDischargePapers",
+          "options": [
+            "yes",
+            "no",
+            "na"
+          ]
+        },
+        "warEraPeriod": {
+          "type": "checkbox",
+          "componentId": "warEraPeriod",
+          "supportOther": true,
+          "options": [
+            "wwi",
+            "wwii",
+            "korea",
+            "vietnam",
+            "desertStorm"
+          ]
+        },
+        "patientOverallMilitaryExperience": {
+          "type": "textarea",
+          "componentId": "patientOverallMilitaryExperience"
+        },
+        "preferNotToAnswer": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "preferNotToAnswerOverallMilitaryExperience",
+          "options": [
+            "preferNotToAnswer"
+          ]
+        },
+        "patientEnrolledInVa": {
+          "type": "radio",
+          "componentId": "patientEnrolledInVa",
+          "options": [
+            "yes",
+            "no",
+            "na",
+            "preferNotToAnswer"
+          ]
+        },
+        "patientReceivesVaBenefits": {
+          "type": "radio",
+          "componentId": "patientReceivesVaBenefits",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "medication": {
+          "type": "radio",
+          "componentId": "medication",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "vaClinicName": {
+          "type": "text",
+          "componentId": "vaClinicName"
+        },
+        "vaClinicAddress": {
+          "label": "address",
+          "type": "text",
+          "componentId": "vaClinicPhysician"
+        },
+        "vaClinicCity": {
+          "label": "city",
+          "type": "text",
+          "componentId": "vaClinicCity"
+        },
+        "vaClinicState": {
+          "label": "state",
+          "type": "select",
+          "componentId": "vaClinicCity",
+          "options": ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
+        },
+        "vaClinicPhysician": {
+          "type": "text",
+          "componentId": "vaClinicPhysician"
+        },
+        "vaClinicPhoneNumber": {
+          "label": "phone",
+          "type": "number",
+          "componentId": "vaClinicPhoneNumber"
+        },
+        "vaClinicEmail": {
+          "label": "email",
+          "type": "text",
+          "componentId": "vaClinicEmail"
+        },
+        "patientWantsBenefitBriefing": {
+          "type": "radio",
+          "componentId": "patientWantsBenefitBriefing",
+          "options": [
+            "yes",
+            "no"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasServed"
+        },
+          {
+            "id": "patientMilitary"
+          },
+          {
+            "id": "spouseHasServed"
+          },
+          {
+            "id": "spouseMilitary"
+          },
+          {
+            "id": "familyHasServed"
+          },
+          {
+            "id": "familyMilitary"
+          },
+          {
+            "id": "familyRelationship"
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "col-4": true
+              },
+              "rows": [{
+                "id": "patientHadTraumaticAssignment"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "patientHadTraumaticAssignmentExplanation"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "patientHasDischargePapers"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "warEraPeriod"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "patientOverallMilitaryExperience"
+          },
+          {
+            "id": "preferNotToAnswer"
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "patientEnrolledInVa"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "patientReceivesVaBenefits"
+                }]
+              },
+              {
+                "rows": [{
+                  "id": "medication"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "vaClinicName"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "vaClinicAddress"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "vaClinicCity"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "vaClinicState"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "vaClinicPhysician"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "vaClinicPhoneNumber"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "vaClinicEmail"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "patientWantsBenefitBriefing"
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "patientHasServed",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "patientMilitary"
+        ]
+      },
+        {
+          "id": "patientHasServed",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "patientMilitary"
+          ]
+        },
+        {
+          "id": "spouseHasServed",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "spouseMilitary"
+          ]
+        },
+        {
+          "id": "spouseHasServed",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "spouseMilitary"
+          ]
+        },
+        {
+          "id": "familyHasServed",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "familyMilitary",
+            "familyRelationship"
+          ]
+        },
+        {
+          "id": "familyHasServed",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "familyMilitary",
+            "familyRelationship"
+          ]
+        },
+        {
+          "id": "patientHadTraumaticAssignment",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "patientHadTraumaticAssignmentExplanation"
+          ]
+        },
+        {
+          "id": "patientHadTraumaticAssignment",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "patientHadTraumaticAssignmentExplanation"
+          ]
+        },
+        {
+          "id": "preferNotToAnswer",
+          "values": ["preferNotToAnswer"],
+          "type": "disable",
+          "fields": [
+            "patientOverallMilitaryExperience"
+          ]
+        },
+        {
+          "id": "preferNotToAnswer",
+          "values": ["preferNotToAnswer"],
+          "type": "clear",
+          "fields": [
+            "patientOverallMilitaryExperience"
+          ]
+        },
+        {
+          "id": "patientEnrolledInVa",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "patientReceivesVaBenefits"
+          ]
+        },
+        {
+          "id": "patientEnrolledInVa",
+          "values": ["no", "na", "preferNotToAnswer"],
+          "type": "clear",
+          "fields": [
+            "patientReceivesVaBenefits"
+          ]
+        },
+        {
+          "id": "patientReceivesVaBenefits",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "medication"
+          ]
+        },
+        {
+          "id": "patientReceivesVaBenefits",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "medication"
+          ]
+        },
+        {
+          "id": "medication",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "vaClinicName",
+            "vaClinicAddress",
+            "vaClinicCity",
+            "vaClinicState",
+            "vaClinicPhysician",
+            "vaClinicPhoneNumber",
+            "vaClinicEmail"
+          ]
+        },
+        {
+          "id": "medication",
+          "values": ["no"],
+          "type": "clear",
+          "fields": [
+            "vaClinicName",
+            "vaClinicAddress",
+            "vaClinicCity",
+            "vaClinicState",
+            "vaClinicPhysician",
+            "vaClinicPhoneNumber",
+            "vaClinicEmail"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "componentId": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "componentId": "notesCategory",
+          "options": [
+            "availableSupport",
+            "financialSecurity",
+            "homeLifeProfile",
+            "bereavementRisk"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "notesDescription",
+          "rules": {
+            "rows": 5,
+            "maxLength": 3000,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

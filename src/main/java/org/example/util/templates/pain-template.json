@@ -1,0 +1,152 @@
+{
+  "id": "pain",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "painAssessment",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "assessmentWith": {
+          "type": "checkbox",
+          "options": [
+            "patient",
+            "caregiver",
+            "family"
+          ]
+        },
+        "painDiscomfort": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no",
+            "patientUnableToRate"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "assessmentWith"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "painDiscomfort"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "painSite",
+      "type": "woundSiteCard",
+      "access": "write",
+      "declinable": true,
+      "section": "pain",
+      "backgrounds": {
+        "body": "/assets/svg/pain/male.svg",
+        "head": "/assets/svg/pain/head.svg",
+        "hands": "/assets/svg/pain/hands.svg",
+        "feet": "/assets/svg/pain/feet.svg"
+      },
+      "tools": [
+        "flacc",
+        "wongBaker",
+        "numeric",
+        "abbey",
+        "painAD"
+      ],
+      "questions": [
+        "painQuestion1",
+        "painQuestion2",
+        "painQuestion3",
+        "painQuestion4"
+      ]
+    },
+    {
+      "id": "opioidAdministration",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "type": {
+          "type": "select",
+          "options": [
+            "scheduledOpioid",
+            "prnOpioid",
+            null
+          ]
+        },
+        "status": {
+          "label": false,
+          "type": "radio",
+          "options": [
+            "initiated",
+            "continued"
+          ]
+        },
+        "date": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "endDate": "decadeFromToday"
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "type"
+        },
+          {
+            "id": "status"
+          },
+          {
+            "id": "date"
+          }
+        ]
+      }],
+      "dependencies": [{
+        "id": "type",
+        "values": ["scheduledOpioid", "prnOpioid"],
+        "type": "enable",
+        "fields": [
+          "status",
+          "date"
+        ]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "painAssessment",
+            "painSite",
+            "opioidAdministration"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

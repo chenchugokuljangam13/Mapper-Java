@@ -1,0 +1,395 @@
+{
+  "id": "musculoskeletal",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "amputation",
+      "type": "formCard",
+      "inputs": {
+        "patientIsAmputee": {
+          "type": "toggle",
+          "componentId": "patientIsAmputee"
+        },
+        "leftLeg": {
+          "type": "select",
+          "componentId": "leftLeg",
+          "supportOther": true,
+          "options": [
+            "partialFoot",
+            "ankleDisarticulation",
+            "belowKnee",
+            "throughTheKnee",
+            "aboveKnee",
+            "hipDisarticulation",
+            "hemipelvectomy"
+          ]
+        },
+        "rightLeg": {
+          "type": "select",
+          "componentId": "rightLeg",
+          "supportOther": true,
+          "options": [
+            "partialFoot",
+            "ankleDisarticulation",
+            "belowKnee",
+            "throughTheKnee",
+            "aboveKnee",
+            "hipDisarticulation",
+            "hemipelvectomy"
+          ]
+        },
+        "leftArm": {
+          "type": "select",
+          "componentId": "leftArm",
+          "supportOther": true,
+          "options": [
+            "partialHand",
+            "metacarpal",
+            "belowElbow",
+            "elbowDisarticulation",
+            "aboveElbow",
+            "shoulderDisarticulation"
+          ]
+        },
+        "rightArm": {
+          "type": "select",
+          "componentId": "rightArm",
+          "supportOther": true,
+          "options": [
+            "partialHand",
+            "metacarpal",
+            "belowElbow",
+            "elbowDisarticulation",
+            "aboveElbow",
+            "shoulderDisarticulation"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientIsAmputee",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "leftLeg",
+          "rightLeg",
+          "leftArm",
+          "rightArm"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientIsAmputee"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "leftLeg"
+              },
+                {
+                  "id": "leftArm"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "rightLeg"
+                },
+                  {
+                    "id": "rightArm"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "prosthesis",
+      "type": "formCard",
+      "inputs": {
+        "patientHasProsthesis": {
+          "type": "toggle",
+          "componentId": "patientHasProsthesis"
+        },
+        "leftLeg": {
+          "type": "select",
+          "componentId": "leftLeg",
+          "supportOther": true,
+          "options": [
+            "belowTheKnee",
+            "aboveTheKnee"
+          ]
+        },
+        "rightLeg": {
+          "type": "select",
+          "componentId": "rightLeg",
+          "supportOther": true,
+          "options": [
+            "belowTheKnee",
+            "aboveTheKnee"
+          ]
+        },
+        "leftArm": {
+          "type": "select",
+          "componentId": "leftArm",
+          "supportOther": true,
+          "options": [
+            "belowTheElbow",
+            "aboveTheElbow"
+          ]
+        },
+        "rightArm": {
+          "type": "select",
+          "componentId": "rightArm",
+          "supportOther": true,
+          "options": [
+            "belowTheElbow",
+            "aboveTheElbow"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasProsthesis",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "leftLeg",
+          "rightLeg",
+          "leftArm",
+          "rightArm"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientHasProsthesis"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "leftLeg"
+              },
+                {
+                  "id": "leftArm"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "rightLeg"
+                },
+                  {
+                    "id": "rightArm"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "jointDeformity",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["location", "description"]
+      },
+      "inputs": {
+        "location": {
+          "type": "text",
+          "componentId": "location",
+          "rules": {
+            "required": true,
+            "maxLength": 50
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "description",
+          "rules": {
+            "maxLength": 1500
+          }
+        }
+      }
+    },
+    {
+      "id": "contractures",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["location", "description"]
+      },
+      "inputs": {
+        "location": {
+          "type": "text",
+          "componentId": "location",
+          "rules": {
+            "required": true,
+            "maxLength": 50
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "description",
+          "rules": {
+            "maxLength": 1500
+          }
+        }
+      }
+    },
+    {
+      "id": "muscleSpasms",
+      "type": "listCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["location", "severity", "relievesMuscleSpasms"]
+      },
+      "inputs": {
+        "location": {
+          "type": "text",
+          "componentId": "location",
+          "rules": {
+            "required": true,
+            "maxLength": 50
+          }
+        },
+        "severity": {
+          "type": "radio",
+          "componentId": "severity",
+          "options": [
+            "1mild",
+            "2moderate",
+            "3severe"
+          ]
+        },
+        "relievesMuscleSpasms": {
+          "type": "textarea",
+          "componentId": "relievesMuscleSpasms",
+          "rules": {
+            "maxLength": 1500
+          }
+        }
+      }
+    },
+    {
+      "id": "fractures",
+      "type": "historyListCard",
+      "access": "write",
+      "declinable": true,
+      "data": {
+        "listHeaders": ["siteOfFracture", "date"]
+      },
+      "inputs": {
+        "siteOfFracture": {
+          "type": "text",
+          "componentId": "siteOfFracture",
+          "rules": {
+            "required": true,
+            "maxLength": 50
+          }
+        },
+        "date": {
+          "type": "date",
+          "componentId": "date",
+          "rules": {
+            "startDate": "longAgo",
+            "endDate": "today",
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkbox",
+          "componentId": "otherIssues",
+          "columns": 1,
+          "options": [
+            "riskForPressureUlcers",
+            "impairedBalance",
+            "fibromyalgia",
+            "diminishedStrength",
+            "limitedROM",
+            "gout",
+            "footDrop",
+            "lowerBackPain",
+            "rheumatoidArthritis",
+            "impairedMobility",
+            "tendonitis",
+            "osteoporosis"
+          ],
+          "supportOther": true,
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "componentId": "category",
+          "options": [
+            "general",
+            "amputation",
+            "prosthesis",
+            "jointDeformity",
+            "contractures",
+            "muscleSpasms",
+            "fractures",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "componentId": "description",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

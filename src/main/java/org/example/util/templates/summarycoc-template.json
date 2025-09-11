@@ -1,0 +1,263 @@
+{
+  "id": "summary",
+  "cards": [{
+    "id": "coordinationOfCare",
+    "type": "listCard",
+    "access": "write",
+    "data": {
+      "listHeaders": ["date", "contact", "relation", "via", "description"]
+    },
+    "inputs": {
+      "relation": {
+        "type": "select",
+        "options": [
+          "familyPcg",
+          "physician",
+          "facility"
+        ],
+        "rules": {
+          "required": true
+        },
+        "supportOther": true
+      },
+      "contact": {
+        "type": "select",
+        "options": [],
+        "optionGroups": {
+          "familyPcg": [
+            "Isaac Calhoun",
+            "Jessica Windham"
+          ],
+          "physician": [
+            "Dr. Sarah Walker",
+            "Dr. Michael Smith"
+          ],
+          "facility": [
+            "John Doe",
+            "Jane Doe"
+          ]
+        },
+        "rules": {
+          "required": true
+        }
+      },
+      "via": {
+        "type": "select",
+        "options": [
+          "phone",
+          "email",
+          "inPerson",
+          "fax"
+        ],
+        "rules": {
+          "required": true
+        },
+        "supportOther": true
+      },
+      "description": {
+        "type": "textarea"
+      }
+    },
+    "dependencies": [{
+      "id": "relation",
+      "values": [
+        "familyPcg",
+        "physician",
+        "facility"
+      ],
+      "type": "setOptions",
+      "fields": [
+        "contact"
+      ]
+    },
+      {
+        "id": "relation",
+        "values": [
+          "familyPcg",
+          "physician",
+          "facility"
+        ],
+        "type": "forceOther",
+        "fields": [
+          "contact"
+        ]
+      }
+    ]
+  },
+    {
+      "id": "narratives",
+      "type": "narrativeListCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "origin", "category", "description"]
+      },
+      "headerField": "origin",
+      "subheaderField": "category",
+      "textField": "description",
+      "footerField": "author",
+      "subfooterField": "date",
+      "inputs": {
+        "origin": {
+          "type": "select",
+          "options": [
+            "levelOfCare",
+            "symptomsGipReasons",
+            "vitals",
+            "neurological",
+            "pain",
+            "respiratory",
+            "cardiovascular",
+            "gastrointestinal",
+            "genitourinary",
+            "nutritionalMetabolic",
+            "skin",
+            "musculoskeletal",
+            "adlsFunctionalNeeds",
+            "safetyAndTeachings",
+            "summary"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "category": {
+          "type": "select",
+          "options": [],
+          "optionGroups": {
+            "levelOfCare": [],
+            "symptomsGipReasons": [],
+            "vitals": [
+              "general",
+              "bloodPressure",
+              "temperature",
+              "pulse",
+              "respiratory",
+              "height",
+              "weight",
+              "muac",
+              "tricepsSkinfold"
+            ],
+            "neurological": [],
+            "pain": [],
+            "respiratory": [
+              "general",
+              "respiratory",
+              "breathSounds",
+              "shortnessOfBreath",
+              "cough",
+              "o2saturation",
+              "mechanicalSupport",
+              "apap",
+              "cpap",
+              "biLevelBiPapVpap",
+              "ventilatorySupport",
+              "breathingTreatmentNebularizer",
+              "apnea",
+              "otherIssues"
+            ],
+            "cardiovascular": [
+              "general",
+              "heartRate",
+              "bloodPressure",
+              "capillaryRefill",
+              "edema",
+              "ejectionFraction",
+              "historyOfMI",
+              "heartFailureHistory",
+              "pacemaker",
+              "nausea",
+              "defibrillator",
+              "riskForCardiopulmonaryArrest",
+              "otherIssues"
+            ],
+            "gastrointestinal": [
+              "general",
+              "bowelRegimen",
+              "treatments",
+              "bowelSounds",
+              "mostRecentBowelMovement",
+              "abdomen",
+              "colostomy",
+              "ileostomy",
+              "vomiting",
+              "nausea"
+            ],
+            "genitourinary": [
+              "general",
+              "urine",
+              "femaleSpecific",
+              "urinaryCatheter",
+              "urostomy",
+              "urinaryIncontinence",
+              "urinaryTractInfections",
+              "genitourinaryIssues"
+            ],
+            "nutritionalMetabolic": [],
+            "skin": [],
+            "musculoskeletal": [],
+            "adlsFunctionalNeeds": [],
+            "safetyAndTeachings": []
+          },
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "origin",
+        "values": [
+          "levelOfCare",
+          "symptomsGipReasons",
+          "vitals",
+          "neurological",
+          "pain",
+          "respiratory",
+          "cardiovascular",
+          "gastrointestinal",
+          "genitourinary",
+          "nutritionalMetabolic",
+          "skin",
+          "musculoskeletal",
+          "adlsFunctionalNeeds",
+          "safetyAndTeachings"
+        ],
+        "type": "setOptions",
+        "fields": [
+          "category"
+        ]
+      },
+        {
+          "id": "origin",
+          "values": [
+            "levelOfCare",
+            "symptomsGipReasons",
+            "vitals",
+            "neurological",
+            "pain",
+            "respiratory",
+            "cardiovascular",
+            "gastrointestinal",
+            "genitourinary",
+            "nutritionalMetabolic",
+            "skin",
+            "musculoskeletal",
+            "adlsFunctionalNeeds",
+            "safetyAndTeachings"
+          ],
+          "type": "enable",
+          "fields": [
+            "category"
+          ]
+        }
+      ]
+    }
+  ]
+}

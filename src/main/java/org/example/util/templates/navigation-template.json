@@ -1,0 +1,80 @@
+{
+  "id": "navigation",
+  "items": [
+    {
+      "id": "test",
+      "title": "test",
+      "icon": "mantis.svg"
+    },
+    {
+      "id": "levelOfCare",
+      "title": "levelOfCare",
+      "icon": "levelOfCare.svg"
+    },
+    {
+      "id": "vitals",
+      "title": "vitals",
+      "icon": "vitals.svg"
+    },
+    {
+      "id": "neurological",
+      "title": "neurological",
+      "icon": "neurological.svg"
+    },
+    {
+      "id": "pain",
+      "title": "pain",
+      "icon": "pain.svg"
+    },
+    {
+      "id": "respiratory",
+      "title": "respiratory",
+      "icon": "respiratory.svg"
+    },
+    {
+      "id": "cardiovascular",
+      "title": "cardiovascular",
+      "icon": "cardiovascular.svg"
+    },
+    {
+      "id": "gastrointestinal",
+      "title": "gastrointestinal",
+      "icon": "gastrointestinal.svg"
+    },
+    {
+      "id": "genitourinary",
+      "title": "genitourinary",
+      "icon": "genitourinary.svg"
+    },
+    {
+      "id": "nutritionalMetabolic",
+      "title": "nutritionalMetabolic",
+      "icon": "nutrionalMetabolic.svg"
+    },
+    {
+      "id": "skin",
+      "title": "skin",
+      "icon": "skin.svg"
+    },
+    {
+      "id": "musculoskeletal",
+      "title": "musculoskeletal",
+      "icon": "musculoskeletal.svg"
+    },
+    {
+      "id": "adlsFunctionalNeeds",
+      "title": "adlsFunctionalNeeds",
+      "icon": "adlsFunctionalNeeds.svg"
+    },
+    {
+      "id": "supervisoryVisit",
+      "title": "supervisoryVisit",
+      "icon": "supervisoryVisit.svg"
+    },
+    {
+      "id": "summary",
+      "title": "summary",
+      "icon": "summary.svg"
+    }
+  ]
+}

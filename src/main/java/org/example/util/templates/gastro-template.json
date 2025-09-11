@@ -1,0 +1,686 @@
+{
+  "id": "gastrotestinal",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "bowelRegimen",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasBowelRegimen": {
+          "type": "toggle"
+        },
+        "orderInitiated": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "required": true
+          }
+        },
+        "orderContinued": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "required": true
+          }
+        },
+        "orderDiscontinued": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "required": true
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "type": "input",
+          "id": "patientHasBowelRegimen"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "orderInitiated"
+          },
+            {
+              "id": "orderContinued"
+            },
+            {
+              "id": "orderDiscontinued"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasBowelRegimen",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "orderInitiated",
+          "orderContinued",
+          "orderDiscontinued"
+        ]
+      }]
+    },
+    {
+      "id": "treatments",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "treatments": {
+          "label": "selectAllThatApply",
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "enema",
+            "increasedFiber",
+            "laxatives",
+            "prescriptiveMedication",
+            "suppositories"
+          ],
+          "rules": {
+            "required": true
+          },
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "treatments"
+        }]
+      }]
+    },
+    {
+      "id": "bowelSounds",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "leftUpperQuadrant": {
+          "type": "select",
+          "options": [
+            "normal",
+            "absent",
+            "bruits",
+            "hyperactive",
+            "hypoactive"
+          ]
+        },
+        "rightUpperQuadrant": {
+          "type": "select",
+          "options": [
+            "normal",
+            "absent",
+            "bruits",
+            "hyperactive",
+            "hypoactive"
+          ]
+        },
+        "leftLowerQuadrant": {
+          "type": "select",
+          "options": [
+            "normal",
+            "absent",
+            "bruits",
+            "hyperactive",
+            "hypoactive"
+          ]
+        },
+        "rightLowerQuadrant": {
+          "type": "select",
+          "options": [
+            "normal",
+            "absent",
+            "bruits",
+            "hyperactive",
+            "hypoactive"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "leftUpperQuadrant"
+        },
+          {
+            "id": "leftLowerQuadrant"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "rightUpperQuadrant"
+          },
+            {
+              "id": "rightLowerQuadrant"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mostRecentBowelMovement",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "bowelMovementType": {
+          "type": "radio",
+          "options": [
+            "regular",
+            "irregular"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "irregularType": {
+          "type": "radio",
+          "options": [
+            "diarrhea",
+            "constipation"
+          ]
+        },
+        "dateOfLastBm": {
+          "type": "date",
+          "rules": {
+            "endDate": "today",
+            "dateOptional": true
+          }
+        },
+        "frequency": {
+          "type": "frequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "minute(s)",
+            "hour(s)",
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "consistency": {
+          "type": "select",
+          "options": [
+            "separateHardLumps",
+            "shapedButLumpy",
+            "shapedVisibleCracks",
+            "shapedSmoothAndSoft",
+            "soft",
+            "mushy",
+            "watery",
+            "unknown"
+          ]
+        },
+        "color": {
+          "type": "select",
+          "options": [
+            "brown",
+            "green",
+            "whiteClay",
+            "yellow",
+            "black",
+            "brightRed",
+            "unknown"
+          ]
+        },
+        "amount": {
+          "type": "select",
+          "options": [
+            "largeAmount",
+            "moderateAmount",
+            "smallAmount",
+            "unknown",
+            "other"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "bowelMovementType",
+          "weight": 1
+        },
+          {
+            "id": "irregularType",
+            "weight": 1
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "consistency",
+                "weight": 1
+              },
+                {
+                  "id": "amount",
+                  "weight": 1
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "color",
+                  "weight": 1
+                }]
+              }
+            ]
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "frequency",
+            "weight": 1
+          },
+            {
+              "id": "dateOfLastBm",
+              "weight": 1
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "bowelMovementType",
+        "values": [
+          "irregular"
+        ],
+        "type": "enable",
+        "fields": [
+          "irregularType"
+        ]
+      }]
+    },
+    {
+      "id": "abdomen",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "abdomen": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "largeAndExtendsOutward",
+            "hardBoardLike",
+            "soft",
+            "flabby",
+            "flat",
+            "hurtsWhenTouched",
+            "rounded",
+            "presenceOfRash"
+          ],
+          "otherRules": {
+            "maxLength": 50
+          }
+        },
+        "abdominalDistention": {
+          "type": "toggle"
+        },
+        "girthSize": {
+          "type": "conversion",
+          "rules": {
+            "min": 0,
+            "max": 200,
+            "conversionFactorAB": 2.54,
+            "aUnit": "inches",
+            "bUnit": "cm"
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "abdomen"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "abdominalDistention"
+          },
+            {
+              "id": "girthSize"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "abdominalDistention",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "girthSize"
+        ]
+      }]
+    },
+    {
+      "id": "colostomy",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasColostomy": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "selectOther",
+          "options": [
+            "temporary",
+            "permanent",
+            "sigmoid",
+            "descending",
+            "transverse",
+            "loop",
+            "ascending"
+          ]
+        },
+        "stomaCharacteristics": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasColostomy"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "type"
+          },
+            {
+              "id": "stomaCharacteristics"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasColostomy",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "type",
+          "stomaCharacteristics"
+        ]
+      }]
+    },
+    {
+      "id": "ileostomy",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasIleostomy": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "radio",
+          "options": [
+            "ileoanalReservoir",
+            "continentIleostomy"
+          ]
+        },
+        "stomaCharacteristics": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasIleostomy"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "type"
+          },
+            {
+              "id": "stomaCharacteristics"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasIleostomy",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "type",
+          "stomaCharacteristics"
+        ]
+      }]
+    },
+    {
+      "id": "vomiting",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasExperiencedVomiting": {
+          "type": "toggle"
+        },
+        "frequency": {
+          "type": "frequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "minute(s)",
+            "hour(s)",
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "mostRecentVomit": {
+          "type": "datetime",
+          "rules": {
+            "dateOptional": true,
+            "timeOptional": true,
+            "endDate": "today"
+          }
+        },
+        "severity": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "snaps": true
+          }
+        },
+        "amount": {
+          "type": "text"
+        },
+        "descriptionOfContents": {
+          "type": "textarea",
+          "rules": {
+            "maxLength": 250
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasExperiencedVomiting"
+        },
+          {
+            "id": "severity"
+          },
+          {
+            "id": "descriptionOfContents"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "frequency"
+          },
+            {
+              "id": "mostRecentVomit"
+            },
+            {
+              "id": "amount"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasExperiencedVomiting",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "frequency",
+          "mostRecentVomit",
+          "severity",
+          "amount",
+          "descriptionOfContents"
+        ]
+      }]
+    },
+    {
+      "id": "nausea",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasNausea": {
+          "type": "toggle"
+        },
+        "frequency": {
+          "type": "radio",
+          "options": [
+            "constant",
+            "intermittent"
+          ]
+        },
+        "score": {
+          "type": "range",
+          "rules": {
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "snaps": true
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasNausea"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "frequency"
+          },
+            {
+              "id": "score"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasNausea",
+        "values": [
+          true
+        ],
+        "type": "enable",
+        "fields": [
+          "frequency",
+          "score"
+        ]
+      }]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "cramping",
+            "fecalIncontinence",
+            "flatulence",
+            "impaction",
+            "gerd",
+            "ascites"
+          ],
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": [
+          "date",
+          "category",
+          "description"
+        ]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "bowelRegimen",
+            "treatments",
+            "bowelSounds",
+            "mostRecentBowelMovement",
+            "abdomen",
+            "colostomy",
+            "ileostomy",
+            "vomiting",
+            "nausea"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

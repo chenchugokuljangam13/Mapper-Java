@@ -1,0 +1,18 @@
+{
+    "_id": "Supervisory",
+    "_tenant_id": [],
+    "title": "Supervisory Assessment",
+    "_start_date": "",
+    "_end_date": "",
+    "_version": 1,
+    "assessment_sections": [
+      {
+        "_id": "supervisory",
+        "_version": 1,
+        "title": "Supervisory Visit",
+        "icon": "supervisory",
+        "$ref": "#/supervisory"
+      }
+    ]
+}
+

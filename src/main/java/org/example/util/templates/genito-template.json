@@ -1,0 +1,589 @@
+{
+  "id": "genitourinary",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "urine",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "clarity": {
+          "type": "selectOther",
+          "options": [
+            "clear",
+            "cloudy",
+            "bloody"
+          ],
+          "otherRules": {
+            "maxLength": 75
+          }
+        },
+        "color": {
+          "type": "selectOther",
+          "options": [
+            "transparent",
+            "paleStraw",
+            "transparentYellow",
+            "amber",
+            "lightOrange",
+            "orange",
+            "darkOrangeBrown",
+            "pink",
+            "red",
+            "green",
+            "blue",
+            "darkBrownBlack",
+            "whiteMilky"
+          ],
+          "otherRules": {
+            "maxLength": 75
+          }
+        },
+        "odor": {
+          "type": "text",
+          "rules": {
+            "maxLength": 75
+          }
+        },
+        "frequency": {
+          "type": "frequency",
+          "rules": {
+            "min": 0,
+            "max": 99
+          },
+          "options": [
+            "hour(s)",
+            "day(s)",
+            "week(s)"
+          ]
+        },
+        "didNotMonitor": {
+          "label": false,
+          "type": "checkbox",
+          "options": [
+            "didNotMonitor"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "clarity"
+        },
+          {
+            "id": "odor"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "color"
+          }]
+        },
+        {
+          "rows": [{
+            "id": "frequency"
+          },
+            {
+              "id": "didNotMonitor"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "didNotMonitor",
+        "values": ["didNotMonitor"],
+        "type": "disable",
+        "fields": [
+          "frequency"
+        ]
+      }]
+    },
+    {
+      "id": "femaleSpecific",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "dateOfLastMenstrualCycle": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "ageOfMenopause": {
+          "type": "number",
+          "rules": {
+            "optional": true,
+            "min": 0,
+            "max": 100
+          }
+        },
+        "ageOfMenopauseUnknown": {
+          "label": false,
+          "type": "checkbox",
+          "options": [
+            "unknown"
+          ]
+        },
+        "doesNotApply": {
+          "label": false,
+          "type": "checkbox",
+          "options": [
+            "doesNotApply"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "dateOfLastMenstrualCycle"
+        }]
+      },
+        {
+          "rows": [{
+            "properties": {
+              "nowrap": true
+            },
+            "type": "row",
+            "cols": [{
+              "properties": {
+                "class": "noPadding",
+                "weight": 6
+              },
+              "rows": [{
+                "id": "ageOfMenopause"
+              }]
+            },
+              {
+                "properties": {
+                  "class": "noPadding",
+                  "style": "margin-top: 46px;",
+                  "weight": 6
+                },
+                "rows": [{
+                  "id": "ageOfMenopauseUnknown"
+                }]
+              }
+            ]
+          },
+            {
+              "type": "row",
+              "cols": [{
+                "properties": {
+                  "class": "noPadding"
+                },
+                "rows": [{
+                  "id": "doesNotApply"
+                }]
+              },
+                {
+                  "rows": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "ageOfMenopauseUnknown",
+        "values": ["unknown"],
+        "type": "clear",
+        "fields": [
+          "ageOfMenopause"
+        ]
+      },
+        {
+          "id": "ageOfMenopauseUnknown",
+          "values": ["unknown"],
+          "type": "disable",
+          "fields": [
+            "ageOfMenopause"
+          ]
+        },
+        {
+          "id": "doesNotApply",
+          "values": ["doesNotApply"],
+          "type": "clear",
+          "fields": [
+            "ageOfMenopause",
+            "ageOfMenopauseUnknown"
+          ]
+        },
+        {
+          "id": "doesNotApply",
+          "values": ["doesNotApply"],
+          "type": "disable",
+          "fields": [
+            "ageOfMenopause",
+            "ageOfMenopauseUnknown"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "urinaryCatheter",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasUrinaryCatheter": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "selectOther",
+          "options": [
+            "indwelling",
+            "suprapubic",
+            "condom",
+            "straight"
+          ],
+          "otherRules": {
+            "maxLength": 75
+          }
+        },
+        "sizeFr": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 99
+          }
+        },
+        "sizeCc": {
+          "type": "number",
+          "rules": {
+            "min": 0,
+            "max": 99
+          }
+        },
+        "catheterPreviouslyChangedBy": {
+          "type": "select",
+          "options": [
+            "hospice",
+            "facility",
+            "pcg",
+            "self"
+          ]
+        },
+        "catheterChanger": {
+          "label": false,
+          "type": "text",
+          "placeholder": "pleaseSpecify",
+          "rules": {
+            "maxLength": 25
+          }
+        },
+        "dateOfLastCatheterChange": {
+          "type": "date",
+          "rules": {
+            "endDate": "today",
+            "dateOptional": true
+          }
+        },
+        "dateOfNextCatheterChange": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "endDate": "decadeFromToday"
+          }
+        },
+        "dateCatheterDiscontinued": {
+          "type": "date",
+          "rules": {
+            "startDate": "today",
+            "endDate": "decadeFromToday",
+            "dateOptional": true
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasUrinaryCatheter"
+        },
+          {
+            "properties": {
+              "class": "noPadding"
+            },
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "sizeFr"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "sizeCc"
+                }]
+              }
+            ]
+          },
+          {
+            "id": "type"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "catheterPreviouslyChangedBy"
+          },
+            {
+              "id": "catheterChanger"
+            },
+            {
+              "id": "dateOfLastCatheterChange"
+            },
+            {
+              "id": "dateOfNextCatheterChange"
+            },
+            {
+              "id": "dateCatheterDiscontinued"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasUrinaryCatheter",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type",
+          "sizeFr",
+          "sizeCc",
+          "catheterPreviouslyChangedBy",
+          "dateOfLastCatheterChange",
+          "dateOfNextCatheterChange",
+          "dateCatheterDiscontinued"
+        ]
+      },
+        {
+          "id": "catheterPreviouslyChangedBy",
+          "values": ["hospice", "facility", "pcg"],
+          "type": "enable",
+          "fields": [
+            "catheterChanger"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "urostomy",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasUrostomy": {
+          "type": "toggle"
+        },
+        "datePlaced": {
+          "type": "date",
+          "rules": {
+            "endDate": "today",
+            "dateOptional": true
+          }
+        },
+        "type": {
+          "type": "selectOther",
+          "options": [
+            "continent",
+            "indianaPouch",
+            "neobladder"
+          ]
+        },
+        "stomaCharacteristics": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasUrostomy"
+        },
+          {
+            "id": "datePlaced"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "type"
+          },
+            {
+              "id": "stomaCharacteristics"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasUrostomy",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "datePlaced",
+          "type",
+          "stomaCharacteristics"
+        ]
+      }]
+    },
+    {
+      "id": "urinaryIncontinence",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasUrinaryIncontinence": {
+          "type": "toggle"
+        },
+        "frequency": {
+          "type": "selectOther",
+          "options": [
+            "constant",
+            "infrequent",
+            "intermittent"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasUrinaryIncontinence"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "frequency"
+          }]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasUrinaryIncontinence",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "frequency"
+        ]
+      }]
+    },
+    {
+      "id": "urinaryTractInfections",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasUrinaryTractInfection": {
+          "type": "toggle"
+        },
+        "current": {
+          "type": "date",
+          "rules": {
+            "endDate": "today",
+            "dateOptional": true
+          }
+        },
+        "history": {
+          "type": "date",
+          "readonly": true,
+          "rules": {
+            "dateOptional": true
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientHasUrinaryTractInfection"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "current"
+          },
+            {
+              "id": "history"
+            }
+          ]
+        }
+      ],
+      "dependencies": [{
+        "id": "patientHasUrinaryTractInfection",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "current",
+          "history"
+        ]
+      }]
+    },
+    {
+      "id": "genitourinaryIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "genitourinaryIssues": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "abnormalUterineBleeding",
+            "bladderDistention",
+            "difficultyInStartingUrinaryStream",
+            "difficultyInStoppingUrinaryStream",
+            "dischargeFromPenis",
+            "dysuria",
+            "enlargedProstate",
+            "hematuria",
+            "impotence",
+            "lesionsOnExternalGenitalia",
+            "nocturia",
+            "presenceOfSedimentInUrine",
+            "renalStones",
+            "renalInsufficiency",
+            "testicularPain",
+            "testicularSwelling",
+            "torsionOfTheTestes",
+            "uterineBleeding",
+            "urinaryRetention",
+            "vaginalDischarge"
+          ]
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "urine",
+            "femaleSpecific",
+            "urinaryCatheter",
+            "urostomy",
+            "urinaryIncontinence",
+            "urinaryTractInfections",
+            "genitourinaryIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

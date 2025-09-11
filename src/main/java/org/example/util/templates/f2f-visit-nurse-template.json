@@ -1,0 +1,194 @@
+{
+	"id": "faceToFace",
+	"cards": [{
+			"id": "labResults",
+			"type": "narrativeListCard",
+			"componentId": "labResults",
+			"access": "write",
+			"editable": true,
+			"data": {
+				"listHeaders": ["date", "subject", "description"]
+			},
+			"headerField": "subject",
+			"textField": "description",
+			"footerField": "date",
+			"inputs": {
+				"subject": {
+					"type": "text",
+					"componentId": "labResultsSubject",
+					"rules": {
+						"maxLength": 100,
+						"required": true
+					}
+				},
+				"description": {
+					"type": "textarea",
+					"componentId": "labResultsDescription",
+					"rules": {
+						"rows": 5,
+						"maxLength": 3000,
+						"required": false
+					}
+				}
+			}
+		},
+		{
+			"id": "clinicalNarratives",
+			"type": "narrativeListCard",
+			"componentId": "clinicalNarratives",
+			"access": "write",
+			"editable": true,
+			"data": {
+				"listHeaders": ["date", "subject", "description"]
+			},
+			"headerField": "subject",
+			"textField": "description",
+			"footerField": "date",
+			"inputs": {
+				"subject": {
+					"type": "text",
+					"componentId": "clinicalNarrativesSubject",
+					"rules": {
+						"maxLength": 100,
+						"required": false
+					}
+				},
+				"description": {
+					"type": "textarea",
+					"componentId": "clinicalNarrativesDescription",
+					"rules": {
+						"rows": 5,
+						"maxLength": 10000,
+						"required": true
+					}
+				}
+			}
+		},
+		{
+			"id": "attestation",
+			"type": "formCard",
+			"componentId": "attestation",
+			"access": "write",
+			"inputs": {
+				"doesThePatientMeetRecertificationRequirement": {
+					"type": "radio",
+					"componentId": "attestationPatMeetCertReq",
+					"options": [
+						"yes",
+						"no"
+					]
+				},
+				"certificationStartDate": {
+					"type": "date",
+					"componentId": "attestationCertStartDate"
+				},
+				"certificationEndDate": {
+					"type": "date",
+					"componentId": "attestationCertEndDate"
+				},
+				"hospiceEligibilityAttestation": {
+					"type": "dateParagraph",
+					"componentId": "attestationEligibilityAttestion",
+					"enddate": "today",
+					"pretext": "I confirm that I had a face to face encounter with “Patient's name” on",
+					"posttext": "and that the clinical findings of that encounter have been provided to the certifying physician for use in determining continued eligibility for hospice care."
+				},
+				"agreeToSignDocument": {
+					"type": "checkbox",
+					"componentId": "attestationAgreeToSign",
+					"label": false,
+					"options": [
+						"electronicallySigningThisDocument"
+					]
+				},
+				"nameOfSignee": {
+					"type": "text",
+					"componentId": "attestationNameOfSignee",
+					"readonly": false,
+					"placeholder": "nameOfSignee",
+					"rules": {
+						"maxLength": 30
+					}
+				},
+				"signOnDate": {
+					"type": "date",
+					"componentId": "attestationSignOnDate",
+					"readonly": false,
+					"rules": {
+						"endDate": "today"
+					}
+				}
+			},
+			"dependencies": [{
+				"id": "agreeToSignDocument",
+				"values": ["electronicallySigningThisDocument"],
+				"type": "enable",
+				"fields": [
+					"nameOfSignee",
+					"signOnDate"
+				]
+			}],
+			"layout": [{
+				"rows": [{
+						"type": "row",
+						"cols": [{
+							"rows": [{
+								"id": "doesThePatientMeetRecertificationRequirement"
+							}]
+						}]
+					},
+					{
+						"type": "row",
+						"cols": [{
+								"rows": [{
+									"type": "input",
+									"id": "certificationStartDate"
+								}]
+							},
+							{
+								"rows": [{
+									"type": "input",
+									"id": "certificationEndDate"
+								}]
+							}
+						]
+					},
+					{
+						"type": "row",
+						"cols": [{
+							"rows": [{
+								"type": "input",
+								"id": "hospiceEligibilityAttestation"
+							}]
+						}]
+					},
+					{
+						"type": "row",
+						"cols": [{
+							"rows": [{
+								"type": "input",
+								"id": "agreeToSignDocument"
+							}]
+						}]
+					},
+					{
+						"type": "row",
+						"cols": [{
+								"rows": [{
+									"type": "input",
+									"id": "nameOfSignee"
+								}]
+							},
+							{
+								"rows": [{
+									"type": "input",
+									"id": "signOnDate"
+								}]
+							}
+						]
+					}
+				]
+			}]
+		}
+	]
+}

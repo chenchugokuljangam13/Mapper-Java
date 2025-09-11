@@ -1,0 +1,117 @@
+{
+  "visit": {
+    "_tenantId": "OKC",
+    "_id": "cmp",
+    "_version": 1,
+    "type": "comprehensive",
+    "title": "Comprehensive Assessment",
+    "disciplines": [
+      "RN",
+      "NP",
+      "LPN"
+    ],
+    "visitStartRules": {
+      "allowCurrentUserOtherVisitOpen": false,
+      "allowCurrentUserDisciplineVisitOpen": false,
+      "visitBeforeCurrentUser": {
+        "$or": [
+          {
+            "status": "complete",
+            "visits": [
+              "ica"
+            ]
+          },
+          {
+            "status": "complete",
+            "visits": [
+              "ca"
+            ]
+          }
+        ]
+      },
+      "visitBeforeCurrentUserDiscipline": [
+        {
+          "status": "complete",
+          "visits": [
+            "ica"
+          ]
+        }
+      ],
+      "otherDisciplinesVisitConstraints": {
+          "visitStartDiscipline": "LPN",
+          "beforeVisitStartDiscipline": "RN",
+          "visitStatus": "completed"
+      }
+
+    },
+    "isPOCEnable": true,
+    "assessment": {
+      "_id": "assess",
+      "_version": 1,
+      "isBillable": true,
+      "isSignatureRequired": true,
+      "assessmentSections": [
+        {
+          "_id": "gastro",
+          "_version": 1,
+          "required": true,
+          "status": "in-progress",
+          "type": "gastrointestinal",
+          "title": "Gastrointestinal",
+          "icon": "gastro",
+          "access": "write",
+          "$ref": "#/definitions/node/gastro"
+        },
+        {
+          "_id": "pain",
+          "_version": 1,
+          "required": true,
+          "status": "new",
+          "type": "pain",
+          "title": "Pain",
+          "icon": "pain",
+          "access": "write",
+          "$ref": "#/definitions/node/pain"
+        }
+      ],
+      "assessmentCompleteRules": {
+        "required": [
+          "vital"
+        ],
+        "optional": [
+          "gastro",
+          "pain",
+          "neuro"
+        ],
+        "noOfSectionComplete": 2
+      }
+    },
+    "poc": {
+      "_id": "poc",
+      "_version": 1,
+      "isPOCandAssessmentSeparate": true,
+      "canVisitOwnerStartPOC": true,
+      "isBillable": true,
+      "isSignatureRequired": false,
+      "otherDisciplinesPOCStartConstraints": [
+        {
+          "visitDisciplines": [
+            "RN",
+            "NP"
+          ],
+          "pocDisciplines": [
+            "MD"
+          ]
+        },
+        {
+          "visitDisciplines": [
+            "NP"
+          ],
+          "pocDisciplines": [
+            "TL"
+          ]
+        }
+      ]
+    }
+  }
+}

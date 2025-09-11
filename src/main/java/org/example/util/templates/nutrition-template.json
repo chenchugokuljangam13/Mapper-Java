@@ -1,0 +1,1114 @@
+{
+  "id": "nutritionalMetabolic",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "weight",
+      "type": "deltaListCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "weightLbs", "weightKg", "bmi"],
+        "deltaFields": ["date", "weightLbs", "weightKg", "bmi"]
+      },
+      "inputs": {
+        "weight": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "lbs",
+            "bUnit": "kg",
+            "conversionFactorAB": 0.45359237,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "weightChange",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "normalWeight": {
+          "type": "number",
+          "rules": {
+            "min": 0
+          }
+        },
+        "priorWeight": {
+          "type": "number",
+          "rules": {
+            "min": 0
+          }
+        },
+        "priorWeightLoss": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "priorWeightLossValue": {
+          "type": "number"
+        },
+        "priorWeightLossPeriod": {
+          "type": "radio",
+          "options": [
+            "weightLossFivePercentOneMonth",
+            "weightLossTenPercentSixMonth"
+          ]
+        },
+        "priorWeightLossUnknownReason": {
+          "type": "radio",
+          "options": [
+            "difficultySwallowing",
+            "nutritionalStatus"
+          ],
+          "supportOther": true
+        }
+      },
+      "dependencies": [{
+        "id": "priorWeightLoss",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "priorWeightLossValue",
+          "priorWeightLossPeriod"
+        ]
+      },
+        {
+          "id": "priorWeightLoss",
+          "values": ["unknown"],
+          "type": "enable",
+          "fields": [
+            "priorWeightLossUnknownReason"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "id": "normalWeight"
+        },
+          {
+            "id": "priorWeightLoss"
+          },
+          {
+            "id": "priorWeightLossUnknownReason"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "priorWeight"
+          },
+            {
+              "id": "priorWeightLossValue"
+            },
+            {
+              "id": "priorWeightLossPeriod"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "infectiousDisease",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "diseases": {
+          "type": "searchSelect",
+          "options": [
+            "Acinetobacter infections",
+            "Actinomycosis",
+            "African sleeping sickness (African trypanosomiasis)",
+            "AIDS (Acquired immunodeficiency syndrome)",
+            "Amebiasis",
+            "Anaplasmosis",
+            "Angiostrongyliasis",
+            "Anisakiasis",
+            "Anthrax",
+            "Arcanobacterium haemolyticum infection",
+            "Argentine hemorrhagic fever",
+            "Ascariasis",
+            "Aspergillosis",
+            "Astrovirus infection",
+            "Babesiosis",
+            "Bacillus cereus infection",
+            "Bacterial pneumonia",
+            "Bacterial vaginosis",
+            "Bacteroides infection",
+            "Balantidiasis",
+            "Bartonellosis",
+            "Baylisascaris infection",
+            "BK virus infection",
+            "Black piedra",
+            "Blastocystosis",
+            "Blastomycosis",
+            "Bolivian hemorrhagic fever",
+            "Botulism (and Infant botulism)",
+            "Brazilian hemorrhagic fever",
+            "Brucellosis",
+            "Bubonic plague",
+            "Burkholderia infection",
+            "Buruli ulcer",
+            "Calicivirus infection (Norovirus and Sapovirus)",
+            "Campylobacteriosis",
+            "Candidiasis (Moniliasis; Thrush)",
+            "Capillariasis",
+            "Carrion's disease",
+            "Cat-scratch disease",
+            "Cellulitis",
+            "Chagas Disease (American trypanosomiasis)",
+            "Chancroid",
+            "Chickenpox",
+            "Chikungunya",
+            "Chlamydia",
+            "Chlamydophila pneumoniae infection (Taiwan acute respiratory agent or TWAR)",
+            "Cholera",
+            "Chromoblastomycosis",
+            "Chytridiomycosis",
+            "Clonorchiasis",
+            "Clostridium difficile colitis",
+            "Coccidioidomycosis",
+            "Colorado tick fever (CTF)",
+            "Common cold (Acute viral rhinopharyngitis; Acute coryza)",
+            "Creutzfeldt–Jakob disease (CJD)",
+            "Crimean-Congo hemorrhagic fever (CCHF)",
+            "Cryptococcosis",
+            "Cryptosporidiosis",
+            "Cutaneous larva migrans (CLM)",
+            "Cyclosporiasis",
+            "Cysticercosis",
+            "Cytomegalovirus infection",
+            "Dengue fever",
+            "Desmodesmus infection",
+            "Dientamoebiasis",
+            "Diphtheria",
+            "Diphyllobothriasis",
+            "Dracunculiasis",
+            "Ebola hemorrhagic fever",
+            "Echinococcosis",
+            "Ehrlichiosis",
+            "Enterobiasis (Pinworm infection)",
+            "Enterococcus infection",
+            "Enterovirus infection",
+            "Epidemic typhus",
+            "Erythema infectiosum (Fifth disease)",
+            "Exanthem subitum (Sixth disease)",
+            "Fasciolasis",
+            "Fasciolopsiasis",
+            "Fatal familial insomnia (FFI)",
+            "Filariasis",
+            "Food poisoning by Clostridium perfringens",
+            "Free-living amebic infection",
+            "Fusobacterium infection",
+            "Gas gangrene (Clostridial myonecrosis)",
+            "Geotrichosis",
+            "Gerstmann-Sträussler-Scheinker syndrome (GSS)",
+            "Giardiasis",
+            "Glanders",
+            "Gnathostomiasis",
+            "Gonorrhea",
+            "Granuloma inguinale (Donovanosis)",
+            "Group A streptococcal infection",
+            "Group B streptococcal infection",
+            "Haemophilus influenzae infection",
+            "Hand, foot and mouth disease (HFMD)",
+            "Hantavirus Pulmonary Syndrome (HPS)",
+            "Heartland virus disease",
+            "Helicobacter pylori infection",
+            "Hemolytic-uremic syndrome (HUS)",
+            "Hemorrhagic fever with renal syndrome (HFRS)",
+            "Hepatitis A",
+            "Hepatitis B",
+            "Hepatitis C",
+            "Hepatitis D",
+            "Hepatitis E",
+            "Herpes simplex",
+            "Histoplasmosis",
+            "Hookworm infection",
+            "Human bocavirus infection",
+            "Human ewingii ehrlichiosis",
+            "Human granulocytic anaplasmosis (HGA)",
+            "Human metapneumovirus infection",
+            "Human monocytic ehrlichiosis",
+            "Human papillomavirus (HPV) infection",
+            "Human parainfluenza virus infection",
+            "Hymenolepiasis",
+            "Epstein–Barr virus infectious mononucleosis (Mono)",
+            "Influenza (flu)",
+            "Isosporiasis",
+            "Kawasaki disease",
+            "Keratitis",
+            "Kingella kingae infection",
+            "Kuru",
+            "Lassa fever",
+            "Legionellosis (Legionnaires' disease)",
+            "Legionellosis (Pontiac fever)",
+            "Leishmaniasis",
+            "Leprosy",
+            "Leptospirosis",
+            "Listeriosis",
+            "Lyme disease (Lyme borreliosis)",
+            "Lymphatic filariasis (Elephantiasis)",
+            "Lymphocytic choriomeningitis",
+            "Malaria",
+            "Marburg hemorrhagic fever (MHF)",
+            "Measles",
+            "Middle East respiratory syndrome (MERS)",
+            "Melioidosis (Whitmore's disease)",
+            "Meningitis",
+            "Meningococcal disease",
+            "Metagonimiasis",
+            "Microsporidiosis",
+            "Molluscum contagiosum (MC)",
+            "Monkeypox",
+            "Mumps",
+            "Murine typhus (Endemic typhus)",
+            "Mycoplasma pneumonia",
+            "Mycetoma (disambiguation)",
+            "Myiasis",
+            "Neonatal conjunctivitis (Ophthalmia neonatorum)",
+            "Norovirus (children and babies)",
+            "(New) Variant Creutzfeldt–Jakob disease (vCJD, nvCJD)",
+            "Nocardiosis",
+            "Onchocerciasis (River blindness)",
+            "Opisthorchiasis",
+            "Paracoccidioidomycosis (South American blastomycosis)",
+            "Paragonimiasis",
+            "Pasteurellosis",
+            "Pediculosis capitis (Head lice)",
+            "Pediculosis corporis (Body lice)",
+            "Pediculosis pubis (Pubic lice, Crab lice)",
+            "Pelvic inflammatory disease (PID)",
+            "Pertussis (Whooping cough)",
+            "Plague",
+            "Pneumococcal infection",
+            "Pneumocystis pneumonia (PCP)",
+            "Pneumonia",
+            "Poliomyelitis",
+            "Prevotella infection",
+            "Primary amoebic meningoencephalitis (PAM)",
+            "Progressive multifocal leukoencephalopathy",
+            "Psittacosis",
+            "Q fever",
+            "Rabies",
+            "Relapsing fever",
+            "Respiratory syncytial virus infection",
+            "Rhinosporidiosis",
+            "Rhinovirus infection",
+            "Rickettsial infection",
+            "Rickettsialpox",
+            "Rift Valley fever (RVF)",
+            "Rocky Mountain spotted fever (RMSF)",
+            "Rotavirus infection",
+            "Rubella",
+            "Salmonellosis",
+            "SARS (Severe Acute Respiratory Syndrome)",
+            "Scabies",
+            "Schistosomiasis",
+            "Sepsis",
+            "Shigellosis (Bacillary dysentery)",
+            "Shingles (Herpes zoster)",
+            "Smallpox (Variola)",
+            "Sporotrichosis",
+            "Staphylococcal food poisoning",
+            "Staphylococcal infection",
+            "Strongyloidiasis",
+            "Subacute sclerosing panencephalitis",
+            "Syphilis",
+            "Taeniasis",
+            "Tetanus (Lockjaw)",
+            "Tinea barbae (Barber's itch)",
+            "Tinea capitis (Ringworm of the Scalp)",
+            "Tinea corporis (Ringworm of the Body)",
+            "Tinea cruris (Jock itch)",
+            "Tinea manum (Ringworm of the Hand)",
+            "Tinea nigra",
+            "Tinea pedis (Athlete’s foot)",
+            "Tinea unguium (Onychomycosis)",
+            "Tinea versicolor (Pityriasis versicolor)",
+            "Toxocariasis (Ocular Larva Migrans (OLM))",
+            "Toxocariasis (Visceral Larva Migrans (VLM))",
+            "Trachoma",
+            "Toxoplasmosis",
+            "Trichinosis",
+            "Trichomoniasis",
+            "Trichuriasis (Whipworm infection)",
+            "Tuberculosis",
+            "Tularemia",
+            "Typhoid fever",
+            "Typhus fever",
+            "Ureaplasma urealyticum infection",
+            "Valley fever",
+            "Venezuelan equine encephalitis",
+            "Venezuelan hemorrhagic fever",
+            "Vibrio vulnificus infection",
+            "Vibrio parahaemolyticus enteritis",
+            "Viral pneumonia",
+            "West Nile Fever",
+            "White piedra (Tinea blanca)",
+            "Yersinia pseudotuberculosis infection",
+            "Yersiniosis",
+            "Yellow fever",
+            "Zygomycosis"
+          ]
+        },
+        "patientInIsolation": {
+          "type": "toggle"
+        },
+        "isolationType": {
+          "type": "radio",
+          "options": [
+            "standard",
+            "contact",
+            "droplet",
+            "respiratory"
+          ]
+        }
+      },
+      "dependencies": [{
+        "id": "patientInIsolation",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "isolationType"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "diseases"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "patientInIsolation"
+          },
+            {
+              "id": "isolationType"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foodAllergies",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "allergy": {
+          "type": "checkbox",
+          "options": [
+            "milk",
+            "eggs",
+            "peanuts",
+            "treeNuts",
+            "soy",
+            "gluten",
+            "fish",
+            "crustaceans"
+          ],
+          "supportOther": true
+        }
+      }
+    },
+    {
+      "id": "currentDiet",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "currentDiet": {
+          "type": "select",
+          "options": [
+            "npo",
+            "regularAsTolerated",
+            "mechAlteredGroundMeats",
+            "mechAlteredPureed",
+            "theraDietLowSodium",
+            "theraDietLowSugar",
+            "thickLiquidsNectar",
+            "thickLiquidsHoney",
+            "thickLiquidsPudding"
+          ],
+          "supportOther": true
+        },
+        "intake": {
+          "type": "range",
+          "rules": {
+            "min": 0,
+            "max": 100,
+            "step": 1
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "currentDiet"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "intake"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "tubeFeeding",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientReceivingTubeFeeding": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "select",
+          "options": [
+            "nasogastric",
+            "nasoduodenal",
+            "nasojejunal",
+            "gastricOrGastrostomy",
+            "gastrojejunal",
+            "jejunal",
+            "peg"
+          ],
+          "supportOther": true
+        },
+        "sizeFr": {
+          "type": "number"
+        },
+        "tubePlacementVerified": {
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "howWhy": {
+          "type": "text",
+          "rules": {
+            "maxLength": 500
+          }
+        },
+        "residualFeeding": {
+          "type": "number"
+        },
+        "dateOfFeedingBagChange": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "dateOfFeedingTubeChange": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "patientReceivesBolus": {
+          "type": "toggle"
+        },
+        "dateOfLastBolus": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "timeOfLastBolus": {
+          "type": "time",
+          "rules": {
+            "timeOptional": true
+          }
+        },
+        "bolusAmount": {
+          "type": "number"
+        },
+        "bolusFrequency": {
+          "type": "frequency",
+          "label": "frequency"
+        },
+        "patientReceivesContinuousFeeding": {
+          "type": "toggle"
+        },
+        "dateContinuousFeedingStarted": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "formulaType": {
+          "type": "text",
+          "rules": {
+            "maxLength": 100
+          }
+        },
+        "continuousFeedingAmount": {
+          "type": "number"
+        },
+        "continuousFeedingRate": {
+          "type": "number"
+        },
+        "patientReceivesFeedingTubeFlush": {
+          "type": "toggle"
+        },
+        "feedingFlushFluid": {
+          "type": "radio",
+          "options": [
+            "water"
+          ],
+          "supportOther": true
+        },
+        "dateOfLastFeedingTubeFlush": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "timeOfLastFeedingTubeFlush": {
+          "type": "time",
+          "rules": {
+            "timeOptional": true
+          }
+        },
+        "feedingTubeFlushAmount": {
+          "type": "number"
+        },
+        "feedingTubeFlushFrequency": {
+          "type": "frequency"
+        }
+      },
+      "dependencies": [{
+        "id": "patientReceivingTubeFeeding",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type",
+          "sizeFr",
+          "tubePlacementVerified",
+          "residualFeeding",
+          "patientReceivesBolus",
+          "patientReceivesContinuousFeeding",
+          "patientReceivesFeedingTubeFlush",
+          "dateOfFeedingBagChange",
+          "dateOfFeedingTubeChange"
+
+        ]
+      },
+        {
+          "id": "tubePlacementVerified",
+          "values": ["yes", "no"],
+          "type": "enable",
+          "fields": [
+            "howWhy"
+          ]
+        },
+        {
+          "id": "patientReceivesBolus",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "dateOfLastBolus",
+            "timeOfLastBolus",
+            "bolusAmount",
+            "bolusFrequency"
+          ]
+        },
+        {
+          "id": "patientReceivesContinuousFeeding",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "dateContinuousFeedingStarted",
+            "formulaType",
+            "continuousFeedingAmount",
+            "continuousFeedingRate"
+          ]
+        },
+        {
+          "id": "patientReceivesFeedingTubeFlush",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "feedingFlushFluid",
+            "dateOfLastFeedingTubeFlush",
+            "timeOfLastFeedingTubeFlush",
+            "feedingTubeFlushAmount",
+            "feedingTubeFlushFrequency"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientReceivingTubeFeeding"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "type"
+              },
+                {
+                  "id": "sizeFr"
+                },
+                {
+                  "id": "residualFeeding"
+                },
+                {
+                  "id": "dateOfFeedingBagChange"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "tubePlacementVerified"
+                },
+                  {
+                    "id": "howWhy"
+                  },
+                  {
+                    "id": "dateOfFeedingTubeChange"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "patientReceivesBolus"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "dateOfLastBolus"
+              },
+                {
+                  "id": "timeOfLastBolus"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "bolusAmount"
+                },
+                  {
+                    "id": "bolusFrequency"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "patientReceivesContinuousFeeding"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "dateContinuousFeedingStarted"
+              },
+                {
+                  "id": "formulaType"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "continuousFeedingAmount"
+                },
+                  {
+                    "id": "continuousFeedingRate"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "patientReceivesFeedingTubeFlush"
+              }]
+            }]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "dateOfLastFeedingTubeFlush"
+              },
+                {
+                  "id": "timeOfLastFeedingTubeFlush"
+                },
+                {
+                  "id": "feedingTubeFlushAmount"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "feedingFlushFluid"
+                },
+                  {
+                    "id": "feedingTubeFlushFrequency"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "diabetes",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasDiabetes": {
+          "type": "toggle"
+        },
+        "type": {
+          "type": "radio",
+          "options": [
+            "IDDM",
+            "NIDDM"
+          ]
+        },
+        "fsbs": {
+          "type": "toggle"
+        },
+        "lastReading": {
+          "type": "date",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "results": {
+          "type": "number"
+        },
+        "frequency": {
+          "type": "frequency"
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasDiabetes",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "type",
+          "fsbs"
+        ]
+      },
+        {
+          "id": "fsbs",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "lastReading",
+            "results",
+            "frequency"
+          ]
+        }
+
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientHasDiabetes"
+            },
+              {
+                "id": "type"
+              }
+            ]
+          },
+            {
+              "rows": [{
+                "id": "fsbs"
+              },
+                {
+                  "id": "lastReading"
+                },
+                {
+                  "id": "results"
+                },
+                {
+                  "id": "frequency"
+                }
+              ]
+            }
+          ]
+        }]
+      }]
+    },
+    {
+      "id": "ivAccess",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "patientHasIv": {
+          "type": "toggle"
+        },
+        "location": {
+          "type": "text"
+        },
+        "insertionDate": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "lastKnownCatheterChangeDate": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "performedBy": {
+          "type": "radio",
+          "options": [
+            "hospice",
+            "facility",
+            "pcg",
+            "self"
+          ]
+        },
+        "lastKnownTubingChangeDate": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "lastKnownDressingChangeDate": {
+          "type": "date",
+          "rules": {
+            "dateOptional": true,
+            "endDate": "today"
+          }
+        },
+        "typeOfAccess": {
+          "type": "select",
+          "options": [
+            "central",
+            "tunneled",
+            "midline",
+            "port"
+          ],
+          "supportOther": true
+        },
+        "catheterSize": {
+          "type": "number"
+        },
+        "ivSiteCharacteristics": {
+          "type": "checkbox",
+          "options": [
+            "noRedness",
+            "noEdema",
+            "edema",
+            "purulentDrainage",
+            "painAtSite",
+            "warm",
+            "hot",
+            "streakFormation"
+          ],
+          "supportOther": true
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasIv",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "location",
+          "insertionDate",
+          "lastKnownCatheterChangeDate",
+          "performedBy",
+          "lastKnownTubingChangeDate",
+          "lastKnownDressingChangeDate",
+          "typeOfAccess",
+          "catheterSize",
+          "ivSiteCharacteristics"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientHasIv"
+            }]
+          }]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "location"
+              },
+                {
+                  "id": "insertionDate"
+                },
+                {
+                  "id": "lastKnownCatheterChangeDate"
+                },
+                {
+                  "id": "lastKnownTubingChangeDate"
+                },
+                {
+                  "id": "lastKnownDressingChangeDate"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "performedBy"
+                },
+                  {
+                    "id": "typeOfAccess"
+                  },
+                  {
+                    "id": "catheterSize"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "ivSiteCharacteristics"
+              }]
+            }]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkboxOther",
+          "columns": 1,
+          "options": [
+            "aspiration",
+            "anorexia",
+            "cachexic",
+            "choking",
+            "dehydration",
+            "externalBleeding",
+            "internalBleeding",
+            "fever",
+            "infection",
+            "dysphagia",
+            "difficultyChewing",
+            "obesity",
+            "refusingMeals",
+            "weightLoss",
+            "weightGain",
+            "armCircumferenceIncreased",
+            "armCircumferenceDecreased",
+            "hypoglycemia",
+            "hyperglycemia",
+            "hyponatremia",
+            "hypernatremia",
+            "hypokalemia",
+            "hyperkalemia",
+            "addisonsDisease",
+            "cushingsDisease",
+            "adrenalInsufficiency",
+            "hormoneImbalance",
+            "therapeuticAlteredDiet"
+          ],
+          "otherRules": {
+            "maxLength": 50
+          }
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "otherIssues"
+        }]
+      }]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "weightAndBmi",
+            "infectiousDisease",
+            "foodAllergies",
+            "currentDiet",
+            "tubeFeeding",
+            "diabetes",
+            "fsbs",
+            "ivAccess",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "id": "vitals",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write"
+  },
+    {
+      "id": "bloodPressure",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "location", "position", "systolic", "diastolic"]
+      },
+      "inputs": {
+        "location": {
+          "type": "select",
+          "options": [
+            "leftAnkle",
+            "leftArm",
+            "leftWrist",
+            "rightAnkle",
+            "rightArm",
+            "rightWrist"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "position": {
+          "type": "select",
+          "options": [
+            "lying",
+            "sitting",
+            "standing"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "systolic": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        },
+        "diastolic": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "temperatureCardTitle",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "temperature", "route"]
+      },
+      "inputs": {
+        "route": {
+          "type": "select",
+          "options": [
+            "axillary",
+            "oral",
+            "rectal",
+            "temporal",
+            "tympanic"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "temperature": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "pulse",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "rhythm", "strength", "location", "heartRate"]
+      },
+      "inputs": {
+        "rhythm": {
+          "type": "select",
+          "options": ["regular", "irregularWithPattern", "irregularWithoutPattern", "murmur", "gallop",
+            "unableToAssess", "asystole", "bradycardia", "tachycardia"
+          ],
+          "supportOther": true,
+          "rules": {
+            "required": true
+          }
+        },
+        "strength": {
+          "type": "select",
+          "options": ["bounding", "regular", "thready", "weak"],
+          "supportOther": true,
+          "rules": {
+            "required": true
+          }
+        },
+        "location": {
+          "type": "select",
+          "options": ["apical", "brachial", "carotid", "femoral", "pedal", "popliteal", "posteriorTibial",
+            "radial"
+          ],
+          "supportOther": true,
+          "rules": {
+            "required": true
+          }
+        },
+        "heartRate": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "respiratory",
+      "type": "listCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "respirationType", "respiratoryRate", "o2saturation"]
+      },
+      "inputs": {
+        "respirationType": {
+          "type": "select",
+          "attributes": {
+            "multiple": true
+          },
+          "options": ["normal", "stridor", "pursed", "labored", "shallow", "cheyneStokes", "orthopnea", "apnea",
+            "barrelChest", "hypoxia", "increasedExpiratoryPhase", "ineffectiveLungExpansion",
+            "usesAccessoryMuscles"
+          ],
+          "supportOther": true,
+          "rules": {
+            "required": true
+          }
+        },
+        "respiratoryRate": {
+          "type": "number",
+          "rules": {
+            "max": 300,
+            "required": true
+          }
+        },
+        "o2saturation": {
+          "type": "number",
+          "rules": {
+            "max": 100,
+            "required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "height",
+      "type": "formCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "inputs": {
+        "current": {
+          "type": "length",
+          "rules": {
+            "required": true,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        },
+        "history": {
+          "type": "length",
+          "readonly": true,
+          "rules": {
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "weight",
+      "type": "deltaListCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "weightLbs", "weightKg", "bmi"],
+        "deltaFields": ["date", "weightLbs", "weightKg", "bmi"]
+      },
+      "inputs": {
+        "weight": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "lbs",
+            "bUnit": "kg",
+            "conversionFactorAB": 0.45359237,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "muac",
+      "type": "deltaListCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "tooltip": {
+        "text": "Mid-Upper Arm Circumference (MUAC) is the circumference of the left or right upper arm, measured at the mid-point between the tip of the shoulder and the tip of the elbow (olecranon process and the acromium).  MUAC is used for the assessment of nutritional status.",
+        "duration": 20000
+      },
+      "data": {
+        "listHeaders": ["date", "leftArmInches", "leftArmCm", "rightArmInches", "rightArmCm"],
+        "deltaFields": ["date", "leftArmInches", "leftArmCm", "rightArmInches", "rightArmCm"]
+      },
+      "inputs": {
+        "leftArm": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "inches",
+            "bUnit": "cm",
+            "conversionFactorAB": 2.54,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        },
+        "rightArm": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "inches",
+            "bUnit": "cm",
+            "conversionFactorAB": 2.54,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "tricepsSkinfold",
+      "type": "deltaListCard",
+      "required": true,
+      "declinable": true,
+      "deferrable": true,
+      "access": "write",
+      "tooltip": {
+        "text": "Tricep Skin Fold  is measured at the level of the mid-point between the acromiale (lateral \nedge of the acromion process, e.g. bony tip of shoulder) and the radiale (proximal and lateral border \nof the radius bone, approximately the elbow joint), on the mid-line of the posterior (back) surface of \nthe arm (over the triceps muscle).",
+        "duration": 20000
+      },
+      "data": {
+        "listHeaders": ["date", "leftArmInches", "leftArmCm", "rightArmInches", "rightArmCm"],
+        "deltaFields": ["date", "leftArmInches", "leftArmCm", "rightArmInches", "rightArmCm"]
+      },
+      "inputs": {
+        "leftArm": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "inches",
+            "bUnit": "cm",
+            "conversionFactorAB": 2.54,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        },
+        "rightArm": {
+          "type": "conversion",
+          "rules": {
+            "required": true,
+            "aUnit": "inches",
+            "bUnit": "cm",
+            "conversionFactorAB": 2.54,
+            "precision": "1.0-2",
+            "max": 999.99,
+            "min": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "required": false,
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "bloodPressure",
+            "temperature",
+            "pulse",
+            "respiratory",
+            "height",
+            "weight",
+            "muac",
+            "tricepsSkinfold"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

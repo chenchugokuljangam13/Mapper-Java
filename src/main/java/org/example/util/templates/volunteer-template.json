@@ -1,0 +1,472 @@
+{
+  "id": "volunteer",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "volunteerServices",
+      "type": "formCard",
+      "inputs": {
+        "assessmentDiscussionWith": {
+          "type": "checkbox",
+          "componentId": "assessmentDiscussionWith",
+          "supportOther": true,
+          "options": [
+            "patient",
+            "caregiver",
+            "family"
+          ]
+        },
+        "serviceStartDate": {
+          "type": "date",
+          "componentId": "serviceStartDate",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "visitFrequency": {
+          "type": "frequency",
+          "componentId": "visitFrequency",
+          "rules": {
+            "min": 1,
+            "max": 5
+          },
+          "options": [
+            "day(s)",
+            "week(s)",
+            "month(s)"
+          ]
+        },
+        "preferredTime": {
+          "type": "checkbox",
+          "componentId": "preferredTime",
+          "options": [
+            "morning",
+            "lateMorning",
+            "earlyAfternoon",
+            "midAfternoon"
+          ]
+        }
+      },
+      "layout": [{
+        "properties": {
+          "col-5": true
+        },
+        "rows": [{
+          "id": "assessmentDiscussionWith"
+        },
+          {
+            "id": "serviceStartDate"
+          }
+        ]
+      },
+        {
+          "rows": [{
+            "id": "preferredTime"
+          },
+            {
+              "id": "visitFrequency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "servicesToBePerformed",
+      "type": "formCard",
+      "inputs": {
+        "selectAllRequestedServices": {
+          "type": "checkbox",
+          "componentId": "requestedServices",
+          "supportOther": true,
+          "columns": 1,
+          "options": [
+            "artsCrafts",
+            "companionship",
+            "familySupport",
+            "journaling",
+            "letterWriting",
+            "music",
+            "petAnimalCompanionship",
+            "reading",
+            "storyTelling",
+            "veteranSupport",
+            "videoJournaling",
+            "giftOfTheDay"
+          ]
+        }
+      }
+    },
+    {
+      "id": "patientEnvironmentSpecialNeeds",
+      "type": "formCard",
+      "inputs": {
+        "hearingImpairment": {
+          "type": "toggle",
+          "componentId": "hearingImpairment"
+        },
+        "hearingImpairmentDetails": {
+          "type": "checkbox",
+          "componentId": "hearingImpairmentDetails",
+          "label": false,
+          "options": [
+            "hc",
+            "leftEar",
+            "rightEar",
+            "deaf",
+            "hearingAid"
+          ]
+        },
+        "impairedAmbulation": {
+          "type": "toggle",
+          "componentId": "impairedAmbulation"
+        },
+        "impairedAmbulationDetails": {
+          "type": "checkbox",
+          "componentId": "impairedAmbulationDetails",
+          "label": false,
+          "options": [
+            "wheelchair",
+            "walker",
+            "cane",
+            "braces",
+            "nonAmbulatory"
+          ]
+        },
+        "visionImpairment": {
+          "type": "toggle",
+          "componentId": "visionImpairment"
+        },
+        "visionImpairmentDetails": {
+          "type": "checkbox",
+          "componentId": "visionImpairmentDetails",
+          "label": false,
+          "options": [
+            "blind",
+            "glasses",
+            "limitedVisionField"
+          ]
+        },
+        "speechImpairment": {
+          "type": "toggle",
+          "componentId": "speechImpairment"
+        },
+        "speechImpairmentDetails": {
+          "type": "checkbox",
+          "componentId": "speechImpairmentDetails",
+          "label": false,
+          "options": [
+            "garbled",
+            "inappropriateToSituation",
+            "nonVerbal"
+          ]
+        },
+        "activityLimitations": {
+          "type": "toggle",
+          "componentId": "activityLimitations"
+        },
+        "activityLimitationsDetails": {
+          "type": "checkbox",
+          "componentId": "activityLimitationsDetails",
+          "label": false,
+          "options": [
+            "jointDeformities",
+            "bedbound",
+            "chairbound",
+            "contractures"
+          ]
+        },
+        "languageBarrier": {
+          "type": "toggle",
+          "componentId": "languageBarrier"
+        },
+        "languageBarrierDetails": {
+          "type": "checkbox",
+          "componentId": "languageBarrierDetails",
+          "label": false,
+          "options": [
+            "nonEnglishSpeaking",
+            "illiterate",
+            "aphasic"
+          ]
+        },
+        "careLocationSetting": {
+          "type": "toggle",
+          "componentId": "careLocationSetting"
+        },
+        "careLocationSettingDetails": {
+          "type": "checkbox",
+          "componentId": "careLocationSettingDetails",
+          "label": false,
+          "options": [
+            "pets",
+            "multiLevelHome",
+            "smallChildren",
+            "smokersInHouse"
+          ]
+        },
+        "otherEnvironmentNeed": {
+          "type": "toggle",
+          "componentId": "otherEnvironmentNeed"
+        },
+        "otherEnvironmentNeedDetails": {
+          "type": "checkbox",
+          "componentId": "otherEnvironmentNeedDetails",
+          "label": false,
+          "supportOther": true,
+          "options": []
+        }
+      },
+      "dependencies": [{
+        "id": "hearingImpairment",
+        "values": [true],
+        "type": "enable",
+        "fields": [
+          "hearingImpairmentDetails"
+        ]
+      },
+        {
+          "id": "impairedAmbulation",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "impairedAmbulationDetails"
+          ]
+        },
+        {
+          "id": "visionImpairment",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "visionImpairmentDetails"
+          ]
+        },
+        {
+          "id": "speechImpairment",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "speechImpairmentDetails"
+          ]
+        },
+        {
+          "id": "activityLimitations",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "activityLimitationsDetails"
+          ]
+        },
+        {
+          "id": "languageBarrier",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "languageBarrierDetails"
+          ]
+        },
+        {
+          "id": "careLocationSetting",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "careLocationSettingDetails"
+          ]
+        },
+        {
+          "id": "otherEnvironmentNeed",
+          "values": [true],
+          "type": "enable",
+          "fields": [
+            "otherEnvironmentNeedDetails"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "hearingImpairment"
+            },
+              {
+                "id": "hearingImpairmentDetails"
+              }
+            ]
+          },
+            {
+              "rows": [{
+                "id": "visionImpairment"
+              },
+                {
+                  "id": "visionImpairmentDetails"
+                }
+              ]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "speechImpairment"
+              },
+                {
+                  "id": "speechImpairmentDetails"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "languageBarrier"
+                },
+                  {
+                    "id": "languageBarrierDetails"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "impairedAmbulation"
+              },
+                {
+                  "id": "impairedAmbulationDetails"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "activityLimitations"
+                },
+                  {
+                    "id": "activityLimitationsDetails"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "careLocationSetting"
+              },
+                {
+                  "id": "careLocationSettingDetails"
+                }
+              ]
+            },
+              {
+                "rows": [{
+                  "id": "otherEnvironmentNeed"
+                },
+                  {
+                    "id": "otherEnvironmentNeedDetails"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "assessmentMadeWith",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["requestedBy", "name", "relationship"]
+      },
+      "inputs": {
+        "requestedBy": {
+          "type": "radio",
+          "label": "whoRequestedVolunteerServices",
+          "componentId": "whoRequestedVolunteerServices",
+          "supportOther": true,
+          "options": [
+            "patient",
+            "caregiver",
+            "family"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "name": {
+          "type": "text",
+          "rules": {
+            "maxLength": 75,
+            "required": true
+          }
+        },
+        "relationship": {
+          "type": "text",
+          "rules": {
+            "maxLength": 50,
+            "required": true
+          }
+        }
+      },
+      "dependencies": [{
+        "id": "requestedBy",
+        "values": ["patient", null],
+        "type": "disable",
+        "fields": [
+          "name",
+          "relationship"
+        ]
+      }]
+    },
+    {
+      "id": "reasonForServices",
+      "type": "formCard",
+      "inputs": {
+        "explainServicesRequested": {
+          "type": "textarea",
+          "componentId": "explainServicesRequested",
+          "rules": {
+            "maxLength": 3000
+          }
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "volunteerServices",
+            "servicesToBePerformed",
+            "patientEnvironmentSpecialNeeds",
+            "assessmentMadeWith"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

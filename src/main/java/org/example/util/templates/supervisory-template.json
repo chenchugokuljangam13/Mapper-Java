@@ -1,0 +1,167 @@
+{
+  "id": "supervisoryVisit",
+  "cards": [{
+    "id": "supervisoryVisit",
+    "componentId": "supervisoryVisitCard",
+    "type": "expandableListCard",
+    "required": true,
+    "declinable": true,
+    "deferrable": true,
+    "access": "write",
+    "data": {
+      "listHeaders": ["date", "utilizedUnivPrecaut", "followedPoC", "thoroughKnowledgeOfDisease",
+        "narrative", "supervisionOfCare", "utilizedSafetyPrecautions", "exhibitedPositiveRapport",
+        "accurateAndTimelyDocumentation", "providedComfortMeasures", "coordCareFacFam", "attendant",
+        "followedHipaa", "directIndirect", "patientFamilyNfSatisfied"
+      ]
+    },
+    "inputs": {
+      "supervisionOfCare": {
+        "type": "radio",
+        "componentId": "supervisionOfCare",
+        "options": [
+          "lpnLvn",
+          "hha"
+        ]
+      },
+      "attendant": {
+        "type": "selectFilter",
+        "componentId": "attendant",
+        "options": [],
+        "optionGroups": {
+          "lpnLvn": [
+            "LPN 1",
+            "LPN 2",
+            "LPN 3",
+            "LPN 4",
+            "LPN 5"
+          ],
+          "hha": [
+            "HHA 1",
+            "HHA 2",
+            "HHA 3",
+            "HHA 4",
+            "HHA 5",
+            "HHA 6"
+          ]
+        }
+      },
+      "directIndirect": {
+        "type": "radio",
+        "componentId": "directIndirect",
+        "options": [
+          "direct",
+          "indirect"
+        ]
+      },
+      "followedPoC": {
+        "type": "radio",
+        "componentId": "followedPoC",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "coordCareFacFam": {
+        "type": "radio",
+        "componentId": "coordCareFacFam",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "utilizedUnivPrecaut": {
+        "type": "radio",
+        "componentId": "utilizedUnivPrecaut",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "utilizedSafetyPrecautions": {
+        "type": "radio",
+        "componentId": "utilizedSafetyPrecautions",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "providedComfortMeasures": {
+        "type": "radio",
+        "componentId": "providedComfortMeasures",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "exhibitedPositiveRapport": {
+        "type": "radio",
+        "componentId": "exhibitedPositiveRapport",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "thoroughKnowledgeOfDisease": {
+        "type": "radio",
+        "componentId": "thoroughKnolwedgeOfDisease",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "accurateAndTimelyDocumentation": {
+        "type": "radio",
+        "componentId": "accurateAndTimelyDocumentation",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "patientFamilyNfSatisfied": {
+        "type": "radio",
+        "componentId": "patientFamilyNfSatisfied",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "followedHipaa": {
+        "type": "radio",
+        "componentId": "followedHipaa",
+        "options": [
+          "yes",
+          "no",
+          "na"
+        ]
+      },
+      "narrative": {
+        "type": "textarea",
+        "componentId": "narrative",
+        "rules": {
+          "maxLength": 3000
+        }
+      }
+    },
+    "dependencies": [{
+      "id": "supervisionOfCare",
+      "values": [
+        "lpnLvn",
+        "hha"
+      ],
+      "type": "setOptions",
+      "fields": [
+        "attendant"
+      ]
+    }]
+  }]
+}

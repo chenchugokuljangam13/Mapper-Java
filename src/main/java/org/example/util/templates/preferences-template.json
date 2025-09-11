@@ -1,0 +1,374 @@
+{
+  "id": "preferences",
+  "cards": [{
+    "id": "assessmentWith",
+    "type": "formCard",
+    "access": "write",
+    "inputs": {
+      "assessmentWith": {
+        "type": "radio",
+        "componentId": "assessmentWith",
+        "label": false,
+        "options": [
+          "patient(hasCapacity)",
+          "caregiver(legalDecisionMaker)",
+          "both"
+        ]
+      }
+    }
+  },
+    {
+      "id": "cprDnrDiscussion",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "patientUnderstandCpr": {
+          "type": "radio",
+          "componentId": "patientUnderstandCpr",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "patientWantCpr": {
+          "type": "radio",
+          "componentId": "patientWantCpr",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "outOfHospitalDnr": {
+          "type": "radio",
+          "componentId": "outOfHospitalDnr",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "outHospitalDnrLocation": {
+          "type": "text",
+          "componentId": "outHospitalDnrLocation",
+          "label": "dnrLocation"
+        },
+        "inPatientDnr": {
+          "type": "radio",
+          "componentId": "inPatientDnr",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        "inPatientDnrLocation": {
+          "type": "text",
+          "componentId": "inPatientDnrLocation",
+          "label": "dnrLocation"
+        },
+        "inPatientDnrDateSigned": {
+          "type": "date",
+          "componentId": "inPatientDnrDateSigned",
+          "label": "dateSigned",
+          "rules": {
+            "endDate": "today"
+          }
+        },
+        "inPatientDnrPhysician": {
+          "type": "text",
+          "componentId": "inPatientDnrPhysician",
+          "label": "dnrPhysician"
+        }
+      },
+      "dependencies": [{
+        "id": "outOfHospitalDnr",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "outHospitalDnrLocation"
+        ]
+      },
+        {
+          "id": "inPatientDnr",
+          "values": ["yes"],
+          "type": "enable",
+          "fields": [
+            "inPatientDnrLocation",
+            "inPatientDnrDateSigned",
+            "inPatientDnrPhysician"
+          ]
+        }
+      ],
+      "layout": [{
+        "rows": [{
+          "type": "row",
+          "cols": [{
+            "rows": [{
+              "id": "patientUnderstandCpr"
+            }]
+          },
+            {
+              "rows": [{
+                "id": "patientWantCpr"
+              }]
+            }
+          ]
+        },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "outOfHospitalDnr"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "outHospitalDnrLocation"
+                }]
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "cols": [{
+              "rows": [{
+                "id": "inPatientDnr"
+              }]
+            },
+              {
+                "rows": [{
+                  "id": "inPatientDnrLocation"
+                },
+                  {
+                    "id": "inPatientDnrDateSigned"
+                  },
+                  {
+                    "id": "inPatientDnrPhysician"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "id": "hasPhysicianOrdersLifeSustainingTreatment",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "patientHasPolst": {
+          "type": "radio",
+          "componentId": "patientHasPolst",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "polstLocation": {
+          "type": "text",
+          "componentId": "polstLocation"
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasPolst",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "polstLocation"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "patientHasPolst"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "polstLocation"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "hasMedicalOrdersForScopeOfTreatment",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "patientHasMost": {
+          "type": "radio",
+          "componentId": "patientHasMost",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "mostLocation": {
+          "type": "text",
+          "componentId": "mostLocation"
+        }
+      },
+      "dependencies": [{
+        "id": "patientHasMost",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "mostLocation"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "patientHasMost"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "mostLocation"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "otherLifeSustainingTreatments",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "patientWantsLifeSustainingTreatments": {
+          "type": "radio",
+          "componentId": "patientWantsLifeSustainingTreatments",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        },
+        "otherTreatments": {
+          "type": "checkbox",
+          "componentId": "mostLocation",
+          "supportOther": true,
+          "options": []
+        }
+      },
+      "dependencies": [{
+        "id": "patientWantsLifeSustainingTreatments",
+        "values": ["yes"],
+        "type": "enable",
+        "fields": [
+          "otherTreatments"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "patientWantsLifeSustainingTreatments"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "otherTreatments"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "furtherHospitalizations",
+      "type": "formCard",
+      "access": "write",
+      "inputs": {
+        "patientWantsFurtherHospitalizations": {
+          "type": "radio",
+          "componentId": "patientWantsFurtherHospitalizations",
+          "options": [
+            "yes",
+            "no",
+            "refusedToDiscuss"
+          ]
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "patientWantsFurtherHospitalizations"
+        }]
+      },
+        {
+          "rows": []
+        }
+      ]
+    },
+    {
+      "id": "signsOfImminentDeath",
+      "type": "formCard",
+      "inputs": {
+        "patientShowingSignsOfImminentDeath": {
+          "type": "radio",
+          "componentId": "patientShowingSignsOfImminentDeath",
+          "options": [
+            "imminent",
+            "earlyStages",
+            "noSignsAtThisTime"
+          ]
+        },
+        "signsOfImminentDeathExplanation": {
+          "type": "textarea",
+          "componentId": "signsOfImminentDeathExplanation",
+          "label": "explanation"
+        }
+      },
+      "dependencies": [{
+        "id": "patientShowingSignsOfImminentDeath",
+        "values": ["imminent", "earlyStages"],
+        "type": "enable",
+        "fields": [
+          "signsOfImminentDeathExplanation"
+        ]
+      }],
+      "layout": [{
+        "rows": [{
+          "id": "patientShowingSignsOfImminentDeath"
+        }]
+      },
+        {
+          "rows": [{
+            "id": "signsOfImminentDeathExplanation"
+          }]
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "general",
+            "assessmentWith",
+            "cprDnrDiscussion",
+            "hasPhysicianOrdersLifeSustainingTreatment",
+            "hasMedicalOrdersForScopeOfTreatment",
+            "otherLifeSustainingTreatments",
+            "furtherHospitalizations",
+            "signsOfImminentDeath"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

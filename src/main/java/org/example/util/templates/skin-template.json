@@ -1,0 +1,164 @@
+{
+  "id": "skin",
+  "cards": [{
+    "id": "decline",
+    "type": "declineCard",
+    "access": "write",
+    "noChanges": true
+  },
+    {
+      "id": "skinCondition",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "color": {
+          "type": "checkbox",
+          "columns": 1,
+          "options": [
+            "pink",
+            "ashen",
+            "bloodless",
+            "cyanotic",
+            "dusky",
+            "fair",
+            "gray",
+            "jaundiced",
+            "mottled",
+            "pale",
+            "pallid",
+            "sallow"
+          ],
+          "supportOther": true
+        },
+        "temperature": {
+          "type": "select",
+          "options": [
+            "cold",
+            "cool",
+            "warm",
+            "hot"
+          ],
+          "supportOther": true
+        },
+        "touch": {
+          "type": "select",
+          "options": [
+            "dry",
+            "moist",
+            "clammy"
+          ],
+          "supportOther": true
+        }
+      },
+      "layout": [{
+        "rows": [{
+          "id": "color"
+        },
+          {
+            "id": "temperature"
+          },
+          {
+            "id": "touch"
+          }
+        ]
+      }]
+    },
+    {
+      "id": "woundSite",
+      "type": "woundSiteCard",
+      "access": "write",
+      "declinable": true,
+      "section": "skin",
+      "backgrounds": {
+        "body": "/assets/svg/pain/male.svg",
+        "head": "/assets/svg/pain/head.svg",
+        "hands": "/assets/svg/pain/hands.svg",
+        "feet": "/assets/svg/pain/feet.svg"
+      },
+      "tools": [
+        "flacc",
+        "wongBaker",
+        "numeric",
+        "abbey"
+      ],
+      "questions": [
+        "woundQuestion1",
+        "woundQuestion2"
+      ]
+    },
+    {
+      "id": "otherIssues",
+      "type": "formCard",
+      "access": "write",
+      "declinable": true,
+      "inputs": {
+        "otherIssues": {
+          "label": false,
+          "type": "checkbox",
+          "columns": 1,
+          "options": [
+            "acne",
+            "acrodermatitis",
+            "cankerSore",
+            "carbuncle",
+            "cellulitis",
+            "coldSore",
+            "decubitusUlcer",
+            "eczema",
+            "erysipelas",
+            "fungalNailInfection",
+            "hives",
+            "ichythyosisVulgaris",
+            "impetigo",
+            "keloid",
+            "legUlcers",
+            "lupus",
+            "necrotizingFasciitis",
+            "psoriasis",
+            "riskForPressureSores",
+            "rosacea",
+            "seborrheicKeratosis",
+            "seborrheicEczema",
+            "sebaceousCyst",
+            "shingles",
+            "skinCancer",
+            "stasisDermatitis",
+            "vitiligio",
+            "warts"
+          ],
+          "supportOther": true
+        }
+      }
+    },
+    {
+      "id": "notes",
+      "type": "listCard",
+      "access": "write",
+      "data": {
+        "listHeaders": ["date", "category", "description"]
+      },
+      "inputs": {
+        "category": {
+          "type": "select",
+          "options": [
+            "skinCondition",
+            "woundSite",
+            "otherIssues"
+          ],
+          "rules": {
+            "required": true
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "rules": {
+            "rows": 5,
+            "maxLength": 1500,
+            "required": true
+          }
+        }
+      }
+    }
+  ]
+}

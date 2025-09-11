@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.service.PdfExtractionService;
+import org.example.service.DataMappingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class PdfUploadController {
 
     @Autowired
     private PdfExtractionService pdfExtractionService;
+    
+    @Autowired
+    private DataMappingService dataMappingService;
 
     @PostMapping("/upload")
      public ResponseEntity<?> uploadPdf(@RequestParam( value = "file", required = false) MultipartFile file) {
@@ -34,13 +38,16 @@ public class PdfUploadController {
             }
 
             Map<String, String> extractedData = pdfExtractionService.extractFormFields(file);
+            Map<String, Object> mappedData = dataMappingService.transformPdfData(extractedData);
             
             return ResponseEntity.ok(Map.of(
                 "message", "PDF processed successfully",
                 "filename", file.getOriginalFilename(),
-                "fieldsCount", extractedData.size(),
+                "rawDataFieldsCount", extractedData.size(),
                 "patientId", extractedData.get("Patient ID") != null ? extractedData.get("Patient ID") : "",
-                "extractedData", extractedData
+                "rawData", extractedData,
+                "mappedData", mappedData,
+                "mappedDataFieldsCount", mappedData.size()
             ));
 
         } catch (IllegalArgumentException e) {
