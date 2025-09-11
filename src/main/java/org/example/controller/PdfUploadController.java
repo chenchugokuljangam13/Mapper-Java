@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.service.PdfExtractionService;
 import org.example.service.DataMappingService;
+import org.example.service.FinalMapperService;
 import org.example.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,9 @@ public class PdfUploadController {
     @Autowired
     private TemplateService templateService;
 
+    @Autowired
+    private FinalMapperService finalTemp;
+
     @PostMapping("/upload")
      public ResponseEntity<?> uploadPdf(@RequestParam( value = "file", required = false) MultipartFile file) {
         try {
@@ -43,8 +47,9 @@ public class PdfUploadController {
 
             Map<String, String> extractedData = pdfExtractionService.extractFormFields(file);
             Map<String, Object> mappedData = dataMappingService.transformPdfData(extractedData);
-            Map<String, Object> templateMappedData = templateService.mapDataToTemplate(mappedData);
+            Map<String, Object> templateMappedData = templateService.processApiMapperService(mappedData, "15990");
             
+            Map<String, Object> tempFromAPI = finalTemp.getTempFromAPI("vitals");
             return ResponseEntity.ok(Map.of(
                 "message", "PDF processed successfully",
                 "filename", file.getOriginalFilename(),
@@ -52,7 +57,8 @@ public class PdfUploadController {
                 "patientId", extractedData.get("Patient ID") != null ? extractedData.get("Patient ID") : "",
                 "rawData", extractedData,
                 "mappedData", mappedData,
-                "templateMappedData", templateMappedData
+                "templateMappedData", templateMappedData,
+                "tempFromAPI", tempFromAPI
             ));
 
         } catch (IllegalArgumentException e) {

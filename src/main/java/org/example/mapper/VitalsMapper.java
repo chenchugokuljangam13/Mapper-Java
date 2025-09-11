@@ -9,8 +9,10 @@ public class VitalsMapper {
         Map<String, Object> vitalsMap = new HashMap<>();
 
         // Declines
-        vitalsMap.put("Declines_Vitals", "declined"); 
-        vitalsMap.put("Decline_Reason", "declinedReason"); 
+        Map<String, Object> declineCard = new HashMap<>();
+        declineCard.put("Declines_Vitals", "declined"); 
+        declineCard.put("Decline_Reason", "declinedReason"); 
+        vitalsMap.put("declineCard", declineCard);
         // Note: In API it's "noChanges", in PDF it's "Decline_Reason".
         // Adjust as per requirement.
 
@@ -21,13 +23,13 @@ public class VitalsMapper {
         bloodPressure.put("Vitals_Position", "position");
         bloodPressure.put("Vitals_Sysolic", "systolic");
         bloodPressure.put("Vitals_Location_side", "location_side");
-        vitalsMap.put("Blood_Pressure", bloodPressure);
+        vitalsMap.put("bloodPressure", bloodPressure);
 
         // Temperature mapping
         Map<String, Object> temperature = new HashMap<>();
         temperature.put("Temp_Route", "route");
         temperature.put("Temperature", "temperature");
-        vitalsMap.put("Temperature", temperature);
+        vitalsMap.put("temperatureCardTitle", temperature);
 
         // Pulse mapping
         Map<String, Object> pulse = new HashMap<>();
@@ -38,7 +40,7 @@ public class VitalsMapper {
         pulse.put("Strength_Other", "strength");
         pulse.put("Pulse_Locantion", "location");
         pulse.put("Location_Other", "location");
-        vitalsMap.put("Pulse", pulse);
+        vitalsMap.put("pulse", pulse);
 
         // Respiratory Rate mapping
         Map<String, Object> respRate = new HashMap<>();
@@ -46,11 +48,13 @@ public class VitalsMapper {
         respRate.put("Respiratory_Rate", "respiratoryRate");
         respRate.put("02Saturation", "o2saturation");
         respRate.put("Respiration_Other", "respirationType");
-        vitalsMap.put("Respiratory_Rate", respRate);
+        vitalsMap.put("respiratory", respRate);
 
         // Height / Weight mapping
-        vitalsMap.put("Height_ft", "inchesF");
-        vitalsMap.put("Hight_in", "inchesI");
+        Map<String, Object> height = new HashMap<>();
+        height.put("Height_ft", "inchesF");
+        height.put("Hight_in", "inchesI");
+        vitalsMap.put("Weight", height);
 
         Map<String, Object> weight = new HashMap<>();
         weight.put("Weight_lb", "lbs");
