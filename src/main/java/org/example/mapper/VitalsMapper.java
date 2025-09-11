@@ -71,6 +71,9 @@ public class VitalsMapper {
             Map<String, Object> height = new HashMap<>();
             height.put("Height_ft", "inchesF");
             height.put("Hight_in", "inchesI");
+            // current.put("Height_ft", "inchesF");
+            // current.put("Hight_in", "inchesI");
+            // height.put("height", current);
             vitalsMap.put("height", height);
 
             // Weight

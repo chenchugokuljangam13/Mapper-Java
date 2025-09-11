@@ -162,6 +162,7 @@ public class TemplateService {
                     Map<String, Object> keyValues = (Map<String, Object>) cardKeyValues.get("data");
                     
                     inputs.fieldNames().forEachRemaining(inputName -> {
+                        
                         if ((sectionData.containsKey(inputName) && !(sectionData.get(inputName) instanceof Map)) || ("weight".equals(cardName))) {
                             keyValues.put(inputName, sectionData.get(inputName));
                         } else if (sectionData.containsKey(cardName) && sectionData.get(cardName) instanceof Map) {
@@ -174,11 +175,28 @@ public class TemplateService {
                                 String combinedLocation = nestedMap.get("location") + " " + nestedMap.get("location_side");
                                 keyValues.put("location", combinedLocation);
                             }
+                            if ("height".equals(cardName) && nestedMap.containsKey("inchesF") && nestedMap.containsKey("inchesI")) {
+                                Integer inchesF = Integer.parseInt((String) nestedMap.get("inchesF"));
+                                Integer inchesI = Integer.parseInt((String) nestedMap.get("inchesI"));
+
+                                // Calculate total inches
+                                Integer totalInches = (inchesF * 12) + inchesI;
+
+                                // Convert to cm (1 inch = 2.54 cm)
+                                Double totalCm = totalInches * 2.54;
+
+                                Map<String, Object> current = new HashMap<>();
+                                current.put("inches", totalInches.toString()); // store as string
+                                current.put("cm", String.format("%.2f", totalCm)); // 2 decimal precision
+                                keyValues.put("current", current);
+                            }
+                            
                         } else {
                             // Case 3 (if cardId itself not in sectionData) → add anyway
                             sectionData.put(inputName, null);
                             keyValues.put(inputName, null);
                         }
+                        
                         // if ("weight".equals(cardName)){
                         //     keyValues.put("weight", sectionData.get(cardName));
                         // }

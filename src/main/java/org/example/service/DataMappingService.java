@@ -35,10 +35,7 @@ public class DataMappingService {
     }
 
     @SuppressWarnings("unchecked")
-    private void transformDataSection(Map<String, String> pdfData,
-                                      Map<String, Object> transformedData,
-                                      Map<String, Object> mapping,
-                                      String sectionName) {
+    private void transformDataSection(Map<String, String> pdfData, Map<String, Object> transformedData, Map<String, Object> mapping, String sectionName) {
 
         Map<String, Object> sectionData = new HashMap<>();
 
@@ -83,17 +80,14 @@ public class DataMappingService {
             String remainingKey = parts[1];
 
             @SuppressWarnings("unchecked")
-            Map<String, Object> nestedMap =
-                    (Map<String, Object>) data.computeIfAbsent(currentKey, k -> new HashMap<String, Object>());
+            Map<String, Object> nestedMap = (Map<String, Object>) data.computeIfAbsent(currentKey, k -> new HashMap<String, Object>());
             setNestedValue(nestedMap, remainingKey, value);
         } else {
             data.put(key, value);
         }
     }
 
-    private void addUnmappedFields(Map<String, String> pdfData,
-                                   Map<String, Object> transformedData,
-                                   Map<String, Object>... mappings) {
+    private void addUnmappedFields(Map<String, String> pdfData, Map<String, Object> transformedData, Map<String, Object>... mappings) {
 
         Map<String, String> unmappedFields = new HashMap<>();
 
