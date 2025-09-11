@@ -214,10 +214,10 @@ public class TemplateService {
                 cardsData.put(cardId, cardKeyValues);
             }
         }
-
-        if (sectionData.containsKey("unmappedFields")) {
-            result.put("unmappedFields", sectionData.get("unmappedFields"));
-        }
+        // // this for the getting unmapped data
+        // if (sectionData.containsKey("unmappedFields")) {
+        //     result.put("unmappedFields", sectionData.get("unmappedFields"));
+        // }
 
         return result;
     }

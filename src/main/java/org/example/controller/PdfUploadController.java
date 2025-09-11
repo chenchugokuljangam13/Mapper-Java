@@ -56,7 +56,7 @@ public class PdfUploadController {
                 // "rawDataFieldsCount", extractedData.size(),
                 // "patientId", extractedData.get("Patient ID") != null ? extractedData.get("Patient ID") : "",
                 // "rawData", extractedData,
-                "mappedData", mappedData,
+                // "mappedData", mappedData,
                 // "tempFromAPI", tempFromAPI,
                 "templateMappedData", templateMappedData
             ));
