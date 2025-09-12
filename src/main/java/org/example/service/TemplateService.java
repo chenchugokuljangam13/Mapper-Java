@@ -183,13 +183,10 @@ public class TemplateService {
                             if ("height".equals(cardName) && nestedMap.containsKey("inchesF") && nestedMap.containsKey("inchesI")) {
                                 Integer inchesF = Integer.parseInt((String) nestedMap.get("inchesF"));
                                 Integer inchesI = Integer.parseInt((String) nestedMap.get("inchesI"));
-
                                 // Calculate total inches
                                 Integer totalInches = (inchesF * 12) + inchesI;
-
                                 // Convert to cm (1 inch = 2.54 cm)
                                 Double totalCm = totalInches * 2.54;
-
                                 Map<String, Object> current = new HashMap<>();
                                 current.put("inches", totalInches.toString()); // store as string
                                 current.put("cm", String.format("%.2f", totalCm)); // 2 decimal precision
@@ -202,9 +199,6 @@ public class TemplateService {
                             keyValues.put(inputName, null);
                         }
                         
-                        // if ("weight".equals(cardName)){
-                        //     keyValues.put("weight", sectionData.get(cardName));
-                        // }
                     });
                     
                     

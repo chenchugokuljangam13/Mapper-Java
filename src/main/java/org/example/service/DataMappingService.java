@@ -26,10 +26,10 @@ public class DataMappingService {
 
         // Apply mappings
         transformDataSection(pdfData, transformedData, vitalsMapping, "vitals");
-        transformDataSection(pdfData, transformedData, neurologicalMapping, "neurological");
+        // transformDataSection(pdfData, transformedData, neurologicalMapping, "neurological");
 
         // Handle unmapped fields
-        addUnmappedFields(pdfData, transformedData, vitalsMapping, neurologicalMapping);
+        // addUnmappedFields(pdfData, transformedData, vitalsMapping, neurologicalMapping);
 
         return transformedData;
     }

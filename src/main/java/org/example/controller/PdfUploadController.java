@@ -44,12 +44,14 @@ public class PdfUploadController {
                 return ResponseEntity.badRequest()
                     .body(Map.of("error", "Only PDF files are allowed"));
             }
-
+            // This will extract the data from the PDF
             Map<String, String> extractedData = pdfExtractionService.extractFormFields(file);
+            // This will map the data from the extractedData to match the keys like in the template
             Map<String, Object> mappedData = dataMappingService.transformPdfData(extractedData);
+            // This maps the data in the mapped data as the template form
             Map<String, Object> templateMappedData = templateService.processApiMapperService(mappedData, "15990");
             
-            Map<String, Object> tempFromAPI = finalTemp.getTempFromAPI("vitals");
+            // Map<String, Object> tempFromAPI = finalTemp.getTempFromAPI("vitals");
             return ResponseEntity.ok(Map.of(
                 // "message", "PDF processed successfully",
                 // "filename", file.getOriginalFilename(),
