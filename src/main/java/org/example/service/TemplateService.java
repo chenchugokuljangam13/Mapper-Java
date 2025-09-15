@@ -84,6 +84,7 @@ public class TemplateService {
                 try {
                     // Call template API using assessment id and section type
                     Map<String, Object> templateData = getTempFromAPI(sectionType, assessment);
+                    System.out.printf("template: %s%n", templateData);
                     JsonNode template = objectMapper.valueToTree(templateData);
                     templateCache.put(sectionType, template);
                 } catch (Exception e) {

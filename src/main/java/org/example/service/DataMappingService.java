@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.mapper.VitalsMapper;
 import org.example.mapper.NeurologicalMapper;
+import org.example.mapper.DetailMapper;
+import org.example.mapper.SummaryMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,24 +14,38 @@ public class DataMappingService {
 
     private final VitalsMapper vitalsMapper;
     private final NeurologicalMapper neurologicalMapper;
+    private final DetailMapper detailMapper;
+    private final SummaryMapper summaryMapper;
+
 
     public DataMappingService() {
         this.vitalsMapper = new VitalsMapper();
         this.neurologicalMapper = new NeurologicalMapper();
+        this.detailMapper = new DetailMapper();
+        this.summaryMapper = new SummaryMapper();
     }
 
     public Map<String, Object> transformPdfData(Map<String, String> pdfData) {
+
         Map<String, Object> transformedData = new HashMap<>();
+        
+        // Create a map of all mappers with their section names
+        Map<String, Map<String, Object>> allMappers = new HashMap<>();
+        allMappers.put("vitals", vitalsMapper.getVitalsMapping(pdfData));
+        allMappers.put("neurological", neurologicalMapper.getNeurologicalMapping());
+        allMappers.put("details", detailMapper.getDetailsMapping());
+        allMappers.put("summary", summaryMapper.getSummaryMapping());
+        
+        // Loop through all mappers and apply transformations
+        for (Map.Entry<String, Map<String, Object>> mapperEntry : allMappers.entrySet()) {
+            String sectionName = mapperEntry.getKey();
+            Map<String, Object> mapping = mapperEntry.getValue();
+            
+            transformDataSection(pdfData, transformedData, mapping, sectionName);
+        }
 
-        Map<String, Object> vitalsMapping = vitalsMapper.getVitalsMapping(pdfData);
-        Map<String, Object> neurologicalMapping = neurologicalMapper.getNeurologicalMapping();
-
-        // Apply mappings
-        transformDataSection(pdfData, transformedData, vitalsMapping, "vitals");
-        // transformDataSection(pdfData, transformedData, neurologicalMapping, "neurological");
-
-        // Handle unmapped fields
-        // addUnmappedFields(pdfData, transformedData, vitalsMapping, neurologicalMapping);
+        // Handle unmapped fields (optional)
+        addUnmappedFields(pdfData, transformedData, allMappers.values().toArray(new Map[0]));
 
         return transformedData;
     }
