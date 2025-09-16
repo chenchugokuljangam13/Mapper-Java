@@ -47,7 +47,7 @@ public class PdfUploadController {
             // This will extract the data from the PDF
             Map<String, String> extractedData = pdfExtractionService.extractFormFields(file);
             // This will map the data from the extractedData to match the keys like in the template
-            // Map<String, Object> mappedData = dataMappingService.transformPdfData(extractedData);
+            Map<String, Object> mappedData = dataMappingService.transformPdfData(extractedData);
             // // This maps the data in the mapped data as the template form
             // Map<String, Object> templateMappedData = templateService.processApiMapperService(mappedData, "15990");
             
@@ -57,8 +57,8 @@ public class PdfUploadController {
                 // "filename", file.getOriginalFilename(),
                 // "rawDataFieldsCount", extractedData.size(),
                 // "patientId", extractedData.get("Patient ID") != null ? extractedData.get("Patient ID") : "",
-                "rawData", extractedData
-                // "mappedData", mappedData,
+                "rawData", extractedData,
+                "mappedData", mappedData
                 // "tempFromAPI", tempFromAPI,
                 // "templateMappedData", templateMappedData
             ));

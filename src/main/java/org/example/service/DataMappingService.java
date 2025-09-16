@@ -1,18 +1,22 @@
 package org.example.service;
 
 import org.example.mapper.VitalsMapper;
+import org.example.mapper.PreferencesMapper;
 import org.example.mapper.NeurologicalMapper;
 import org.example.mapper.DetailMapper;
 import org.example.mapper.SummaryMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class DataMappingService {
 
     private final VitalsMapper vitalsMapper;
+    private final PreferencesMapper preferencesMapper;
     private final NeurologicalMapper neurologicalMapper;
     private final DetailMapper detailMapper;
     private final SummaryMapper summaryMapper;
@@ -20,6 +24,7 @@ public class DataMappingService {
 
     public DataMappingService() {
         this.vitalsMapper = new VitalsMapper();
+        this.preferencesMapper = new PreferencesMapper();
         this.neurologicalMapper = new NeurologicalMapper();
         this.detailMapper = new DetailMapper();
         this.summaryMapper = new SummaryMapper();
@@ -32,6 +37,7 @@ public class DataMappingService {
         // Create a map of all mappers with their section names
         Map<String, Map<String, Object>> allMappers = new HashMap<>();
         allMappers.put("vitals", vitalsMapper.getVitalsMapping(pdfData));
+        allMappers.put("preferences", preferencesMapper.getPreferencesMapping(pdfData));
         allMappers.put("neurological", neurologicalMapper.getNeurologicalMapping());
         allMappers.put("details", detailMapper.getDetailsMapping());
         allMappers.put("summary", summaryMapper.getSummaryMapping());
@@ -40,7 +46,6 @@ public class DataMappingService {
         for (Map.Entry<String, Map<String, Object>> mapperEntry : allMappers.entrySet()) {
             String sectionName = mapperEntry.getKey();
             Map<String, Object> mapping = mapperEntry.getValue();
-            
             transformDataSection(pdfData, transformedData, mapping, sectionName);
         }
 
@@ -58,7 +63,6 @@ public class DataMappingService {
         for (Map.Entry<String, Object> entry : mapping.entrySet()) {
             String pdfKey = entry.getKey();
             Object mappedValue = entry.getValue();
-
             if (mappedValue instanceof String) {
                 // Simple mapping
                 if (pdfData.containsKey(pdfKey)) {
@@ -82,7 +86,22 @@ public class DataMappingService {
                     sectionData.put(pdfKey, nestedData);
                 }
             }
+            // this is for the preferences where card name is assessmentWith we will get yes of off
+            if ("preferences".equals(sectionName) && "assessmentWith".equals(pdfKey) && mappedValue instanceof Map){
+                List<String> assessmentWithList = new ArrayList<>();
+                Map<String, Object> assessmentMap = (Map<String, Object>) mappedValue;
+                for (Map.Entry<String, Object> assessmentEntry : assessmentMap.entrySet()){
+                    String assessmentMapperKey = assessmentEntry.getKey();
+                    Object assessmentMapperValue = assessmentEntry.getValue();
+                    String assessmentPDFValue = pdfData.get(assessmentMapperKey);
+                    if ("Yes".equals(assessmentPDFValue)){
+                        assessmentWithList.add(assessmentMapperValue.toString());
+                    }
+                }
+                sectionData.put(pdfKey, assessmentWithList);
+            }
         }
+        
 
         if (!sectionData.isEmpty()) {
             transformedData.put(sectionName, sectionData);

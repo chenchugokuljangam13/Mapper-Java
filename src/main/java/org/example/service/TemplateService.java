@@ -71,7 +71,6 @@ public class TemplateService {
     public Map<String, Object> processApiMapperService(Map<String, Object> mappedData, String assessment) {
         // Load templates based on sections in mappedData
         templateLoader(mappedData, assessment);
-        
         // Map the data using loaded templates
         return templateDataMapper(mappedData);
     }
@@ -84,7 +83,6 @@ public class TemplateService {
                 try {
                     // Call template API using assessment id and section type
                     Map<String, Object> templateData = getTempFromAPI(sectionType, assessment);
-                    System.out.printf("template: %s%n", templateData);
                     JsonNode template = objectMapper.valueToTree(templateData);
                     templateCache.put(sectionType, template);
                 } catch (Exception e) {
@@ -105,6 +103,7 @@ public class TemplateService {
                 JsonNode template = templateCache.get(sectionType);
                 // System.out.printf("template %s: %s%n", sectionType, template);
                 // System.out.printf("template %s data: %s%n", sectionType, sectionData);
+                @SuppressWarnings("unchecked")
                 Map<String, Object> mappedSection = mapSectionToCards(
                     (Map<String, Object>) sectionData, 
                     template,
@@ -124,20 +123,22 @@ public class TemplateService {
         Map<String, Object> result = new HashMap<>();
         result.put("sectionId", sectionType);
         result.put("cards", new HashMap<>());
-
         JsonNode cards = template.get("cards");
         Map<String, Object> cardsData = (Map<String, Object>) result.get("cards");
         if (cards != null && cards.isArray()) {
             Map<String, String> declineObject = (Map<String, String>) sectionData.get("decline");
-            if ("Yes".equals(declineObject.get("declined"))){
+
+            if (declineObject != null && !declineObject.isEmpty() && "Yes".equals(declineObject.get("declined"))){
                 Map<String, Object> declineData = new HashMap<>();
                 declineData.put("declined", true);
                 for (JsonNode card : cards) {
                     String cardId = card.get("id").asText();
                     String cardName = card.get("cardName").asText();
+                    String cardType = card.get("type").asText();
                     Map<String, Object> cardKeyValues = new HashMap<>();
                     cardKeyValues.put("cardId", cardId);
                     cardKeyValues.put("cardName", cardName);
+                    cardKeyValues.put("cardType", cardType);
                     if ("decline".equals(cardName)) {
                         Map<String, Object> dataMap = new HashMap<>();
                         dataMap.putAll(declineData);
@@ -155,12 +156,15 @@ public class TemplateService {
                 }
                 return result;
             }
+            
             for (JsonNode card : cards) {
                 String cardId = card.get("id").asText();
                 String cardName = card.get("cardName").asText();
+                String cardType = card.get("type").asText();
                 Map<String, Object> cardKeyValues = new HashMap<>();
                 cardKeyValues.put("cardId", cardId);
                 cardKeyValues.put("cardName", cardName);
+                cardKeyValues.put("cardType", cardType);
                 cardKeyValues.put("data", new HashMap<>());
 
                 if (card.has("inputs")) {
